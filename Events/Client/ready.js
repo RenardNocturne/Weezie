@@ -26,19 +26,4 @@ module.exports = async (client) => {
         }
 
     }, 10000);
-
-    let commands = client.guilds.cache.get("825760704241991752").commands
-
-    commands.create({
-        name: "clear",
-        description: "Nettoie plusieurs messages dans le salon actuel.",
-        options: [
-            {
-                name: "messages",   
-                description: "Nombre de messages à supprimer compris entre 1 et 99.",
-                required: true,
-                type: Discord.Constants.ApplicationCommandOptionTypes.INTEGER
-            },
-        ]
-    })
 }

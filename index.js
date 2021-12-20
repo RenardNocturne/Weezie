@@ -1,4 +1,4 @@
-const { loadCommands, loadEvents } = require('./Utils/loader')
+const { loadCommands, loadEvents, registerCommands } = require('./Utils/loader')
 const {Client, Intents, Collection} = require('discord.js');
 require("dotenv").config()
 
@@ -20,10 +20,10 @@ const client = new Client({intents: [
 
 require('./Utils/functions')(client);
 
-const collecs = ["commands"]
-collecs.forEach(element => client[element] = new Collection());
+client.commands = new Collection();
 
 loadEvents(client)
 loadCommands(client)
+registerCommands();
 
 client.login(process.env.TOKEN)
