@@ -20,5 +20,7 @@ module.exports.run = async (client, interaction) => {
 }
 
 module.exports.help = {
-    name: "ping"
+    name: "ping",
+    userPerms: [],
+    userPermsFR: []
 }

@@ -5,6 +5,9 @@ module.exports = (client, interaction) => {
 
         //sécurité
         if (interaction.user.bot || !command) return;
+
+        if(!interaction.member.permissions.has(command.help.userPerms)) return interaction.reply({content: `🔒 Vous n'avez pas les permission requises: \n > ${command.help.userPermsFR.join(' \n > ')}`, ephemeral: true})
+
         command.run(client, interaction)
 
     } else if (interaction.isSelectMenu()) {

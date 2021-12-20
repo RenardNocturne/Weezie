@@ -1,3 +1,5 @@
+const { Permissions } = require("discord.js")
+
 module.exports.run = (client, interaction) => {
     const messagesToDelete = interaction.options.data[0].value
 
@@ -15,5 +17,7 @@ module.exports.run = (client, interaction) => {
 }
 
 module.exports.help = {
-    name: "clear"
+    name: "clear",
+    userPerms: [Permissions.FLAGS.MANAGE_MESSAGES],
+    userPermsFR: ["Gérer les messages"]
 }
