@@ -5,7 +5,7 @@ module.exports = async (client, reaction, user) => {
 
     if (message.embeds[0]) return //Si y a un embed on return car ou c'est un bot ou c'est un self-bot
 
-    if (reaction.emoji.name === "⭐" && reaction.count >= 1) { //Si on a 5 reactions étoile ou plus on envoie l'embed
+    if (reaction.emoji.name === "⭐" && reaction.count >= 5) { //Si on a 5 reactions étoile ou plus on envoie l'embed
 
         const embed = new MessageEmbed()
             .setAuthor(message.author.username, message.author.displayAvatarURL())
