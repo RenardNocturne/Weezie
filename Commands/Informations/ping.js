@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
-		.setDescription('Réponds avec Pong !'),
+		.setDescription('🏓 Réponds avec Pong !'),
 	async execute(client, interaction) {
         const embed = new MessageEmbed()
             .setTitle("🏓 Pong !")

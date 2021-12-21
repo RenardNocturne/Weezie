@@ -6,18 +6,18 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('clear')
-		.setDescription('Nettoie un nombre défini de messages dans le salon !')
+		.setDescription('🧹 Nettoie un nombre défini de messages dans le salon !')
         .addSubcommand(messages => messages
             .setName("messages")
-            .setDescription("Supprime un nombre défini de messages dans le salon actuel.")
+            .setDescription("🔥 Supprime un nombre défini de messages dans le salon actuel.")
             .addIntegerOption(option => option
                 .setName("nombre")
-                .setDescription("Nombre de messages à supprimer compris entre 1 et 99.")
+                .setDescription("📌 Nombre de messages à supprimer compris entre 1 et 99.")
                 .setRequired(true))
         )
         .addSubcommand(channel => channel
             .setName("channel")
-            .setDescription("Supprime tous les messages de ce salon.")
+            .setDescription("🔥 Supprime tous les messages de ce salon.")
         ),
 	async execute(client, interaction) {
         switch (interaction.options.getSubcommand()) {
