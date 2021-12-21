@@ -30,6 +30,10 @@ module.exports = (client, interaction) => {
         switch (interaction.customId) {
             case "accept_rules":
                 client.emit("rules", interaction) 
+                break;
+            case "acceptDevRules":
+                client.emit("devRules", interaction)
+                break;
         }
     }
 }
