@@ -9,7 +9,7 @@ module.exports = {
 		.setDescription('🧹 Nettoie un nombre défini de messages dans le salon !')
         .addSubcommand(messages => messages
             .setName("messages")
-            .setDescription("🔥 Supprime un nombre défini de messages dans le salon actuel.")
+            .setDescription("🧹 Supprime un nombre défini de messages dans le salon actuel.")
             .addIntegerOption(option => option
                 .setName("nombre")
                 .setDescription("📌 Nombre de messages à supprimer compris entre 1 et 99.")
