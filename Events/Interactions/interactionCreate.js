@@ -34,6 +34,9 @@ module.exports = (client, interaction) => {
             case "acceptDevRules":
                 client.emit("devRules", interaction)
                 break;
+            case "cancelRecruit":
+                interaction.message.delete().catch(err => console.log(err))
+                break;
         }
     }
 }
