@@ -43,6 +43,8 @@ module.exports = (client, interaction) => {
             case "cancelRequest":
                 client.emit("cancelRequest", interaction)
                 break;
+            case "requestFinished":
+                client.emit("requestFinished", interaction)
         }
     }
 }

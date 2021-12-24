@@ -44,7 +44,7 @@ module.exports = async (client, interaction) => {
             .addComponents([
                 new MessageButton()
                     .setLabel("Terminer !")
-                    .setCustomId("requestFinished")
+                    .setCustomId("requestFinished/" + target.id)
                     .setStyle("SUCCESS")
             ])
 

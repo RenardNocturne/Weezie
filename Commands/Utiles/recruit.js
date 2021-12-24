@@ -175,7 +175,7 @@ module.exports = {
                     .setStyle("DANGER")
             ]) 
         if (infos.finished) return
-        client.channels.cache.get("922942569934098532").send({embeds: [endEmbed], components: [acceptedRequest]})
+        client.channels.cache.get("922813260644896889").send({embeds: [endEmbed], components: [acceptedRequest]})
         interaction.editReply({content: '✅ Requête envoyé dans le salon <#922813260644896889> !', embeds: [], components: []})
 
         //Alors oui j'ai un peu spam les return mais aussi ils sont pas très clair dans la doc ^^'
