@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageActionRow, MessageButton, MessageEmbed, MessageSelectMenu } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
-            .setName("recruit")
-            .setDescription("📋 Crée ton annonce de recrutement !"),
+            .setName("request")
+            .setDescription("📋 Crée ta requête !"),
     async execute (client, interaction) {
         
         function TimesUp () {
@@ -44,43 +44,43 @@ module.exports = {
                             label: 'Web Frontend',
                             emoji: '📜',
                             value: '922229734476234753',
-                            description: 'Pour les missions demandant HTML/CSS/JS... !'
+                            description: 'Pour les requêtes demandant HTML/CSS/JS... !'
                         },
                         {
                             label: 'Web Backend',
                             emoji: '⚙',
                             value: '922230043005030421',
-                            description: 'Pour les missions demandant JS/PHP/DataBases... '
+                            description: 'Pour les requêtes demandant JS/PHP/DataBases... '
                         },
                         {
                             label: 'JavaScript',
                             emoji: '<:JS:825850725183258624>',
                             value: '922229136892780565',
-                            description: 'Pour les missions nécessitant le JavaScript !'
+                            description: 'Pour les requêtes nécessitant le JavaScript !'
                         },
                         {
                             label: 'Python',
                             emoji: '<:Python:825853269607579648>',
                             value: '922229302475501569',
-                            description: 'Pour les missions nécessitant le Python !'
+                            description: 'Pour les requêtes nécessitant le Python !'
                         },
                         {
                             label: 'C/C#/C++/...',
                             emoji: '<:C_:922511770873135194>',
                             value: '922229433056780348',
-                            description: 'Pour les missions nécessitant le C/C#/C++/...'
+                            description: 'Pour les requêtes nécessitant le C/C#/C++/...'
                         },
                         {
                             label: 'Java/Kotlin',
                             emoji: '<:Java:835411957733130252>',
                             value: '922229560131588136',
-                            description: 'Pour les missions nécessitant le Java/Kotlin !'
+                            description: 'Pour les requêtes nécessitant le Java/Kotlin !'
                         },
                         {
                             label: 'Autres',
                             emoji: '📚',
                             value: '922230212069064725',
-                            description: 'Pour les missions nécessitant un langage autre !'
+                            description: 'Pour les requêtes nécessitant un langage autre !'
                         },
                     ])
             ])
@@ -90,19 +90,19 @@ module.exports = {
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
 
         const descriptionEmbed = new MessageEmbed()
-            .setAuthor("Petites annonces", interaction.user.displayAvatarURL())
-            .setDescription("Quelle description souhaitez vous ajouter à votre annonce ? \n \n *Annulation dans 5 minutes !*")
+            .setAuthor("Requêtes", interaction.user.displayAvatarURL())
+            .setDescription("Quelle description souhaitez vous ajouter à votre requête ? \n \n *Annulation dans 5 minutes !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) //Oui demandée "ée" parce qu'on va dire que c'est la commande qui est demandée :3
             .setColor(client.defaultColor)
 
         const priceEmbed = new MessageEmbed() 
-            .setAuthor("Petites annonces", interaction.user.displayAvatarURL())
+            .setAuthor("Requêtes", interaction.user.displayAvatarURL())
             .setDescription("Quelle récompense accorderez-vous au développeur ? \n \n *Annulation dans 1 minute !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
             .setColor(client.defaultColor)
 
         const abilitiesEmbed = new MessageEmbed()
-            .setAuthor("Petites annonces", interaction.user.displayAvatarURL())
+            .setAuthor("Requêtes", interaction.user.displayAvatarURL())
             .setDescription("Quel.s langage.s pensez-vous adapté.s à votre requête ? \n \n *Annulation dans 1 minute !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
             .setColor(client.defaultColor)
