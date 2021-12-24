@@ -176,7 +176,7 @@ module.exports = {
             ]) 
         if (infos.finished) return
         client.channels.cache.get("922813260644896889").send({embeds: [endEmbed], components: [acceptedRequest]})
-        interaction.editReply({content: '✅ Requête envoyé dans le salon <#922813260644896889> !', embeds: [], components: []})
+        interaction.editReply({content: '✅ Requête envoyée dans le salon <#922813260644896889> !', embeds: [], components: []})
 
         //Alors oui j'ai un peu spam les return mais aussi ils sont pas très clair dans la doc ^^'
     },
