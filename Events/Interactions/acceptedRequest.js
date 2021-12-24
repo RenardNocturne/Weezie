@@ -5,7 +5,7 @@ module.exports = async (client, interaction) => {
 
     if (!interaction.member.roles.cache.has("922223564835414096")) return interaction.reply({content: "Vous n'avez pas accepté le <#922813007963254825> !", ephemeral: true})
     //On return si il a pas accepté ou que c'est la même personne
-    // if (target.id === interaction.user.id) return interaction.reply({content: "❌ Vous ne pouvez pas accepter votre propre requête !", ephemeral: true})
+    if (target.id === interaction.user.id) return interaction.reply({content: "❌ Vous ne pouvez pas accepter votre propre requête !", ephemeral: true})
 
     await interaction.guild.channels.create(`requête-de-${target.user.username}`, {
         type: 'text',
