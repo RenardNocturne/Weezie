@@ -27,7 +27,7 @@ module.exports = (client, interaction) => {
                 break;
         }
     } else if (interaction.isButton()) {
-        switch (interaction.customId) {
+        switch (interaction.customId.split("/")[0]) {
             case "accept_rules":
                 client.emit("rules", interaction) 
                 break;
@@ -36,6 +36,9 @@ module.exports = (client, interaction) => {
                 break;
             case "cancelRecruit":
                 interaction.message.delete().catch(err => console.log(err))
+                break;
+            case "acceptedRequest":
+                client.emit("acceptedRequest", interaction)
                 break;
         }
     }
