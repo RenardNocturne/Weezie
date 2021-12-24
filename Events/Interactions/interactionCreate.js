@@ -40,6 +40,9 @@ module.exports = (client, interaction) => {
             case "acceptedRequest":
                 client.emit("acceptedRequest", interaction)
                 break;
+            case "cancelRequest":
+                client.emit("cancelRequest", interaction)
+                break;
         }
     }
 }
