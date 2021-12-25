@@ -26,7 +26,8 @@ module.exports = {
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre").user
         const time = interaction.options.getString("durée")
-        const reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
+        let reason = "";
+        if (interaction.options.getString("raison")) reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
 
         async function ban (duration, txt, perm) {
             const unbanEmbed = new MessageEmbed()

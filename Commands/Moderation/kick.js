@@ -15,7 +15,8 @@ module.exports = {
                 .setDescription("📝 Ajouter une raison.")),
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre")
-        const reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
+        const reason = "";
+        if(interaction.options.getString("raison")) reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
 
         const embed = new MessageEmbed()
             .setAuthor(`${target.user.tag} expulsé !`, target.user.displayAvatarURL())
