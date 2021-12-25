@@ -24,7 +24,7 @@ module.exports = {
                 .setDescription("🔥 Retire un warn à un membre.")
                 .addUserOption(option => option
                     .setName("membre")
-                    .setDescription("👤 Choisissez un membre à avertir.")
+                    .setDescription("👤 Choisissez un membre.")
                     .setRequired(true)
                 )
                 .addNumberOption(option => option
@@ -37,7 +37,7 @@ module.exports = {
                 .setDescription("🔎 Regardez les warns d'un membre.")
                 .addUserOption(option => option
                     .setName("membre")
-                    .setDescription("👤 Choisissez un membre à avertir.")
+                    .setDescription("👤 Choisissez un membre.")
                     .setRequired(true)
                 )
             ),
