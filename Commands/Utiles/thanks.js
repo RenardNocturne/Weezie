@@ -54,7 +54,7 @@ module.exports = {
                     .setFooter(`Remercié par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                     .setTimestamp()
 
-                client.channels.cache.get("922942569934098532").send({embeds: [addEmbed], content: `<@!${target.id}> vient d'être remercié !`})
+                client.channels.cache.get("922545697113407518").send({embeds: [addEmbed], content: `<@!${target.id}> vient d'être remercié !`})
                 interaction.reply({content: "✅ Remerciement effectué !", ephemeral: true})
                 break;
             case "get":
