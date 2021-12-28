@@ -19,23 +19,11 @@ module.exports = {
                 .setName("option2")
                 .setDescription("2️⃣ Ajoutez une possibilité.")
                 .setRequired(true)
-            )
-            // .addStringOption(option => option
-            //     .setName("durée")
-            //     .setDescription("⏳ Définissez une durée pour ce sondage.")
-            //     .addChoice("1 jour", "86400000")
-            //     .addChoice("3 jours", "259200000")
-            //     .addChoice("5 jours", "432000000")
-            //     .addChoice("7 jours", "604800000")
-            //     .addChoice("2 semaines", "1209600000")
-            //     .addChoice("1 mois", "2678400000")
-            //     .setRequired(true))
-            ,
+            ),
     async execute(client, interaction) {
         const question = interaction.options.getString("question")
         const opt1 = interaction.options.getString("option1")
         const opt2 = interaction.options.getString("option2")
-        // const time = interaction.options.getString("durée")
 
         let total = 0, option1 = 0, option2 = 0, none = 0;
 
@@ -50,6 +38,13 @@ module.exports = {
                     i.reply({content: "✅ Vote comptabilisé !", ephemeral: true})
                     eval(i.customId + "+= 1");
                     total += 1;
+
+                    const newEmbed = new MessageEmbed()
+                        .setAuthor("Sondage !", interaction.guild.iconURL())
+                        .setDescription(`**❓ Question:** ${question} \n \n 1️⃣ **Option 1:** ${opt1} \n \`${option1/total*100}%\` \n \n 🏳 **Neutre à ${none/total*100}%** \n \n 2️⃣ **Option 2:** ${opt2} \n \`${option2/total*100}%\` \n \n *${total} participants !*`)
+                        .setColor(client.defaultColor)
+                        .setFooter(`Sondage de ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                    msg.edit({embeds: [newEmbed]})
                 }
                 msg.awaitMessageComponent({componentFilter})
                 .then(int => collectInteraction(msg, int))
