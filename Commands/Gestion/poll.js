@@ -58,7 +58,7 @@ module.exports = {
     
                     msg.edit({embeds: [newEmbed], components: []})
                 } else {
-                    i.rely("❌ Vous n'avez pas la permission requise !")
+                    i.reply("❌ Vous n'avez pas la permission requise !")
                     msg.awaitMessageComponent({componentFilter})
                     .then(int => collectInteraction(msg, int))
                 }
