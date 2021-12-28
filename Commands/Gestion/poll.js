@@ -41,7 +41,7 @@ module.exports = {
 
                     const newEmbed = new MessageEmbed()
                         .setAuthor("Sondage !", interaction.guild.iconURL())
-                        .setDescription(`**❓ Question:** ${question} \n \n 1️⃣ **Option 1:** ${opt1} \n \`${option1/total*100}%\` \n \n 🏳 **Neutre à ${none/total*100}%** \n \n 2️⃣ **Option 2:** ${opt2} \n \`${option2/total*100}%\` \n \n *${total} participants !*`)
+                        .setDescription(`**❓ Question:** ${question} \n \n 1️⃣ **Option 1:** ${opt1} \`${option1/total*100}%\` \n \n 🏳 **Neutre à ${none/total*100}%** \n \n 2️⃣ **Option 2:** ${opt2} \`${option2/total*100}%\` \n \n *${total} participants !*`)
                         .setColor(client.defaultColor)
                         .setFooter(`Sondage de ${interaction.user.username}`, interaction.user.displayAvatarURL())
                     msg.edit({embeds: [newEmbed]})
@@ -52,7 +52,7 @@ module.exports = {
                 if (i.member.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)) {
                     const newEmbed = new MessageEmbed()
                         .setAuthor("Sondage !", interaction.guild.iconURL())
-                        .setDescription(`**❓ Question:** ${question} \n \n 1️⃣ **Option 1:** ${opt1} \n \`${option1/total*100}%\` \n \n 🏳 **Neutre à ${none/total*100}%** \n \n 2️⃣ **Option 2:** ${opt2} \n \`${option2/total*100}%\` \n \n *${total} participants !*`)
+                        .setDescription(`**❓ Question:** ${question} \n \n 1️⃣ **Option 1:** ${opt1} \`${option1/total*100}%\` \n \n 🏳 **Neutre à ${none/total*100}%** \n \n 2️⃣ **Option 2:** ${opt2} \`${option2/total*100}%\` \n \n *${total} participants !*`)
                         .setColor(client.successColor)
                         .setFooter(`Sondage de ${interaction.user.username}`, interaction.user.displayAvatarURL())
     
@@ -102,7 +102,7 @@ module.exports = {
                     .setStyle("DANGER")
             ])
 
-        client.channels.cache.get("825768407697326140").send({embeds: [embed], components: [row]})
+        client.channels.cache.get("825768407697326140").send({content: 'Notification pour <@&922505401981861898> !', embeds: [embed], components: [row]})
         .then(msg => {
             interaction.reply({content: `✅ [Sondage](${msg.url}) envoyé !`, ephemeral: true})
             msg.awaitMessageComponent({componentFilter})
