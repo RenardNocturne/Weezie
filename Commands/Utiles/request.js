@@ -5,15 +5,6 @@ module.exports = {
             .setName("request")
             .setDescription("📋 Crée ta requête !"),
     async execute (client, interaction) {
-        
-        function TimesUp () {
-            if (infos.finished) return
-            interaction.deleteReply().catch(err => console.log(err))
-                interaction.channel.send({embeds: [timesUpEmbed]})
-                .then(msg => setTimeout(() => {
-                    msg.delete().catch(err => console.log(err))
-                }, 3500))
-        }
 
         const filter = m => m.author.id === interaction.user.id
         const componentFilter = i => i.user.id === interaction.user.id
@@ -108,6 +99,16 @@ module.exports = {
             .setColor(client.defaultColor)
         
         let response;
+        
+        async function TimesUp () {
+            if (infos.finished) return
+            interaction.deleteReply().catch(err => console.log(err))
+                interaction.channel.send({embeds: [timesUpEmbed]})
+                .then(msg => setTimeout(() => {
+                    msg.delete().catch(err => console.log(err))
+                }, 3500))
+            infos.finished = true;
+        }
 
         await interaction.reply({embeds: [descriptionEmbed], components: [baseRow], fetchReply: true})
         .then(async (resp) => {
@@ -120,12 +121,12 @@ module.exports = {
                 infos.description = collected.content
                 collected.delete().catch(err => console.log(err))
             })
-            .catch(() => {
-                TimesUp()
+            .catch(async () => {
+                await TimesUp()
             })
         })
 
-        if (response.deleted) return
+        if (response.deleted || infos.finished) return
         await interaction.editReply({embeds: [priceEmbed], components: [baseRow]})
         .then(async () => {
             await interaction.channel.awaitMessages({filter: filter, max: 1, time: 60000, errors: ['time']})
@@ -135,15 +136,15 @@ module.exports = {
                 infos.price = collected.content
                 collected.delete().catch(err => console.log(err))
             })
-            .catch(() => {
-                TimesUp()
+            .catch(async () => {
+                await TimesUp()
             })
         })
 
-        if (response.deleted) return
+        if (response.deleted || infos.finished) return
         await interaction.editReply({embeds: [abilitiesEmbed], components: [abilitiesRow, baseRow], fetchReply: true})
         .then(async response => {
-            await response.awaitMessageComponent({componentFilter, time: "60000"})
+            await response.awaitMessageComponent({componentFilter, time: "60000", errors: ['time']})
             .then(i => {
                 if (response.deleted) return
                 if (i.customId === "abilities") {
@@ -153,6 +154,9 @@ module.exports = {
                 } else {
                     infos.finished = true
                 }
+            })
+            .catch(async () => {
+                await TimesUp()
             })
         })
 
