@@ -80,7 +80,7 @@ module.exports = {
             ban(7, '1 semaine')
         } else if (time === 'month') {
             ban(31, '1 mois')
-        } else if (time === permanent) {
+        } else if (time === 'permanent') {
             ban(none, 'Permanente', true)
         }   
     },
