@@ -17,10 +17,11 @@ module.exports = {
 
         async function collectInteraction (msg, i) {
             if (i.customId !== "repSuggest") {
+                console.log(Object.keys(hasVoted).includes(i.user.id), Object.keys(hasVoted), i.user.id);
                 if (Object.keys(hasVoted).includes(i.user.id)) {
                     i.reply({content: "❌ Vous avez déjà voter !", ephemeral: true})
                 } else {
-                    eval(`Object.assign(hasVoted, {${i.user.id}: \`${i.customId}\`})`)
+                    hasVoted[i.user.id] = i.customId
                     i.reply({content: "✅ Vote comptabilisé !", ephemeral: true})
                     eval(i.customId + "+= 1");
                     total += 1;
@@ -106,7 +107,7 @@ module.exports = {
                     .setStyle("PRIMARY")
             ])
 
-        client.channels.cache.get("925757934972047360").send({embeds: [embed], components: [row]})
+        client.channels.cache.get("922942569934098532").send({embeds: [embed], components: [row]})
         .then(msg => {
             interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true})
             msg.awaitMessageComponent()
