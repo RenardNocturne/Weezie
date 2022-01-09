@@ -107,7 +107,7 @@ module.exports = {
                     .setStyle("PRIMARY")
             ])
 
-        client.channels.cache.get("922942569934098532").send({embeds: [embed], components: [row]})
+        client.channels.cache.get("925757934972047360").send({embeds: [embed], components: [row]})
         .then(msg => {
             interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true})
             msg.awaitMessageComponent()
