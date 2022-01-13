@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton } = require("discord.js")
+const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Permissions } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -52,5 +52,7 @@ module.exports = {
     await interaction.channel.send({embeds: [embed], files: [serverRules]})
     await interaction.channel.send({embeds: [secondEmbed], files: [important]})
     await interaction.channel.send({embeds: [thirdEmbed], files: [DevRules], components: [row]})
-}
+},
+userPerms: [Permissions.FLAGS.ADMINISTRATOR],
+userPermsFR: ["Administrateur"]
 }

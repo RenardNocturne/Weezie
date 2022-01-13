@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, MessageSelectMenu } = require("discord.js")
+const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, MessageSelectMenu, Permissions } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -109,4 +109,6 @@ module.exports = {
 
         interaction.channel.send({embeds: [embed], components: [notifsRow, rolesRow], files: [img]})
     },
+    userPerms: [Permissions.FLAGS.ADMINISTRATOR],
+    userPermsFR: ["Administrateur"]
 }
