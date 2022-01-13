@@ -28,7 +28,7 @@ module.exports = {
                     .setFooter(`Signalement à l'encontre de ${target.user.tag}`, target.user.displayAvatarURL())
                     .setTimestamp()
                 
-                client.channels.cache.get("931252719698726973").send({embeds: [embed]})
+                client.channels.cache.get("931252719698726973").send({content: "Mention: <@&825764023504470047>", embeds: [embed]})
             })
     },
 }
