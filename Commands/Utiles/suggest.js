@@ -17,7 +17,6 @@ module.exports = {
 
         async function collectInteraction (msg, i) {
             if (i.customId !== "repSuggest") {
-                console.log(Object.keys(hasVoted).includes(i.user.id), Object.keys(hasVoted), i.user.id);
                 if (Object.keys(hasVoted).includes(i.user.id)) {
                     i.reply({content: "❌ Vous avez déjà voter !", ephemeral: true})
                 } else {
@@ -37,7 +36,7 @@ module.exports = {
                 .then(int => collectInteraction(msg, int))
                 .catch(err => console.log(err))
             } else if (i.customId === "repSuggest") {
-                if (i.member.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS) && Object.keys(hasVoted).includes(i.user.id)) {                    
+                if (i.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES) && Object.keys(hasVoted).includes(i.user.id)) {                    
                     const msgFilter = m => m.author.id === i.user.id
                     let response = "";
                     
@@ -64,7 +63,7 @@ module.exports = {
                         .setFooter(`Suggestion de ${interaction.user.username}`, interaction.user.displayAvatarURL())
                     msg.edit({embeds: [newEmbed], components: []})
 
-                } else if (i.member.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)) {
+                } else if (i.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
                     i.reply({content: "❌ Vous n'avez pas encore voté !", ephemeral: true})
                     msg.awaitMessageComponent()
                     .then(int => collectInteraction(msg, int))  
