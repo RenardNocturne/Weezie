@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("report")
-        .setDescription("📣 Vous permet de signaler un membre aux <@&825764023504470047> !")
+        .setDescription("📣 Vous permet de signaler un membre aux modérateurs !")
         .addUserOption(option => option
             .setName("membre")
             .setDescription("👤 Ciblez un membre à reporter !")
