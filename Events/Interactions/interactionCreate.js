@@ -27,24 +27,39 @@ module.exports = (client, interaction) => {
                 break;
         }
     } else if (interaction.isButton()) {
-        switch (interaction.customId.split("/")[0]) {
-            case "accept_rules":
-                client.emit("rules", interaction) 
-                break;
-            case "acceptDevRules":
-                client.emit("devRules", interaction)
-                break;
-            case "cancelRecruit":
-                interaction.message.delete().catch(err => console.log(err))
-                break;
-            case "acceptedRequest":
-                client.emit("acceptedRequest", interaction)
-                break;
-            case "cancelRequest":
-                client.emit("cancelRequest", interaction)
-                break;
-            case "requestFinished":
-                client.emit("requestFinished", interaction)
+        const commandName = interaction.customId.split("/")[0]
+        const command = client.buttons.get(commandName);
+        console.log(client.buttons);
+        //sécurité
+        if (interaction.user.bot || !command) return;
+        
+        try {
+            command.execute(client, interaction)
+            .then(() => {
+                console.log(`✅ Bouton ${command.name} réalisée avec succès !`);
+            })
+        } catch (err) {
+            console.log(`❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} !`)
+            console.log(err);
         }
+        // switch (interaction.customId.split("/")[0]) {
+        //     case "accept_rules":
+        //         client.emit("rules", interaction) 
+        //         break;
+        //     case "acceptDevRules":
+        //         client.emit("devRules", interaction)
+        //         break;
+        //     case "cancelRecruit":
+        //         interaction.message.delete().catch(err => console.log(err))
+        //         break;
+        //     case "acceptedRequest":
+        //         client.emit("acceptedRequest", interaction)
+        //         break;
+        //     case "cancelRequest":
+        //         client.emit("cancelRequest", interaction)
+        //         break;
+        //     case "requestFinished":
+        //         client.emit("requestFinished", interaction)
+        // }
     }
 }

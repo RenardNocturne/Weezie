@@ -14,9 +14,7 @@ const loadEvents = (client, dir = './Events') => {
             console.log(`L'évènement ${evtName} a bien été chargée !`);
         };
     });
-};
-  
-  
+};  
   
 const loadCommands = (client, dir = './Commands') => {
     readdirSync(dir).forEach(dirs => {
@@ -27,6 +25,18 @@ const loadCommands = (client, dir = './Commands') => {
             client.commands.set(command.data.name, command);
             console.log(`Commande ${command.data.name} chargée avec succès !`);
         }
+    });
+};
+
+const loadButtons = (bot, dir = './Events/Interactions/Buttons') => {
+    readdirSync(dir).forEach(dirs => {
+        const buttons = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
+
+        for (const file of buttons) {
+            const command = require(`../${dir}/${dirs}/${file}`);
+            bot.buttons.set(command.name, command);
+            console.log(`Le bouton ${command.name} a bien été chargée !`);
+        };
     });
 };
 
@@ -52,5 +62,6 @@ const registerCommands = (dir = './Commands') => {
 module.exports = {
     loadEvents,
     loadCommands,
-    registerCommands
+    registerCommands,
+    loadButtons
 }

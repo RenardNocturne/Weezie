@@ -28,7 +28,7 @@ module.exports = {
             .addComponents([
                 new MessageSelectMenu()
                     .setCustomId("abilities")
-                    .setPlaceholder("Languages")
+                    .setPlaceholder("🧬 Languages")
                     .setMaxValues(7)
                     .addOptions([
                         {
