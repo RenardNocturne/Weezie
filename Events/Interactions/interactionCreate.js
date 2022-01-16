@@ -25,11 +25,13 @@ module.exports = (client, interaction) => {
             case "autorolesDev":
                 client.emit("autorolesDev", interaction)
                 break;
+            case "ticket":
+                client.emit("ticket", interaction) 
         }
     } else if (interaction.isButton()) {
         const commandName = interaction.customId.split("/")[0]
         const command = client.buttons.get(commandName);
-        console.log(client.buttons);
+
         //sécurité
         if (interaction.user.bot || !command) return;
         
@@ -42,24 +44,5 @@ module.exports = (client, interaction) => {
             console.log(`❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} !`)
             console.log(err);
         }
-        // switch (interaction.customId.split("/")[0]) {
-        //     case "accept_rules":
-        //         client.emit("rules", interaction) 
-        //         break;
-        //     case "acceptDevRules":
-        //         client.emit("devRules", interaction)
-        //         break;
-        //     case "cancelRecruit":
-        //         interaction.message.delete().catch(err => console.log(err))
-        //         break;
-        //     case "acceptedRequest":
-        //         client.emit("acceptedRequest", interaction)
-        //         break;
-        //     case "cancelRequest":
-        //         client.emit("cancelRequest", interaction)
-        //         break;
-        //     case "requestFinished":
-        //         client.emit("requestFinished", interaction)
-        // }
     }
 }
