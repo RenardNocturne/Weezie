@@ -86,8 +86,8 @@ module.exports = {
             
             case "get":
                 let warns;
-                db.get(`${mentionned.id}.warns`) ? warns = 0 : warns = db.get(`${mentionned.id}.warns`)
-
+                db.get(`${mentionned.id}.warns`) ? db.get(`${mentionned.id}.warns`) : warns = 0
+                
                 const embed2 = new MessageEmbed()
                     .setAuthor(`Avertissements de ${mentionned.user.tag} !`, mentionned.user.displayAvatarURL())
                     .setDescription(`<@!${mentionned.id}> possède **${warns} avertissement.s !**`)
