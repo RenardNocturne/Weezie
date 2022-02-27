@@ -3,7 +3,7 @@ const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Permis
 
 module.exports = {
     data: new SlashCommandBuilder()
-            .setName("rules")
+            .setName("devrules")
             .setDescription("Renvoies les règles du serveur !"),
     async  execute(client, interaction) {
     const DevRules = new MessageAttachment('Images/DevRules.gif')
@@ -11,26 +11,20 @@ module.exports = {
     const important = new MessageAttachment("Images/important.png")
 
     const embed = new MessageEmbed()
-        .setTitle(":wave: Bienvenue sur le serveur Discord CodingTime !")
-        .setDescription(':bulb: **__Sur ce serveur, tu pourras trouver:__** \n > ◈ Des <@&922223564835414096> qui auront réponse à tes problèmes !\n > \n > ◈ Un salon <#922813260644896889> où tu pourras poster tes petites annonces et recruter un ou plusieurs <@&922223564835414096>.\n > \n > ◈ Des salons triés par langage de programmation pour ne pas t\'y perdre !\n > \n > ◈ Et bien plus encore...')
+        .setAuthor('Mur des requêtes', interaction.guild.iconURL())
+        .setDescription('💡 Cette catégorie permet aux membres du serveur de **recruter des développeurs** pour leurs projets et aux développeurs de faire leur **présentation** ! \n \n  ⚙ Pour ce faire, **postez vos requêtes dans le salon <#922813260644896889> grâce à la commande `/request` de <@!922239762797068299>** et attendez qu\'un développeur réponde à votre appel en cliquant simplement sur le **bouton situé sous votre requête** ! \n \n Une fois le développeur trouvé, un **ticket vous sera créé** et vous pourrez ainsi entamer votre projet ! 🚀')
         .setImage('attachment://serverRules.png')
         .setColor(client.defaultColor)
 
     const secondEmbed = new MessageEmbed()
     .setTitle(':gear: **Voici les règles à respecter**  :gear: ')    
     .setDescription(`
-:x: **1.** **Ne pas spammer** (envoyer des messages à répétition) dans les salons textuels.
-:x: **2.** Les **pubs** sous toutes formes sont **interdites** sans autorisation des <@&825764558093156372> ou <@&825764023504470047>, que ce soit en MP ou en public.
-:x: **3.** Le **respect** entre chaque membre est **obligatoire** (toutes insultes seront sanctionnées).
-:x: **4.** **Ne pas mentionner quiconque sans raison valable** ou pour des problèmes qui ne nous concernent pas ou que nous ne pouvons résoudre.
-:x: **5.** Le **multi-compte** est **strictement interdit.**
-:x: **6.** Toutes réactions visant à écrire des **insultes** seront **sanctionnées.**
-:x: **7.** Le contenu **pornographique** est **interdit.**
-:x: **8.** **L'usurpation d'identité** est formellement **interdite.**
-
-:warning: **9.** *Chaque salon a son utilité veuillez la respecter en lisant sa description.*
-
-:white_check_mark: **10.** **Bonne humeur et entraide sont les maîtres mots.**
+> :x: **1.** Toute **arnaque ou tromperie** vous mènera à un **bannissement permanent**.
+> :x: **2.** Nous ne participons qu'à la mise en relation **nous ne sommes pas responsables en cas d'arnaque ou de tromperie**.
+> :x: **3.** **N'acceptez pas de requête** si vous savez que vous ne la **ferez pas**.
+> 
+> :white_check_mark: **4.** Merci de respecter une **orthographe correcte** lors de la description de votre requête.
+> :white_check_mark: **5.** Essayer de **décrire au mieux** votre requête **sans faire la pub** de votre projet.
         `)
         .setColor(client.defaultColor)
         .setImage('attachment://important.png')
@@ -39,8 +33,8 @@ module.exports = {
         .setTitle(':gear:  **Quelques infos pratiques** :gear:')
         .setDescription(`
 > :warning: ***__Le non respect de l'une de ces règles pourrait vous conduire à un avertissement, une exclusion voir à un bannissement !__*** :warning: 
-> 
-> :tada: Si vous souhaitez **inviter des gens**, copiez [ce lien tout fait](https://discord.gg/YDa9BbNEtS) :tada:
+>  
+> :computer: Seules les personnes ayant le rôle <@&922223564835414096> peuvent accepter une requête, rôle uniquement accessible en acceptant ce règlement ! :computer:
 > 
 > - *Si vous avez __lu__ et __compris le règlement__ merci de cliquer sur le bouton "Accepter les règles !"*`)   
     .setColor(client.defaultColor)
@@ -50,21 +44,14 @@ module.exports = {
     const row = new MessageActionRow()
         .addComponents([
             new MessageButton()
-                .setLabel('Accepter les règles !')
-                .setCustomId('accept_rules')
+                .setLabel('Accepter le règlement !')
+                .setCustomId('acceptDevRules')
                 .setStyle('SUCCESS')
         ])
 
     await interaction.channel.send({embeds: [embed], files: [serverRules]})
     await interaction.channel.send({embeds: [secondEmbed], files: [important]})
     await interaction.channel.send({embeds: [thirdEmbed], files: [DevRules], components: [row]})
-
-    // client.channels.cache.get("825765662923423754").messages.fetch()
-    // .then(messages => {
-    //     messages.forEach(message => {
-    //         console.log(message.embeds[0].description);
-    //     })
-    // })
 },
 userPerms: [Permissions.FLAGS.ADMINISTRATOR],
 userPermsFR: ["Administrateur"]
