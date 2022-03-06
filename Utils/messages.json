@@ -9,13 +9,13 @@
     "status": {
         "activitiesTypes": [
             "PLAYING",
-            "LISTENING",
-            "WATCHING"
+            "WATCHING",
+            "LISTENING"
         ],
         "statusMessages": [
             "embêter Muzikae !",
-            "Muzikae !",
-            "GitHub..."
+            "GitHub...",
+            "Muzikae !"
         ]
     }
 }
