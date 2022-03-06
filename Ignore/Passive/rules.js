@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Permissions } = require("discord.js")
+const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Permissions, Message } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -52,7 +52,12 @@ module.exports = {
             new MessageButton()
                 .setLabel('Accepter les règles !')
                 .setCustomId('accept_rules')
-                .setStyle('SUCCESS')
+                .setStyle('SUCCESS'),
+            
+            new MessageButton()
+                .setLabel("✋ Demander de l'aide !") 
+                .setStyle("LINK")
+                .setURL("https://canary.discord.com/channels/825760704241991752/931235192163668049")
         ])
 
     await interaction.channel.send({embeds: [embed], files: [serverRules]})
