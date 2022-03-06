@@ -5,5 +5,17 @@
         "Toi je t'aime bien ! 👌",
         "Laisses-en aux autres un peu 🤣",
         "Non mais là, mais làààààà, non là c'est trop ! 😭"        
-    ]
+    ],
+    "status": {
+        "activitiesTypes": [
+            "PLAYING",
+            "LISTENING",
+            "WATCHING"
+        ],
+        "statusMessages": [
+            "embêter Muzikae !",
+            "Muzikae !",
+            "GitHub..."
+        ]
+    }
 }
