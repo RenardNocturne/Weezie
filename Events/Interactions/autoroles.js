@@ -115,5 +115,5 @@ module.exports = (client, interaction) => {
                 ])    
         ])
 
-    interaction.message.edit({embeds: [embed], components: [rolesRow, notifsRow]})
+    interaction.message.edit({embeds: [embed], components: [notifsRow, rolesRow]})
 }

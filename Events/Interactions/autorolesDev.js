@@ -9,7 +9,7 @@ module.exports = (client, interaction) => {
         }
     })
     interaction.reply({content: 'Vos rôles ont été mis à jours !', ephemeral: true});
-
+        
     const embed = new MessageEmbed()
         .setAuthor("Autorôles !", interaction.guild.iconURL())
         .setDescription("Afin d'**améliorer ton expérience** sur notre serveur, veille à choisir tes **rôles** ! \n\n Ceux-ci te permettront d'être mentionné.e lors de certaines annonces ! ✨ \n \n Ils te donneront aussi accès à certains salons ainsi, si tu développe en Kotlin tu ne seras pas embêté.e par les salons comme Discord.JS ! <a:Check:845300903095566338> \n \n 💡 Pour retirer un rôle il te suffit de le resélectonner !")
@@ -89,16 +89,22 @@ module.exports = (client, interaction) => {
                         description: 'Pour les développeurs Python !'
                     },
                     {
-                        label: 'C/C#/C++/...',
-                        emoji: '<:C_:922511770873135194>',
-                        value: '922229433056780348',
-                        description: 'Pour les développeurs C/C#/C++/...'
-                    },
-                    {
                         label: 'Java/Kotlin',
                         emoji: '<:Java:835411957733130252>',
                         value: '922229560131588136',
                         description: 'Pour les développeurs Java/Kotlin !'
+                    },
+                    {
+                        label: 'C/C++',
+                        emoji: '<:C_:922511770873135194>',
+                        value: '922229433056780348',
+                        description: 'Pour les développeurs C/C++'
+                    },
+                    {
+                        label: 'C#',
+                        emoji: '<:csharp:835413910286237716>',
+                        value: '952899567404343326',
+                        description: 'Pour les développeurs C#'
                     },
                     {
                         label: 'Autres',
