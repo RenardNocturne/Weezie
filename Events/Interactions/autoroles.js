@@ -89,16 +89,22 @@ module.exports = (client, interaction) => {
                         description: 'Pour les développeurs Python !'
                     },
                     {
-                        label: 'C/C#/C++/...',
-                        emoji: '<:C_:922511770873135194>',
-                        value: '922229433056780348',
-                        description: 'Pour les développeurs C/C#/C++/...'
-                    },
-                    {
                         label: 'Java/Kotlin',
                         emoji: '<:Java:835411957733130252>',
                         value: '922229560131588136',
                         description: 'Pour les développeurs Java/Kotlin !'
+                    },
+                    {
+                        label: 'C/C++',
+                        emoji: '<:C_:922511770873135194>',
+                        value: '922229433056780348',
+                        description: 'Pour les développeurs C/C++'
+                    },
+                    {
+                        label: 'C#',
+                        emoji: '<:csharp:835413910286237716>',
+                        value: '952899567404343326',
+                        description: 'Pour les développeurs C#'
                     },
                     {
                         label: 'Autres',
@@ -109,5 +115,5 @@ module.exports = (client, interaction) => {
                 ])    
         ])
 
-    interaction.message.edit({embeds: [embed], components: [notifsRow, rolesRow]})
+    interaction.message.edit({embeds: [embed], components: [rolesRow, notifsRow]})
 }

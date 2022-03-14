@@ -12,7 +12,7 @@ module.exports = {
 
     const embed = new MessageEmbed()
         .setAuthor('Mur des requêtes', interaction.guild.iconURL())
-        .setDescription('💡 Cette catégorie permet aux membres du serveur de **recruter des développeurs** pour leurs projets et aux développeurs de faire leur **présentation** ! \n \n  ⚙ Pour ce faire, **postez vos requêtes dans le salon <#922813260644896889> grâce à la commande `/request` de <@!922239762797068299>** et attendez qu\'un développeur réponde à votre appel en cliquant simplement sur le **bouton situé sous votre requête** ! \n \n Une fois le développeur trouvé, un **ticket vous sera créé** et vous pourrez ainsi entamer votre projet ! 🚀')
+        .setDescription('💡 Cette catégorie permet aux membres du serveur de **recruter des développeurs ou des graphistes** pour leurs projets et aux développeurs et graphistes de faire leur **présentation** ! \n \n  ⚙ Pour ce faire, **postez vos requêtes dans le salon <#922813260644896889> grâce à la commande `/request` de <@!922239762797068299>** et attendez qu\'un développeur/graphiste réponde à votre appel en cliquant simplement sur le **bouton situé sous votre requête** ! \n \n Une fois le développeur/graphiste trouvé, un **ticket vous sera créé** et vous pourrez ainsi entamer votre projet ! 🚀')
         .setImage('attachment://serverRules.png')
         .setColor(client.defaultColor)
 
@@ -34,7 +34,7 @@ module.exports = {
         .setDescription(`
 > :warning: ***__Le non respect de l'une de ces règles pourrait vous conduire à un avertissement, une exclusion voir à un bannissement !__*** :warning: 
 >  
-> :computer: Seules les personnes ayant le rôle <@&922223564835414096> peuvent accepter une requête, rôle uniquement accessible en acceptant ce règlement ! :computer:
+> :computer: Seules les personnes ayant le rôle <@&922223564835414096> ou <@&952900970864599100> peuvent accepter une requête, rôle uniquement accessible en acceptant ce règlement ! :computer:
 > 
 > - *Si vous avez __lu__ et __compris le règlement__ merci de cliquer sur le bouton "Accepter les règles !"*`)   
     .setColor(client.defaultColor)

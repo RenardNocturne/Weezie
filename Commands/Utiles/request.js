@@ -28,9 +28,15 @@ module.exports = {
             .addComponents([
                 new MessageSelectMenu()
                     .setCustomId("abilities")
-                    .setPlaceholder("🧬 Languages")
+                    .setPlaceholder("🧬 Besoin de...")
                     .setMaxValues(7)
                     .addOptions([
+                        {
+                            label: 'Graphiste',
+                            emoji: '🎨',
+                            value: '952900970864599100',
+                            description: 'Pour les requêtes nécessitant un graphiste !'
+                        },
                         {
                             label: 'Web Frontend',
                             emoji: '📜',
@@ -88,13 +94,13 @@ module.exports = {
 
         const priceEmbed = new MessageEmbed() 
             .setAuthor("Requêtes", interaction.user.displayAvatarURL())
-            .setDescription("Quelle récompense accorderez-vous au développeur ? \n \n *Annulation dans 1 minute !*")
+            .setDescription("Quelle récompense accorderez-vous ? \n \n *Annulation dans 1 minute !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
             .setColor(client.defaultColor)
 
         const abilitiesEmbed = new MessageEmbed()
             .setAuthor("Requêtes", interaction.user.displayAvatarURL())
-            .setDescription("Quel.s langage.s pensez-vous adapté.s à votre requête ? \n \n *Annulation dans 1 minute !*")
+            .setDescription("Que nécessite votre requête ? \n \n *Annulation dans 1 minute !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
             .setColor(client.defaultColor)
         
@@ -144,7 +150,7 @@ module.exports = {
         if (response.deleted || infos.finished) return
         await interaction.editReply({embeds: [abilitiesEmbed], components: [abilitiesRow, baseRow], fetchReply: true})
         .then(async response => {
-            await response.awaitMessageComponent({componentFilter, time: "60000", errors: ['time']})
+            await response.awaitMessageComponent({filter: componentFilter, time: "60000", errors: ['time']})
             .then(i => {
                 if (response.deleted) return
                 if (i.customId === "abilities") {
@@ -162,7 +168,7 @@ module.exports = {
 
         const endEmbed = new MessageEmbed()
             .setAuthor(`Requête de ${interaction.user.tag}`, interaction.user.displayAvatarURL())
-            .setDescription(`${infos.description} \n \n **💻 Langages requis:** \n > ${infos.abilities.join(', ')} \n \n **🎁 Récompense:** \n > ${infos.price}`)
+            .setDescription(`${infos.description} \n \n **🧬 Compétence.s requise.s:** \n > ${infos.abilities.join(', ')} \n \n **🎁 Récompense:** \n > ${infos.price}`)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
             .setColor(client.defaultColor)
 
