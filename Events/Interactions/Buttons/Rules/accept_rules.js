@@ -45,7 +45,7 @@ module.exports = {
                 .setDescription(`🎉 Bienvenue ${interaction.user.username} 🎉!`)
                 .setColor(client.defaultColor)
                 .setImage('attachment://profile-image.png')
-            client.channels.cache.get('922523793447067688').send({embeds: [welcomeEmbed], files: [attachment]})
+            client.channels.cache.get('834780676166516836').send({embeds: [welcomeEmbed], files: [attachment]})
         } else {
             interaction.reply({content: `<@!${interaction.user.id}>, tu as déjà accepté les règles ! `, ephemeral: true})
         }
