@@ -26,8 +26,7 @@ module.exports = {
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre").user
         const time = interaction.options.getString("durée")
-        let reason = "";
-        if (interaction.options.getString("raison")) reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
+        const reason = interaction.options.getString("raison") ? `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}` : ""
 
         async function ban (duration, txt, perm) {
             const unbanEmbed = new MessageEmbed()
@@ -57,7 +56,7 @@ module.exports = {
                 .setColor(client.defaultColor)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
-            
+
             
             if (!perm) {
                 setTimeout(() => {
@@ -72,16 +71,23 @@ module.exports = {
             interaction.reply({embeds: [banEmbed], components: []})
         }
 
-        if (time === 'day') {
-            ban(1, '1 jour')
-        } else if (time === 'days') {
-            ban(3, '3 jours')
-        } else if (time === 'week') {
-            ban(7, '1 semaine')
-        } else if (time === 'month') {
-            ban(31, '1 mois')
-        } else if (time === 'permanent') {
-            ban(none, 'Permanente', true)
+        switch (time) {
+            case 'day':
+                ban(1, '1 jour')
+                break;
+            case 'days':
+                ban(3, '3 jours')
+                break;
+            case 'week':
+                ban(7, '1 semaine')
+                break;
+            case 'month':
+                ban(31, '1 mois')
+                break;
+            case 'permanent':
+                ban(undefined, 'Permanent', true)
+            default:
+                break;
         }   
     },
     userPerms: [Permissions.FLAGS.BAN_MEMBERS],
