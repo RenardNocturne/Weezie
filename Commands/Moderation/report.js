@@ -31,4 +31,6 @@ module.exports = {
                 client.channels.cache.get("931252719698726973").send({content: "Mention: <@&825764023504470047>", embeds: [embed]})
             })
     },
+    userPerms: [],
+    userPermsFR: []
 }
