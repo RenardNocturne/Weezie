@@ -9,11 +9,19 @@ module.exports = client => {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    // client.embedError = (title = "❌ Une erreur est survenue !", desc = "", footer = "Désolé !") => {
-    //     return new MessageEmbed()
-    //         .setTitle(title)
-    //         .setDescription(desc)
-    //         .setColor(client.errorColor)
-    //         .setFooter(footer, client.user.displayAvatarURL());
-    // }
+    client.JSONToMap = (json) => {
+        const map = new Map()
+        for (const [key, value] of Object.entries(json)) {
+            map.set(key, value)
+        }
+        return map
+    }
+
+    client.mapToJSON = (map) => {
+        const json = {}
+        for (const [key, value] of map) {
+            json[key] = value
+        }
+        return JSON.stringify(json)
+    }
 }
