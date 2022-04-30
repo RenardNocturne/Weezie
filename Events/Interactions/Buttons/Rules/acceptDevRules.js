@@ -12,7 +12,7 @@ module.exports = {
         // if (interaction.member.roles.cache.has("922223564835414096")) return interaction.reply({content: `<@!${interaction.user.id}>, tu as déjà accepté les règles ! `, ephemeral: true})
         const askForRoleEmbed = new MessageEmbed()
             .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL())
-            .setDescription(`Souhaites-tu obtenir le rôle <@&922223564835414096> ou <@&952900970864599100> ?`)
+            .setDescription(`Souhaites-tu obtenir le rôle <@&${client.config.IDs.roles.devs}> ou <@&${client.config.IDs.roles.graphists}> ?`)
             .setColor(client.defaultColor)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
         
@@ -20,17 +20,17 @@ module.exports = {
             .addComponents([
                 new MessageButton()
                     .setStyle("PRIMARY")
-                    .setCustomId("addRole/922223564835414096")
+                    .setCustomId(`addRole/${client.config.IDs.roles.devs}`)
                     .setLabel("💻 Développeur !"),
 
                 new MessageButton()
                     .setStyle("PRIMARY")
-                    .setCustomId("addRole/952900970864599100")
+                    .setCustomId(`addRole/${client.config.IDs.roles.graphists}`)
                     .setLabel("🎨 Graphiste !"),
                 
                 new MessageButton()
                     .setStyle("PRIMARY")
-                    .setCustomId("addRole/952900970864599100/922223564835414096")
+                    .setCustomId(`addRole/${client.config.IDs.roles.devs}/${client.config.IDs.roles.graphists}`)
                     .setLabel("🦾 Les deux !")
             ])
 

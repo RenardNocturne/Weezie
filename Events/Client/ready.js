@@ -10,7 +10,7 @@ module.exports = async (client) => {
     let i = 0;
     setInterval(() => {
         let activities = messages.status.statusMessages
-        activities.push(`compter ${client.guilds.cache.get("825760704241991752").memberCount} membres !`)
+        activities.push(`compter ${client.guilds.cache.get(client.config.IDs.guild).memberCount} membres !`)
 
         const newActivity = activities[i];
         const newActivityType = activitiesTypes[i];

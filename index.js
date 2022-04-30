@@ -23,6 +23,8 @@ require('./Utils/functions')(client);
 client.commands = new Collection();
 client.buttons = new Collection();
 
+client.config = require("./Utils/Data/config.json");
+
 loadEvents(client)
 loadCommands(client)
 loadButtons(client)

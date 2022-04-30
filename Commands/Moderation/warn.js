@@ -50,11 +50,7 @@ module.exports = {
 
         switch (cmd) {
             case "add":
-                if (!db.get(`${mentionned.id}.warns`)) {
-                    await db.set(`${mentionned.id}.warns`, 1)
-                } else {
-                    await db.add(`${mentionned.id}.warns`, 1 );
-                }
+                !db.get(`${mentionned.id}.warns`) ? await db.set(`${mentionned.id}.warns`, 1) : await db.add(`${mentionned.id}.warns`, 1 );
 
                 const embed = new MessageEmbed()
                     .setAuthor(`${mentionned.user.tag} a été avertit !`, mentionned.user.displayAvatarURL())

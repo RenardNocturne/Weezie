@@ -8,7 +8,7 @@ module.exports = (client, interaction) => {
             topic: `**${interaction.user.username}** a ouvert ce ticket pour la raison **"${ticketReason}"** !`,
             position: 1,
             reason: ticketReason,
-            parent: '932262095859380234',
+            parent: client.config.IDs.categories.tickets,
             permissionOverwrites: [
                 {
                     id: interaction.guild.id, //Everyone
@@ -19,11 +19,11 @@ module.exports = (client, interaction) => {
                     allow: ['VIEW_CHANNEL'],
                 },
                 {
-                    id: '825764558093156372', //Les admins
+                    id: client.config.IDs.roles.admins, //Les admins
                     allow: ['VIEW_CHANNEL']
                 },
                 {
-                    id: '825764023504470047', //Les modos
+                    id: client.config.IDs.mods, //Les modos
                     allow: ['VIEW_CHANNEL']
                 },
             ],

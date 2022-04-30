@@ -60,7 +60,7 @@ module.exports = {
             
             if (!perm) {
                 setTimeout(() => {
-                    bot.channels.cache.get('829037449903734804').send({embeds: [unbanEmbed]})
+                    bot.channels.cache.get(bot.config.IDs.channels.sanctions).send({embeds: [unbanEmbed]})
                     interaction.guild.members.unban(target.id).catch(err => console.log(err))
                     target.send({embeds: [infoUnbanEmbed]}).catch(err => console.log(err))
                 }, 86400 * 1000 * duration );

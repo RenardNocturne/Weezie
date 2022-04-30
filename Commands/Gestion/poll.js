@@ -82,7 +82,7 @@ module.exports = {
                     .setStyle("DANGER")
             ])
 
-        client.channels.cache.get("969981716456407120").send({content: 'Notification pour <@&922505401981861898> !', embeds: [embed], components: [row]})
+        client.channels.cache.get(client.config.IDs.channels.polls).send({content: `Notification pour <@&${client.config.IDs.roles.pollsNotifs}> !`, embeds: [embed], components: [row]})
         .then(msg => interaction.reply({content: `✅ [Sondage](${msg.url}) envoyé !`, ephemeral: true}))
     },  
     userPerms: [Permissions.FLAGS.MANAGE_CHANNELS],

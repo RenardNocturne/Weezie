@@ -1,9 +1,9 @@
 const { MessageEmbed, MessageAttachment } = require('discord.js')
 
 module.exports = async (client, oldMember, newMember) => {
-    if (!oldMember.roles.cache.has('847565593615007785') && newMember.roles.cache.has('847565593615007785')) {
+    if (!oldMember.roles.cache.has(client.config.IDs.roles.boost) && newMember.roles.cache.has(client.config.IDs.roles.boost)) {
         const img = new MessageAttachment('Images/boostImage.jpg')
-        const ct = client.guilds.cache.get("825760704241991752")
+        const ct = client.guilds.cache.get(client.config.IDs.guild)
 
         const boosterEmbed = new MessageEmbed() 
             .setAuthor(`${newMember.user.tag} vient de booster le serveur !`, newMember.user.displayAvatarURL())
@@ -13,6 +13,6 @@ module.exports = async (client, oldMember, newMember) => {
             .setColor(client.boostColor)
             .setTimestamp();
 
-        client.channels.cache.get('922545697113407518').send({embeds: [boosterEmbed], files: [img]}).catch(err => console.log("Une erreur est survenue ! \n\n" + err))
+        client.channels.cache.get(client.config.IDs.channels.starboard).send({embeds: [boosterEmbed], files: [img]}).catch(err => console.log("Une erreur est survenue ! \n\n" + err))
     }
 }

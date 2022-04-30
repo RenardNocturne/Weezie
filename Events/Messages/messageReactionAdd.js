@@ -18,6 +18,6 @@ module.exports = async (client, reaction, user) => {
             embed.setImage(img.url)
         })
         
-        client.channels.cache.get("922545697113407518").send({embeds: [embed]})
+        client.channels.cache.get(client.config.IDs.channels.starboard).send({embeds: [embed]})
     }
 }

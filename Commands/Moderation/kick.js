@@ -16,7 +16,7 @@ module.exports = {
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre")
         const reason = "";
-        if(interaction.options.getString("raison")) reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
+        if (interaction.options.getString("raison")) reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
 
         const embed = new MessageEmbed()
             .setAuthor(`${target.user.tag} expulsé !`, target.user.displayAvatarURL())
@@ -25,12 +25,9 @@ module.exports = {
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
             .setTimestamp();
 
-        if (target.kickable) { 
-            target.kick({reason: reason});
-            interaction.reply({embeds: [embed]})
-        } else {
-            interaction.reply({content: ":x: Il m'est impossible d'expulser ce membre !", ephemeral: true})
-        }
+        if (!target.kickable) return interaction.reply({content: ":x: Il m'est impossible d'expulser ce membre !", ephemeral: true})
+        target.kick({reason: reason});
+        interaction.reply({embeds: [embed]})
     },
     userPerms: [Permissions.FLAGS.KICK_MEMBERS],
     userPermsFR: ["Expulser des membres"]

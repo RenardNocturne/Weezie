@@ -27,31 +27,31 @@ module.exports = (client, interaction) => {
                     {
                         label: 'Annonces',
                         emoji: '📯',
-                        value: '849313732785733732',
+                        value: client.config.IDs.roles.announcementsNotifs,
                         description: 'Tu seras mentionné lors d\'annonces sur le serveur !'
                     },
                     {
                         label: 'Serveur',
                         emoji: '👥',
-                        value: '922505944972263474',
+                        value: client.config.IDs.roles.serverNotifs,
                         description: 'Tu seras mentionné lors de modifications sur le serveur !'
                     },
                     {
                         label: 'Giveaways',
                         emoji: '🎁',
-                        value: '922505653837242388',
+                        value: client.config.IDs.roles.giveawaysNotifs,
                         description: 'Tu seras mentionné lors de giveaways !'
                     },
                     {
                         label: 'Sondages',
                         emoji: '📊',
-                        value: '922505401981861898',
+                        value: client.config.IDs.channels.pollsNotifs,
                         description: 'Tu seras mentionné lors de sondages !'
                     },
                     {
                         label: 'Partenariats',
                         emoji: '📩',
-                        value: '859031598590459924',
+                        value: client.config.IDs.roles.partenairesNotifs,
                         description: 'Tu seras mentionné lors de partenariats !'
                     },
                 ])    
@@ -67,49 +67,49 @@ module.exports = (client, interaction) => {
                     {
                         label: 'Web Frontend',
                         emoji: '📜',
-                        value: '922229734476234753',
+                        value: client.config.IDs.roles.frontend,
                         description: 'Pour les développeurs Web Frontend !'
                     },
                     {
                         label: 'Web Backend',
                         emoji: '⚙',
-                        value: '922230043005030421',
+                        value: client.config.IDs.roles.backend,
                         description: 'Pour les développeurs Web Backend !'
                     },
                     {
                         label: 'JavaScript',
                         emoji: '<:JS:825850725183258624>',
-                        value: '922229136892780565',
+                        value: client.config.IDs.roles.javascript,
                         description: 'Pour les développeurs JavaScript !'
                     },
                     {
                         label: 'Python',
                         emoji: '<:Python:825853269607579648>',
-                        value: '922229302475501569',
+                        value: client.config.IDs.roles.python,
                         description: 'Pour les développeurs Python !'
                     },
                     {
                         label: 'Java/Kotlin',
                         emoji: '<:Java:835411957733130252>',
-                        value: '922229560131588136',
+                        value: client.config.IDs.roles.java,
                         description: 'Pour les développeurs Java/Kotlin !'
                     },
                     {
                         label: 'C/C++',
                         emoji: '<:C_:922511770873135194>',
-                        value: '922229433056780348',
+                        value: client.config.IDs.roles.c,
                         description: 'Pour les développeurs C/C++'
                     },
                     {
                         label: 'C#',
                         emoji: '<:csharp:835413910286237716>',
-                        value: '952899567404343326',
+                        value: client.config.IDs.roles.csharp,
                         description: 'Pour les développeurs C#'
                     },
                     {
                         label: 'Autres',
                         emoji: '📚',
-                        value: '922230212069064725',
+                        value: client.config.IDs.roles.others,
                         description: 'Pour les développeurs d\'un langages absent !'
                     },
                 ])    
