@@ -20,7 +20,7 @@ module.exports = {
             .addComponents([
                 new MessageButton()
                     .setLabel("Annuler")
-                    .setCustomId("cancelRecruit")
+                    .setCustomId("cancelRequestCommand/" + interaction.user.id)
                     .setStyle("DANGER")
             ])
 
@@ -62,10 +62,16 @@ module.exports = {
                             description: 'Pour les requêtes nécessitant le Python !'
                         },
                         {
-                            label: 'C/C#/C++/...',
+                            label: 'C/C++',
                             emoji: '<:C_:922511770873135194>',
                             value: '922229433056780348',
-                            description: 'Pour les requêtes nécessitant le C/C#/C++/...'
+                            description: 'Pour les requêtes nécessitant le C/C++/...'
+                        },
+                        {
+                            label: 'C#',
+                            emoji: '<:csharp:835413910286237716>',
+                            value: '952899567404343326',
+                            description: 'Pour les requêtes nécessitant le C/C++/...'
                         },
                         {
                             label: 'Java/Kotlin',
@@ -106,7 +112,7 @@ module.exports = {
         
         let response;
         
-        async function TimesUp () {
+        function TimesUp () {
             if (infos.finished) return
             interaction.deleteReply().catch(err => console.log(err))
                 interaction.channel.send({embeds: [timesUpEmbed]})
@@ -127,8 +133,8 @@ module.exports = {
                 infos.description = collected.content
                 collected.delete().catch(err => console.log(err))
             })
-            .catch(async () => {
-                await TimesUp()
+            .catch(() => {
+                TimesUp()
             })
         })
 
@@ -142,8 +148,8 @@ module.exports = {
                 infos.price = collected.content
                 collected.delete().catch(err => console.log(err))
             })
-            .catch(async () => {
-                await TimesUp()
+            .catch(() => {
+                TimesUp()
             })
         })
 
@@ -161,8 +167,8 @@ module.exports = {
                     infos.finished = true
                 }
             })
-            .catch(async () => {
-                await TimesUp()
+            .catch(() => {
+                TimesUp()
             })
         })
 
@@ -185,8 +191,8 @@ module.exports = {
                     .setStyle("DANGER")
             ]) 
         if (infos.finished) return
-        client.channels.cache.get("922813260644896889").send({embeds: [endEmbed], components: [acceptedRequest]})
-        interaction.editReply({content: '✅ Requête envoyée dans le salon <#922813260644896889> !', embeds: [], components: []})
+        client.channels.cache.get("922813260644896889").send({content: "<@&922223564835414096>", embeds: [endEmbed], components: [acceptedRequest]})
+        interaction.editReply({content: '✅ Requête envoyée dans le salon <#922813260644896889> !', embeds: [], components: [], ephemeral: true})
 
         //Alors oui j'ai un peu spam les return mais aussi ils sont pas très clair dans la doc ^^'
     },
