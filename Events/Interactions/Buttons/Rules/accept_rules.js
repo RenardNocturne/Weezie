@@ -4,8 +4,8 @@ const { createCanvas, loadImage } = require('canvas')
 module.exports = {
     name: "accept_rules",
     async execute (client, interaction) {
-        if (!interaction.member.roles.cache.get(client.config.IDs.users)) {
-            interaction.member.roles.add(client.config.IDs.roles.users).catch(err => console.log(err))
+        if (!interaction.member.roles.cache.get(`${client.config.IDs.roles.users}`)) {
+            interaction.member.roles.add(`${client.config.IDs.roles.users}`).catch(err => console.log(err))
             //Creating canvas
             const applyText = (canvas, text) => {
                 const context = canvas.getContext('2d');
@@ -45,7 +45,7 @@ module.exports = {
                 .setDescription(`🎉 Bienvenue ${interaction.user.username} 🎉!`)
                 .setColor(client.defaultColor)
                 .setImage('attachment://profile-image.png')
-            client.channels.cache.get(client.config.IDs.channels.welcome).send({embeds: [welcomeEmbed], files: [attachment]})
+            client.channels.cache.get(`${client.config.IDs.channels.welcome}`).send({embeds: [welcomeEmbed], files: [attachment]})
         } else {
             interaction.reply({content: `<@!${interaction.user.id}>, tu as déjà accepté les règles ! `, ephemeral: true})
         }

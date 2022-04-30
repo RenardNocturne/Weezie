@@ -3,9 +3,9 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 module.exports = {
     name: "acceptedRequest",
     async execute (client, interaction) {
-        const target = client.guilds.cache.get(client.config.IDs.guilds).members.cache.get(interaction.customId.split("/")[1]);
+        const target = client.guilds.cache.get(`${client.config.IDs.guilds}`).members.cache.get(interaction.customId.split("/")[1]);
 
-        if (!interaction.member.roles.cache.has(client.config.IDs.roles.users)) return interaction.reply({content: `❌ Vous n'avez pas accepté le <#${client.config.IDs.channels.reglement}> !`, ephemeral: true})
+        if (!interaction.member.roles.cache.has(`${client.config.IDs.roles.users}`)) return interaction.reply({content: `❌ Vous n'avez pas accepté le <#${client.config.IDs.channels.reglement}> !`, ephemeral: true})
         
         //On return si il a pas accepté ou que c'est la même personne
         if (target.id === interaction.user.id) return interaction.reply({content: "❌ Vous ne pouvez pas accepter votre propre requête !", ephemeral: true})
@@ -15,7 +15,7 @@ module.exports = {
             topic: `**${interaction.user.username}** a accepté la mission de **${target.user.username}** !`,
             position: 0,
             reason: "Requête acceptée !",
-            parent: client.config.IDs.categories.requests,
+            parent: `${client.config.IDs.categories.requests}`,
             permissionOverwrites: [
                 {
                     id: interaction.guild.id, //everyone
@@ -30,7 +30,7 @@ module.exports = {
                     allow: ['VIEW_CHANNEL']
                 },
                 {
-                    id: client.config.IDs.roles.mods, //Modo
+                    id: `${client.config.IDs.roles.mods}`, //Modo
                     allow: ['VIEW_CHANNEL']
                 },
             ],

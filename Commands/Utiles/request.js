@@ -30,60 +30,61 @@ module.exports = {
                     .setCustomId("abilities")
                     .setPlaceholder("🧬 Besoin de...")
                     .setMaxValues(7)
+                    
                     .addOptions([
                         {
                             label: 'Graphiste',
                             emoji: '🎨',
-                            value: '952900970864599100',
+                            value: `${client.config.IDs.roles.graphists}`,
                             description: 'Pour les requêtes nécessitant un graphiste !'
                         },
                         {
                             label: 'Web Frontend',
                             emoji: '📜',
-                            value: '922229734476234753',
-                            description: 'Pour les requêtes demandant HTML/CSS/JS... !'
+                            value: `${client.config.IDs.roles.frontend}`,
+                            description: 'Pour les requêtes nécessitant un développeur Web Frontend !'
                         },
                         {
                             label: 'Web Backend',
                             emoji: '⚙',
-                            value: '922230043005030421',
-                            description: 'Pour les requêtes demandant JS/PHP/DataBases... '
+                            value: `${client.config.IDs.roles.backend}`,
+                            description: 'Pour les requêtes nécessitant un développeur Web Backend !'
                         },
                         {
                             label: 'JavaScript',
                             emoji: '<:JS:825850725183258624>',
-                            value: '922229136892780565',
-                            description: 'Pour les requêtes nécessitant le JavaScript !'
+                            value: `${client.config.IDs.roles.javascript}`,
+                            description: 'Pour les requêtes nécessitant un développeur JavaScript !'
                         },
                         {
                             label: 'Python',
                             emoji: '<:Python:825853269607579648>',
-                            value: '922229302475501569',
-                            description: 'Pour les requêtes nécessitant le Python !'
-                        },
-                        {
-                            label: 'C/C++',
-                            emoji: '<:C_:922511770873135194>',
-                            value: '922229433056780348',
-                            description: 'Pour les requêtes nécessitant le C/C++/...'
-                        },
-                        {
-                            label: 'C#',
-                            emoji: '<:csharp:835413910286237716>',
-                            value: '952899567404343326',
-                            description: 'Pour les requêtes nécessitant le C/C++/...'
+                            value: `${client.config.IDs.roles.python}`,
+                            description: 'Pour les requêtes nécessitant un développeur Python !'
                         },
                         {
                             label: 'Java/Kotlin',
                             emoji: '<:Java:835411957733130252>',
-                            value: '922229560131588136',
-                            description: 'Pour les requêtes nécessitant le Java/Kotlin !'
+                            value: `${client.config.IDs.roles.java}`,
+                            description: 'Pour les requêtes nécessitant un développeur Java/Kotlin !'
+                        },
+                        {
+                            label: 'C/C++',
+                            emoji: '<:C_:922511770873135194>',
+                            value: `${client.config.IDs.roles.c}`,
+                            description: 'Pour les requêtes nécessitant un développeur C/C++'
+                        },
+                        {
+                            label: 'C#',
+                            emoji: '<:csharp:835413910286237716>',
+                            value: `${client.config.IDs.roles.csharp}`,
+                            description: 'Pour les requêtes nécessitant un développeur C#'
                         },
                         {
                             label: 'Autres',
                             emoji: '📚',
-                            value: '922230212069064725',
-                            description: 'Pour les requêtes nécessitant un langage autre !'
+                            value: `${client.config.IDs.roles.others}`,
+                            description: 'Pour les requêtes nécessitant un développeur d\'un langage absent !'
                         },
                     ])
             ])
