@@ -2,28 +2,27 @@ const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton, Messag
 
 module.exports = (client, interaction) => {
     async function createTicket (ticketReason, event) {
-
         await interaction.guild.channels.create(`ticket-de-${interaction.user.username}`, {
             type: 'text',
             topic: `**${interaction.user.username}** a ouvert ce ticket pour la raison **"${ticketReason}"** !`,
             position: 1,
             reason: ticketReason,
-            parent: `${client.config.IDs.categories.tickets}`,
+            parent: client.config.IDs.categories.tickets,
             permissionOverwrites: [
                 {
-                    id: `${interaction.guild.id}`, //Everyone
+                    id: interaction.guild.id, //Everyone
                     deny: ['VIEW_CHANNEL'],
                 },
                 {
-                    id: `${interaction.user.id}`, //Celui qui a ouvert le ticket
+                    id: interaction.user.id, //Celui qui a ouvert le ticket
                     allow: ['VIEW_CHANNEL'],
                 },
                 {
-                    id: `${client.config.IDs.roles.admins}`, //Les admins
+                    id: client.config.IDs.roles.admins, //Les admins
                     allow: ['VIEW_CHANNEL']
                 },
                 {
-                    id: `${client.config.IDs.mods}`, //Les modos
+                    id: client.config.IDs.roles.mods, //Les modos
                     allow: ['VIEW_CHANNEL']
                 },
             ],
