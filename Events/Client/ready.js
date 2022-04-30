@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const messages = require("../../Utils/messages.json")
+const messages = require("../../Utils/Data/messages.json")
 
 module.exports = async (client) => {
     console.log("🚀 Bot successfully logged in !");
