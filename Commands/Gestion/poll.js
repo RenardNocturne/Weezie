@@ -101,7 +101,7 @@ module.exports = {
 
         // client.config.IDs.channels.polls
         // <@&${client.config.IDs.roles.pollsNotifs}>
-        client.channels.cache.get(client.config.IDs.channels.test).send({content: `Notification pour  !`, embeds: [embed], components: [row]})
+        client.channels.cache.get(client.config.IDs.channels.polls).send({content: `Notification pour <@&${client.config.IDs.roles.pollsNotifs}> !`, embeds: [embed], components: [row]})
         .then(msg => interaction.reply({content: `✅ [Sondage](${msg.url}) envoyé !`, ephemeral: true}))
     },  
     userPerms: [Permissions.FLAGS.MANAGE_CHANNELS],
