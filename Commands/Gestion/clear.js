@@ -29,7 +29,7 @@ module.exports = {
                         interaction.channel.delete()
                         newChannel.send({content: ':fire: ``Salon réinitialisé !``'})
                         .then(m => setTimeout(() => {
-                            m.delete().catch(err => console.log(err))
+                            m.delete().catch(err => client.error(err))
                         }, 10000))
                     })
                 })
@@ -45,7 +45,7 @@ module.exports = {
 
                     await interaction.reply({content: `:fire: \`${messagesDeleted.size} ${messagesDeleted.size > 1 ? 'messages ont été supprimés' : 'message a été supprimé'} !\``})
                     .then(() => setTimeout(() => {
-                        interaction.deleteReply().catch(err => console.log(err))
+                        interaction.deleteReply().catch(err => client.error(err))
                     }, 1000))
                 })
                 break; 

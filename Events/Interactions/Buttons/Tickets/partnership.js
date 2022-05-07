@@ -27,7 +27,7 @@ module.exports =  {
                 await msg.channel.awaitMessages({filter: msgFilter, max: 1})
                     .then(m => {
                         data.reason = m.first().content
-                        m.first().delete().catch(err => console.log(err))
+                        m.first().delete().catch(err => client.error(err))
                     })
 
                 const linkEmbed = new MessageEmbed()
@@ -40,7 +40,7 @@ module.exports =  {
                     .then(async editedMsg => await editedMsg.channel.awaitMessages({filter: msgFilter, max: 1}))
                         .then(m => {
                             data.link = m.first().content 
-                            m.first().delete().catch(err => console.log(err))
+                            m.first().delete().catch(err => client.error(err))
                         })
                     
                 const dateEmbed = new MessageEmbed()
@@ -53,7 +53,7 @@ module.exports =  {
                     .then(async editedMsg => await editedMsg.channel.awaitMessages({filter: msgFilter, max: 1}))
                         .then(m => {
                             data.date = m.first().content
-                            m.first().delete().catch(err => console.log(err))
+                            m.first().delete().catch(err => client.error(err))
                         })
 
                 const endedEmbed = new MessageEmbed()

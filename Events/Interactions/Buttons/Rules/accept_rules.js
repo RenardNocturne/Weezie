@@ -5,7 +5,7 @@ module.exports = {
     name: "accept_rules",
     async execute (client, interaction) {
         if (!interaction.member.roles.cache.get(client.config.IDs.roles.users)) {
-            interaction.member.roles.add(client.config.IDs.roles.users).catch(err => console.log(err))
+            interaction.member.roles.add(client.config.IDs.roles.users).catch(err => client.error(err))
             //Creating canvas
             const applyText = (canvas, text) => {
                 const context = canvas.getContext('2d');

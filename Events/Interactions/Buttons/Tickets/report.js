@@ -28,7 +28,7 @@ module.exports =  {
                 await msg.channel.awaitMessages({filter: msgFilter, max: 1})
                     .then(m => {
                         data.reason = m.first().content
-                        m.first().delete().catch(err => console.log(err))
+                        m.first().delete().catch(err => client.error(err))
                     })
 
                 const screenEmbed = new MessageEmbed()
@@ -43,7 +43,7 @@ module.exports =  {
                             m.first().attachments.forEach(attachment => {
                                 data.screens.push(new MessageAttachment(attachment.url))
                             })
-                            m.first().delete().catch(err => console.log(err))
+                            m.first().delete().catch(err => client.error(err))
                         })
                     
                 const dateEmbed = new MessageEmbed()
@@ -56,7 +56,7 @@ module.exports =  {
                     .then(async editedMsg => await editedMsg.channel.awaitMessages({filter: msgFilter, max: 1}))
                         .then(m => {
                             data.date = m.first().content
-                            m.first().delete().catch(err => console.log(err))
+                            m.first().delete().catch(err => client.error(err))
                         })
 
                 const endedEmbed = new MessageEmbed()
@@ -65,7 +65,7 @@ module.exports =  {
                     .setColor(client.successColor)
                     .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
 
-                await msg.delete().catch(err => console.log(err))
+                await msg.delete().catch(err => client.error(err))
                 await msg.channel.send({embeds: [endedEmbed]})
                 msg.channel.send({files: data.screens})
 

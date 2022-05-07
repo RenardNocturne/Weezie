@@ -115,10 +115,10 @@ module.exports = {
         
         function TimesUp () {
             if (infos.finished) return
-            interaction.deleteReply().catch(err => console.log(err))
+            interaction.deleteReply().catch(err => client.error(err))
                 interaction.channel.send({embeds: [timesUpEmbed]})
                 .then(msg => setTimeout(() => {
-                    msg.delete().catch(err => console.log(err))
+                    msg.delete().catch(err => client.error(err))
                 }, 3500))
             infos.finished = true;
         }
@@ -132,7 +132,7 @@ module.exports = {
                 if (response.deleted) return
                 collected = collected.first()
                 infos.description = collected.content
-                collected.delete().catch(err => console.log(err))
+                collected.delete().catch(err => client.error(err))
             })
             .catch(() => {
                 TimesUp()
@@ -147,7 +147,7 @@ module.exports = {
                 if (response.deleted) return
                 collected = collected.first()
                 infos.price = collected.content
-                collected.delete().catch(err => console.log(err))
+                collected.delete().catch(err => client.error(err))
             })
             .catch(() => {
                 TimesUp()

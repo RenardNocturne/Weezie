@@ -7,16 +7,16 @@ module.exports = (client, interaction) => {
         if (interaction.user.bot || !command) return;
 
         if(!interaction.member.permissions.has(command.userPerms)) return interaction.reply({content: `🔒 Vous n'avez pas les permission requises: \n > ${command.userPermsFR.join(' \n > ')}`, ephemeral: true})
-        try {
-            command.execute(client, interaction)
-            .then(() => {
-                console.log(`✅ Commande ${command.data.name} réalisée avec succès !`);
-            })
-        } catch (err) {
-            interaction.reply({content: "Une erreur est survenue lors de l'interaction !"})
-            console.log(err);
-        }
 
+        command.execute(client, interaction)
+        .then(() => {
+            console.log(`✅ Commande ${command.data.name} réalisée avec succès !`);
+            client.success(`✅ Commande ${command.data.name} réalisée avec succès !`);
+        })
+        .catch (err => {
+            interaction.reply({content: `❌ Une erreur est survenue lors de l'interaction ${command.data.name} !`, ephemeral: true});
+            client.error(err, `❌ Une erreur est survenue lors de l'interaction ${command.data.name} !`);
+        }) 
     } else if (interaction.isSelectMenu()) {
         switch (interaction.customId) {
             case "autoroles":
@@ -34,15 +34,15 @@ module.exports = (client, interaction) => {
 
         //sécurité
         if (interaction.user.bot || !command) return;
-        
-        try {
-            command.execute(client, interaction)
-            .then(() => {
-                console.log(`✅ Bouton ${command.name} réalisée avec succès !`);
-            })
-        } catch (err) {
+
+        command.execute(client, interaction)
+        .then(() => {
+            console.log(`✅ Bouton ${command.name} réalisée avec succès !`);
+            client.success(`✅ Commande ${command.name} réalisée avec succès !`)
+        })
+        .catch(err => {
             console.log(`❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} !`)
-            console.log(err);
-        }
+            client.error(err, `❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} !`);
+        }) 
     }
 }

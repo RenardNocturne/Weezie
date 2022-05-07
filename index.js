@@ -18,12 +18,12 @@ const client = new Client({intents: [
     Intents.FLAGS.GUILD_MESSAGE_TYPING,
 ]});
 
+client.config = require("./Utils/Data/config.json");
 require('./Utils/functions')(client);
 
 client.commands = new Collection();
 client.buttons = new Collection();
 
-client.config = require("./Utils/Data/config.json");
 
 loadEvents(client)
 loadCommands(client)

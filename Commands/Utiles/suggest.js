@@ -34,7 +34,7 @@ module.exports = {
                 }
                 msg.awaitMessageComponent()
                 .then(int => collectInteraction(msg, int))
-                .catch(err => console.log(err))
+                .catch(err => client.error(err))
             } else if (i.customId === "repSuggest") {
                 if (i.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES) && Object.keys(hasVoted).includes(i.user.id)) {                    
                     const msgFilter = m => m.author.id === i.user.id
@@ -51,8 +51,8 @@ module.exports = {
                         await msg.channel.awaitMessages({filter: msgFilter, max: 1})
                         .then(collected => {
                             response = collected.first().content
-                            collected.first().delete().catch(err => console.log(err))
-                            msg.delete().catch(err => console.log(err))
+                            collected.first().delete().catch(err => client.error(err))
+                            msg.delete().catch(err => client.error(err))
                         })
                     })
 
@@ -113,7 +113,7 @@ module.exports = {
             .then(i => {
                 collectInteraction(msg, i)
             })
-            .catch(err => console.log(err))
+            .catch(err => client.error(err))
         })
     },
     userPerms: [],

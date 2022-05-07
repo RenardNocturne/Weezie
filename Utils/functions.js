@@ -5,6 +5,27 @@ module.exports = client => {
     client.errorColor = "DE2916"
     client.successColor = "27AE60"
     client.boostColor = "F47FFF"
+
+    client.error = (err, msg) => {
+        const embed = new MessageEmbed()
+            .setAuthor("Erreur", client.user.displayAvatarURL())
+            .setColor(client.errorColor) 
+            .setDescription(`${msg ? msg : "❌ Une erreur est survenue !"} \n \`\`\`` + err + "```")
+            .setTimestamp()
+            .setFooter(client.user.username, client.user.displayAvatarURL())
+        client.channels.cache.get(client.config.IDs.channels.errorLogs).send({embeds: [embed]})
+    }
+
+    client.success = (msg) => {
+        const embed = new MessageEmbed()
+            .setAuthor("Succès", client.user.displayAvatarURL())
+            .setColor(client.successColor)
+            .setDescription(msg)
+            .setTimestamp()
+            .setFooter(client.user.username, client.user.displayAvatarURL())
+        client.channels.cache.get(client.config.IDs.channels.errorLogs).send({embeds: [embed]})
+    }
+
     client.randomIntFromInterval = (min, max) => { 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }

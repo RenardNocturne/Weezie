@@ -52,7 +52,7 @@ module.exports = {
                 ])
 
             await newChannel.send({embeds: [embed], components: [row], content: `<@!${target.id}>, Votre requête a été acceptée !`})
-            .then(msg => msg.pin().catch(err => console.log(err)))
+            .then(msg => msg.pin().catch(err => client.error(err)))
 
             interaction.reply({content: `✅ Requête acceptée ! Allez voir le ticket <#${newChannel.id}> !`, ephemeral: true})
 

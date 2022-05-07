@@ -11,7 +11,7 @@ const loadEvents = (client, dir = './Events') => {
             const evtName = event.split(".")[0];
             client.on(evtName, evt.bind(null, client));
 
-            console.log(`L'évènement ${evtName} a bien été chargée !`);
+            console.log(`✅ L'évènement ${evtName} a bien été chargée !`);
         };
     });
 };  
@@ -23,19 +23,19 @@ const loadCommands = (client, dir = './Commands') => {
         for (const file of commandFiles) {
             const command = require(`../${dir}/${dirs}/${file}`);
             client.commands.set(command.data.name, command);
-            console.log(`Commande ${command.data.name} chargée avec succès !`);
+            console.log(`✅ Commande ${command.data.name} chargée avec succès !`);
         }
     });
 };
 
-const loadButtons = (bot, dir = './Events/Interactions/Buttons') => {
+const loadButtons = (client, dir = './Events/Interactions/Buttons') => {
     readdirSync(dir).forEach(dirs => {
         const buttons = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
 
         for (const file of buttons) {
             const command = require(`../${dir}/${dirs}/${file}`);
-            bot.buttons.set(command.name, command);
-            console.log(`Le bouton ${command.name} a bien été chargée !`);
+            client.buttons.set(command.name, command);
+            console.log(`✅ Le bouton ${command.name} a bien été chargée !`);
         };
     });
 };
@@ -54,7 +54,7 @@ const registerCommands = (dir = './Commands') => {
     const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
     
     rest.put(Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID), { body: commands })
-        .then(() => console.log('Successfully registered application commands.'))
+        .then(() => console.log('📌 Successfully registered application commands.'))
         .catch(console.error);
 }
 
