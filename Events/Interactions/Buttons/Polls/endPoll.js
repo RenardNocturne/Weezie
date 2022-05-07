@@ -13,7 +13,7 @@ module.exports = {
         
         const newEmbed = new MessageEmbed()
             .setAuthor("Sondage !", interaction.guild.iconURL())
-            .setDescription(`**❓ Question:** ${poll.question} \n \n 1️⃣ **Option 1:** ${poll.option1} \`${Math.round(poll.opt1/poll.total*100)}%\` \n \n 🏳 **Neutre à ${Math.round(poll.opt0/poll.total*100)}%** \n \n 2️⃣ **Option 2:** ${poll.option2} \`${Math.round(poll.opt2/poll.total*100)}%\` \n \n *${poll.total} participants !*`)
+            .setDescription(`**❓ Question:** ${poll.question} \n \n 1️⃣ **Option 1:** ${poll.option1} \`${Math.round(poll.opt1/poll.total*100)}%\` \n \n 2️⃣ **Option 2:** ${poll.option2} \` ${Math.round(poll.opt2/poll.total*100)}%\` ${poll.option3 ? `\n \n 3️⃣ **Option 3:** ${poll.option3} \`${Math.round(poll.opt3/poll.total*100)}%\`` : ""} \n \n 🏳 **Neutre à ${Math.round(poll.opt0/poll.total*100)}%** \n \n *${poll.total} participants !*`)
             .setColor(client.successColor)
             .setFooter(`Sondage terminé par ${interaction.user.username}`, interaction.user.displayAvatarURL())
 
