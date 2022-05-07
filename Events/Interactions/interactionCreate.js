@@ -1,5 +1,13 @@
+const { Client, Interaction } = require("discord.js");
+
+/**
+ * 
+ * @param {Client} client 
+ * @param {Interaction} interaction 
+ * @returns 
+ */
 module.exports = (client, interaction) => {
-    if (interaction.isCommand()) {
+    if (interaction.isCommand() || interaction.isContextMenu()) {
         const commandName = interaction.commandName
         const command = client.commands.get(interaction.commandName);
 
@@ -15,6 +23,7 @@ module.exports = (client, interaction) => {
         })
         .catch (err => {
             interaction.reply({content: `❌ Une erreur est survenue lors de l'interaction ${command.data.name} !`, ephemeral: true});
+            console.log(`❌ Une erreur est survenue lors de l'interaction de la commande ${command.data.name} ! \n\n` + err)
             client.error(err, `❌ Une erreur est survenue lors de l'interaction ${command.data.name} !`);
         }) 
     } else if (interaction.isSelectMenu()) {
@@ -41,7 +50,7 @@ module.exports = (client, interaction) => {
             client.success(`✅ Commande ${command.name} réalisée avec succès !`)
         })
         .catch(err => {
-            console.log(`❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} !`)
+            console.log(`❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} ! \n\n` + err)
             client.error(err, `❌ Une erreur est survenue lors de l'interaction du bouton ${command.name} !`);
         }) 
     }
