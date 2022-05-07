@@ -193,6 +193,9 @@ module.exports = {
             ]) 
         if (infos.finished) return
         client.channels.cache.get(client.config.IDs.channels.requests).send({content: `Mention pour <@&${client.config.IDs.roles.devs}> !`, embeds: [endEmbed], components: [acceptedRequest]})
+        .then(msg => {
+            msg.startThread({name: `Informations Complémentaires`})
+        })
         interaction.editReply({content: `✅ Requête envoyée dans le salon <#${client.config.IDs.channels.requests}> !`, embeds: [], components: [], ephemeral: true})
 
         //Alors oui j'ai un peu spam les return mais aussi ils sont pas très clair dans la doc ^^'
