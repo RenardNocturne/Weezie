@@ -3,7 +3,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 module.exports = {
     name: "acceptedRequest",
     async execute (client, interaction) {
-        const target = client.guilds.cache.get(client.config.IDs.guilds).members.cache.get(interaction.customId.split("/")[1]);
+        const target = client.guilds.cache.get(client.config.IDs.guild).members.cache.get(interaction.customId.split("/")[1]);
 
         if (!interaction.member.roles.cache.has(client.config.IDs.roles.users)) return interaction.reply({content: `❌ Vous n'avez pas accepté le <#${client.config.IDs.channels.reglement}> !`, ephemeral: true})
         
