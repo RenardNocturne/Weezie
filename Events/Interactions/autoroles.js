@@ -45,7 +45,7 @@ module.exports = (client, interaction) => {
                     {
                         label: 'Sondages',
                         emoji: '📊',
-                        value: `${client.config.IDs.channels.pollsNotifs}`,
+                        value: `${client.config.IDs.roles.pollsNotifs}`,
                         description: 'Tu seras mentionné lors de sondages !'
                     },
                     {
