@@ -10,7 +10,7 @@ module.exports = client => {
         const embed = new MessageEmbed()
             .setAuthor("Erreur", client.user.displayAvatarURL())
             .setColor(client.errorColor) 
-            .setDescription(`${msg ? msg : "❌ Une erreur est survenue !"} \n \`\`\`` + err + "```")
+            .setDescription(`${msg ? msg : "❌ Une erreur est survenue !"} ${err ? "\n ```" + err + "```" : ""}`)
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())
         client.channels.cache.get(client.config.IDs.channels.errorLogs).send({embeds: [embed]})

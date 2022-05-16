@@ -30,8 +30,16 @@ loadCommands(client)
 loadButtons(client)
 registerCommands();
 
-client.login(process.env.TOKEN)
-
-process.on("exit", () => {
-    client.error("Process is exiting...")
+process.on("exit", (code) => {
+    client.error(undefined, `🔥 Process is exiting with code ${code}...`)
 })
+
+process.on('uncaughtException', (err, origin) => { 
+    client.error(err, `🔥 UNCAUGHT_EXCEPTION at ${origin} !`) 
+});
+
+process.on('unhandledRejection', (reason, promise) => { 
+    client.error(undefined, `🔥 UNHANDLED_REJECTION at ${promise} with the reason ${reason} !`)
+});
+
+client.login(process.env.TOKEN)
