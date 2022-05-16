@@ -31,3 +31,7 @@ loadButtons(client)
 registerCommands();
 
 client.login(process.env.TOKEN)
+
+process.on("exit", () => {
+    client.error("Process is exiting...")
+})
