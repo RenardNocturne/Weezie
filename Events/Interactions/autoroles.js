@@ -43,6 +43,12 @@ module.exports = (client, interaction) => {
                         description: 'Tu seras mentionné lors de giveaways !'
                     },
                     {
+                        label: 'Streams',
+                        emoji: '<:Twitch:975818205081763940>',
+                        value: `${client.config.IDs.roles.streamsNotifs}`,
+                        description: 'Tu seras mentionné lors de streams !'
+                    },
+                    {
                         label: 'Sondages',
                         emoji: '📊',
                         value: `${client.config.IDs.roles.pollsNotifs}`,
