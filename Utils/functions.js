@@ -14,6 +14,7 @@ module.exports = client => {
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())
         client.channels.cache.get(client.config.IDs.channels.errorLogs).send({embeds: [embed]})
+        console.log(`❌ ${msg ? msg : "Une erreur est survenue !"} ${err ? "\n" + err : ""}`)
     }
 
     client.success = (msg) => {
@@ -24,6 +25,7 @@ module.exports = client => {
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())
         client.channels.cache.get(client.config.IDs.channels.errorLogs).send({embeds: [embed]})
+        console.log(`✅ ${msg}`)
     }
 
     client.randomIntFromInterval = (min, max) => { 
