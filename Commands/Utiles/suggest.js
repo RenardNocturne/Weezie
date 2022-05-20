@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton, Permissions } = require("discord.js");
+const { writeFile, readFileSync } = require("fs")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,70 +13,25 @@ module.exports = {
             ),
     async execute(client, interaction) {
 
-        let total = 0, accepted = 0, declined = 0, none = 0;
-        let hasVoted = {};
-
-        async function collectInteraction (msg, i) {
-            if (i.customId !== "repSuggest") {
-                if (Object.keys(hasVoted).includes(i.user.id)) {
-                    i.reply({content: "❌ Vous avez déjà voter !", ephemeral: true})
-                } else {
-                    hasVoted[i.user.id] = i.customId
-                    i.reply({content: "✅ Vote comptabilisé !", ephemeral: true})
-                    eval(i.customId + "+= 1");
-                    total += 1;
-
-                    const newEmbed = new MessageEmbed()
-                        .setAuthor("Suggestion !", interaction.guild.iconURL())
-                        .setDescription(`**📝 Contenu:** \n ${suggest} \n \n ✅ **Approuvée à ${Math.round(accepted/total*100)}%** \n \n 🏳 **Neutre à ${Math.round(none/total*100)}%** \n \n ❌ **Déclinée à ${Math.round(declined/total*100)}%** \n \n *${total} participants !*`)
-                        .setColor(client.defaultColor)
-                        .setFooter(`Suggestion de ${interaction.user.username}`, interaction.user.displayAvatarURL())
-                    msg.edit({embeds: [newEmbed]})
-                }
-                msg.awaitMessageComponent()
-                .then(int => collectInteraction(msg, int))
-                .catch(err => client.error(err))
-            } else if (i.customId === "repSuggest") {
-                if (i.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES) && Object.keys(hasVoted).includes(i.user.id)) {                    
-                    const msgFilter = m => m.author.id === i.user.id
-                    let response = "";
-                    
-                    const repEmbed = new MessageEmbed()
-                        .setTitle("📝 Répondre !")
-                        .setDescription("Quelle réponse souhaitez vous apporter ?")
-                        .setFooter(`Demandée par ${i.user.username}`, i.user.displayAvatarURL())
-                        .setColor(client.defaultColor)
-                    
-                    await i.reply({embeds: [repEmbed], fetchReply: true})
-                    .then(async msg => {
-                        await msg.channel.awaitMessages({filter: msgFilter, max: 1})
-                        .then(collected => {
-                            response = collected.first().content
-                            collected.first().delete().catch(err => client.error(err))
-                            msg.delete().catch(err => client.error(err))
-                        })
-                    })
-
-                    const newEmbed = new MessageEmbed()
-                        .setAuthor("Suggestion !", interaction.guild.iconURL())
-                        .setDescription(`**📝 Contenu:** \n ${suggest} \n \n **📜 Réponse apportée:** \n ${response} \n \n ✅ **Approuvée à ${Math.round(accepted/total*100)}%** \n \n 🏳 **Neutre à ${Math.round(none/total*100)}%** \n \n ❌ **Déclinée à ${Math.round(declined/total*100)}%** \n \n *${total} participants !*`)
-                        .setColor(Object.values(hasVoted)[Object.keys(hasVoted).indexOf(i.user.id)] === "accepted" ? client.successColor : Object.values(hasVoted)[Object.keys(hasVoted).indexOf(i.user.id)] === "declined" ? client.errorColor : "ffffff") //Oui c'est n'imp ALED !
-                        .setFooter(`Suggestion de ${interaction.user.username}`, interaction.user.displayAvatarURL())
-                    msg.edit({embeds: [newEmbed], components: []})
-
-                } else if (i.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
-                    i.reply({content: "❌ Vous n'avez pas encore voté !", ephemeral: true})
-                    msg.awaitMessageComponent()
-                    .then(int => collectInteraction(msg, int))  
-                } else {
-                    i.reply({content: "❌ Vous n'avez pas la permission requise !", ephemeral: true})
-                    msg.awaitMessageComponent()
-                    .then(int => collectInteraction(msg, int))
-                }
-            }
-        }
-
         const suggest = interaction.options.getString("description")
+        const suggests = JSON.parse(readFileSync('./Utils/Data/suggests.json'));
+        const suggestsMap = client.JSONToMap(suggests);
+        
+        suggestsMap.set(interaction.id, {
+            suggest: suggest,
+
+            opt1: 0,
+            opt2: 0,
+            opt3: 0,
+            total: 0,
+           
+            hasVoted: {},
+        }); 
+
+        writeFile("./Utils/Data/suggests.json", client.mapToJSON(suggestsMap), err => {
+            if (err) console.error(err)
+            console.log("The file was saved!");
+        });
 
         const embed = new MessageEmbed()
             .setAuthor(`Suggestion !` , interaction.guild.iconURL())
@@ -87,34 +43,27 @@ module.exports = {
             .addComponents([
                 new MessageButton()
                     .setLabel("Pour !")
-                    .setCustomId(`accepted`)
+                    .setCustomId(`suggestVote/${interaction.id}/1`)
                     .setStyle("SUCCESS"),
 
                 new MessageButton()
                     .setLabel("Neutre")
-                    .setCustomId(`none`)
+                    .setCustomId(`suggestVote/${interaction.id}/3`)
                     .setStyle("SECONDARY"),
 
                 new MessageButton()
                     .setLabel("Contre !")
-                    .setCustomId(`declined`)
+                    .setCustomId(`suggestVote/${interaction.id}/2`)
                     .setStyle("DANGER"),
 
                 new MessageButton()
                     .setLabel("Répondre !")
-                    .setCustomId(`repSuggest`)
+                    .setCustomId(`endSuggest/${interaction.id}`)
                     .setStyle("PRIMARY")
             ])
 
         client.channels.cache.get(client.config.IDs.channels.suggests).send({embeds: [embed], components: [row]})
-        .then(msg => {
-            interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true})
-            msg.awaitMessageComponent()
-            .then(i => {
-                collectInteraction(msg, i)
-            })
-            .catch(err => client.error(err))
-        })
+        .then(msg => interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true}))
     },
     userPerms: [],
     userPermsFR: []
