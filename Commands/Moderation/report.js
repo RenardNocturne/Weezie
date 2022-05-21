@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,6 +16,7 @@ module.exports = {
             .setDescription("📝 Indiquez une raison !")
             .setRequired(true)
         ),
+    perms: [config.IDs.roles.admins, config.IDs.roles.mods],
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre");
         const reason = `\n **📝 Raison spécifiée:** \n > ${interaction.options.getString("raison")}`
@@ -31,6 +33,4 @@ module.exports = {
                 client.channels.cache.get(client.config.IDs.channels.reports).send({content: `Mention: <@&${client.config.IDs.roles.mods}>`, embeds: [embed]})
             })
     },
-    userPerms: [],
-    userPermsFR: []
 }

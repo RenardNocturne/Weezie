@@ -1,9 +1,12 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageActionRow, MessageButton, MessageEmbed, MessageSelectMenu } = require("discord.js");
+const config = require("../../Utils/Data/config.json")
+
 module.exports = {
     data: new SlashCommandBuilder()
             .setName("request")
             .setDescription("📋 Crée ta requête !"),
+    perms: [config.IDs.roles.users],
     async execute (client, interaction) {
 
         const filter = m => m.author.id === interaction.user.id
@@ -200,6 +203,4 @@ module.exports = {
 
         //Alors oui j'ai un peu spam les return mais aussi ils sont pas très clair dans la doc ^^'
     },
-    userPerms: [],
-    userPermsFR: []
 }

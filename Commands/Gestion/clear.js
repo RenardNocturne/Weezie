@@ -1,5 +1,5 @@
 const { Permissions } = require("discord.js")
-
+const config = require("../../Utils/Data/config.json")
 const { MessageEmbed } = require("discord.js")
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
@@ -19,6 +19,7 @@ module.exports = {
             .setName("channel")
             .setDescription("🔥 Supprime tous les messages de ce salon.")
         ),
+    perms: [config.IDs.roles.admins, config.IDs.roles.mods],
 	async execute(client, interaction) {
         switch (interaction.options.getSubcommand()) {
             case "channel":
@@ -37,7 +38,7 @@ module.exports = {
             case "messages":
                 const messagesToDelete = interaction.options.getInteger("nombre")
 
-                if (0 >= messagesToDelete || messagesToDelete >= 100) return interaction.reply({content: ':x: Merci de fournir une valeur comprise entre 1 et 99 !', ephemeral: true});
+                if (1 >= messagesToDelete || messagesToDelete >= 100) return interaction.reply({content: ':x: Merci de fournir une valeur comprise entre 2 et 99 !', ephemeral: true});
 
                 interaction.channel.bulkDelete(messagesToDelete, true)
                 .then(async messagesDeleted => {
@@ -51,6 +52,4 @@ module.exports = {
                 break; 
         }
     },
-    userPerms: [Permissions.FLAGS.MANAGE_MESSAGES],
-    userPermsFR: ["Gérer les messages"]
 };

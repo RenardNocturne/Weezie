@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions, MessageEmbed } = require("discord.js");
 const db = require('quick.db');
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -41,6 +42,7 @@ module.exports = {
                     .setRequired(true)
                 )
             ),
+    perms: [config.IDs.roles.admins, config.IDs.roles.mods],
     async execute(client, interaction) {
         const cmd = interaction.options.getSubcommand();
         const mentionned = interaction.options.getMember("membre");
@@ -98,6 +100,4 @@ module.exports = {
                 break;
         }
     },
-    userPerms: [Permissions.FLAGS.KICK_MEMBERS],
-    userPermsFR: ["Expulser des membres"]
 }

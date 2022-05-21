@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { Permissions, MessageEmbed, MessageActionRow, MessageButton, Client, Interaction } = require("discord.js");
+const config = require("../../Utils/Data/config.json")
+const { MessageEmbed, MessageActionRow, MessageButton, Client, Interaction } = require("discord.js");
 const { writeFile, readFileSync } = require("fs");
 
 module.exports = {
@@ -26,6 +27,7 @@ module.exports = {
                 .setDescription("3️⃣ Ajoutez une possibilité.")
                 .setRequired(false)
             ),
+    perms: [config.IDs.roles.admins],
     /**
      * 
      * @param {Client} client 
@@ -104,6 +106,4 @@ module.exports = {
         client.channels.cache.get(client.config.IDs.channels.polls).send({content: `Notification pour <@&${client.config.IDs.roles.pollsNotifs}> !`, embeds: [embed], components: [row]})
         .then(msg => interaction.reply({content: `✅ [Sondage](${msg.url}) envoyé !`, ephemeral: true}))
     },  
-    userPerms: [Permissions.FLAGS.MANAGE_CHANNELS],
-    userPermsFR: ["Gérer les salons"]
 }

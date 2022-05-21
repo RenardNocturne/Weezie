@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageActionRow, MessageButton, Permissions } = require("discord.js");
 const { writeFile, readFileSync } = require("fs")
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,6 +12,7 @@ module.exports = {
                 .setDescription("📝 Décrivez votre suggestion !")
                 .setRequired(true)
             ),
+    perms: [config.IDs.roles.users],
     async execute(client, interaction) {
 
         const suggest = interaction.options.getString("description")
@@ -65,6 +67,4 @@ module.exports = {
         client.channels.cache.get(client.config.IDs.channels.suggests).send({embeds: [embed], components: [row]})
         .then(msg => interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true}))
     },
-    userPerms: [],
-    userPermsFR: []
 }

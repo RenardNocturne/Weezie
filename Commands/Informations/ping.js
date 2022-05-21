@@ -1,10 +1,12 @@
 const { MessageEmbed } = require("discord.js")
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ping')
 		.setDescription('🏓 Réponds avec Pong !'),
+    perms: [config.IDs.roles.users],
 	async execute(client, interaction) {
         const embed = new MessageEmbed()
             .setTitle("🏓 Pong !")
@@ -23,6 +25,4 @@ module.exports = {
             .setTimestamp();
         interaction.reply({embeds: [embed], ephemeral: true});
     },
-    userPerms: [],
-    userPermsFR: []
 };

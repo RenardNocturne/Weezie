@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-const { Permissions, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,6 +14,7 @@ module.exports = {
             .addStringOption(option => option
                 .setName("raison")
                 .setDescription("📝 Ajouter une raison.")),
+    perms: [config.IDs.roles.admins, config.IDs.roles.mods],
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre")
         const reason = "";
@@ -29,6 +31,4 @@ module.exports = {
         target.kick({reason: reason});
         interaction.reply({embeds: [embed]})
     },
-    userPerms: [Permissions.FLAGS.KICK_MEMBERS],
-    userPermsFR: ["Expulser des membres"]
 }

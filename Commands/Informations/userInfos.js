@@ -1,10 +1,12 @@
 const { MessageEmbed, Client, ContextMenuInteraction } = require("discord.js")
 const { ContextMenuCommandBuilder } = require('@discordjs/builders');
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
 	data: new ContextMenuCommandBuilder()
 		.setName('User Infos')
         .setType(2),
+    perms: [config.IDs.roles.users],
     /**
      * 
      * @param {Client} client 
@@ -30,6 +32,4 @@ module.exports = {
             .setTimestamp();
         interaction.reply({embeds: [embed], ephemeral: true});
     },
-    userPerms: [],
-    userPermsFR: []
 };

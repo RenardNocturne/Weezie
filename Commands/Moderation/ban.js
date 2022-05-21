@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-// const { ApplicationCommandOptionType } = require("discord-api-types");
-const { Permissions, Constants, MessageEmbed } = require("discord.js");
+const config = require("../../Utils/Data/config.json")
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,6 +23,7 @@ module.exports = {
             .addStringOption(option => option
                 .setName("raison")
                 .setDescription("📝 Indiquez une raison au bannissement.")),
+    perms: [config.IDs.roles.admins, config.IDs.roles.mods],
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre").user
         const time = interaction.options.getString("durée")
@@ -90,6 +91,4 @@ module.exports = {
                 break;
         }   
     },
-    userPerms: [Permissions.FLAGS.BAN_MEMBERS],
-    userPermsFR: ["Bannir des membres"]
 }               
