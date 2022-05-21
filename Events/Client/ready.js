@@ -4,6 +4,9 @@ const messages = require("../../Utils/Data/messages.json")
 module.exports = async (client) => {
     console.log("🚀 Bot successfully logged in !");
 
+    //pour avoir les emojis customs sans nitro
+    // console.log(client.guilds.cache.get(client.config.IDs.guild).emojis.cache)
+
     const activitiesTypes = messages.status.activitiesTypes
     activitiesTypes.push("PLAYING")
 

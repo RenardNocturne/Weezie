@@ -37,10 +37,12 @@ module.exports = {
                             const msgCollected = collected.first().content
                             collected.first().delete().catch(err => null);
                             message.delete().catch(err => null);
-                            msgCollected;
                             const newEmbed = interaction.message.embeds[0]
                             newEmbed.setTitle(msgCollected);
                             interaction.message.edit({embeds: [newEmbed]});
+                        })
+                        .catch(err => {
+                            message.delete().catch(err => null);
                         })
                     })
                 break;
@@ -53,17 +55,20 @@ module.exports = {
                             const msgCollected = collected.first().content
                             collected.first().delete().catch(err => null);
                             message.delete().catch(err => null);
-                            msgCollected;
                             const newEmbed = interaction.message.embeds[0]
-                            newEmbed.setTitle(msgCollected);
+                            newEmbed.setDescription(msgCollected);
                             interaction.message.edit({embeds: [newEmbed]});
+                        })
+                        .catch(err => {
+                            message.delete().catch(err => null);
                         })
                     })
                 break;
 
             case "send":
-                client.channels.cache.get(client.config.IDs.channels.announcements).send({content: `Notification pour <@&${client.config.IDs.roles.announcementsNotifs}> !`, embeds: [interaction.message.embeds[0]]}).then(g => {
+                client.channels.cache.get(client.config.IDs.channels.announcements).send({content: `Notification pour <@&${client.config.IDs.roles.announcementsNotifs}> !`, embeds: [interaction.message.embeds[0]]}).then(msg => {
                     interaction.reply(`🚀 [Annonce envoyée](${msg.url}) !`);
+                    msg.react(msg.guild.emojis.cache.get('845300903095566338')).catch(err => null);
                 }) 
                 interaction.message.delete().catch(err => null);
                 break;
