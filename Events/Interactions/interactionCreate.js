@@ -13,7 +13,7 @@ module.exports = (client, interaction) => {
 
         //sécurité
         if (interaction.user.bot || !command) return;
-        console.log(command.perms);
+
         if(interaction.member.roles.cache.filter(r => command.perms.includes(r.id)).size === 0) return interaction.reply({content: `🔒 Vous n'avez pas un des rôles requis: \n > <@&${command.perms.join('> \n > <@&')}>`, ephemeral: true})
 
         command.execute(client, interaction)
