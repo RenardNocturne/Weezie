@@ -26,7 +26,7 @@ module.exports = {
                 const embed = new MessageEmbed()
                     .setAuthor(`Signalement en provenance de ${interaction.user.tag} !`, interaction.user.displayAvatarURL())
                     .setDescription(`**👤 Membre ciblé:** \`${target.user.tag}\` \n ${reason} \n \n **📣 Salon d'origine:** <#${interaction.channelId}> \n \n [Sauter vers la commande !](${msg.url})`)
-                    .setColor(client.errorColor)
+                    .setColor(client.config.colors.error)
                     .setFooter(`Signalement à l'encontre de ${target.user.tag}`, target.user.displayAvatarURL())
                     .setTimestamp()
                 

@@ -27,7 +27,7 @@ module.exports = {
                 { name: '🎈 Nombre de roles', value: `${member.roles.cache.size}`, inline: true },
                 { name: '🤖 Bot', value: `${user.bot ? "Est un bot !" : "N'est pas un bot !"}`, inline: true },
             ])
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
             .setTimestamp();
         interaction.reply({embeds: [embed], ephemeral: true});

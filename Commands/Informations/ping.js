@@ -20,7 +20,7 @@ module.exports = {
                     value: `${Math.round(client.ws.ping)}ms`,
                 }
             ])
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
             .setTimestamp();
         interaction.reply({embeds: [embed], ephemeral: true});

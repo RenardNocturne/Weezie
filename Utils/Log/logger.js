@@ -1,8 +1,10 @@
+const { MessageEmbed } = require("discord.js")
+
 module.exports = (client) => {
     client.error = (err, msg) => {
         const embed = new MessageEmbed()
             .setAuthor("Erreur", client.user.displayAvatarURL())
-            .setColor(client.errorColor) 
+            .setColor(client.config.colors.error) 
             .setDescription(`${msg ? msg : "❌ Une erreur est survenue !"} ${err ? "\n ```" + err + "```" : ""}`)
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())
@@ -13,7 +15,7 @@ module.exports = (client) => {
     client.success = (msg) => {
         const embed = new MessageEmbed()
             .setAuthor("Succès", client.user.displayAvatarURL())
-            .setColor(client.successColor)
+            .setColor(client.config.colors.success)
             .setDescription(msg)
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())

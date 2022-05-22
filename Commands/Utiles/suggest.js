@@ -39,7 +39,7 @@ module.exports = {
             .setAuthor(`Suggestion !` , interaction.guild.iconURL())
             .setDescription(`**📝 Contenu:** \n ${suggest}`)
             .setFooter(`Suggestion de ${interaction.user.username}`, interaction.user.displayAvatarURL())
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
         
         const row = new MessageActionRow()
             .addComponents([

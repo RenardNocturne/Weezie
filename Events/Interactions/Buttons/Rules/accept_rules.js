@@ -43,7 +43,7 @@ module.exports = {
             const welcomeEmbed = new MessageEmbed()
                 .setTitle('Ho ! Un nouveau membre !')
                 .setDescription(`🎉 Bienvenue ${interaction.user.username} 🎉!`)
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setImage('attachment://profile-image.png')
             client.channels.cache.get(client.config.IDs.channels.welcome).send({embeds: [welcomeEmbed], files: [attachment]})
         } else {

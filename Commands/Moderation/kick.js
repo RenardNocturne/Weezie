@@ -23,7 +23,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setAuthor(`${target.user.tag} expulsé !`, target.user.displayAvatarURL())
             .setDescription(`*__👤 Modérateur:__* \n > <@!${interaction.user.id}> ${reason}`)
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
             .setTimestamp();
 

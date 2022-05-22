@@ -38,7 +38,7 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setAuthor('Requête acceptée !', target.user.displayAvatarURL())
                 .setDescription(`[Requête de **${target.user.tag}**](${interaction.message.url}) acceptée par **${interaction.user.tag}** ! \n \n *Une fois la requête accomplie, <@!${interaction.user.id}> cliquez sur le bouton "Terminer !"*`)
-                .setColor(client.successColor)
+                .setColor(client.config.colors.success)
                 .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
                 .setFooter(`Requête acceptée par ${interaction.user.username}`, interaction.user.avatarURL())
                 .setTimestamp();
@@ -56,7 +56,7 @@ module.exports = {
 
             interaction.reply({content: `✅ Requête acceptée ! Allez voir le ticket <#${newChannel.id}> !`, ephemeral: true})
 
-            const acceptedEmbed = interaction.message.embeds[0].setFooter(`Requête acceptée par ${interaction.user.tag}`, interaction.user.displayAvatarURL()).setColor(client.successColor)
+            const acceptedEmbed = interaction.message.embeds[0].setFooter(`Requête acceptée par ${interaction.user.tag}`, interaction.user.displayAvatarURL()).setColor(client.config.colors.success)
             const acceptedRow = new MessageActionRow()
                 .addComponents([
                     new MessageButton()

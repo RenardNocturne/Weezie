@@ -14,7 +14,7 @@ module.exports = {
         .setAuthor('Mur des requêtes', interaction.guild.iconURL())
         .setDescription('💡 Cette catégorie permet aux membres du serveur de **recruter des développeurs ou des graphistes** pour leurs projets et aux développeurs et graphistes de faire leur **présentation** ! \n \n  ⚙ Pour ce faire, **postez vos requêtes dans le salon <#922813260644896889> grâce à la commande `/request` de <@!922239762797068299>** et attendez qu\'un développeur/graphiste réponde à votre appel en cliquant simplement sur le **bouton situé sous votre requête** ! \n \n Une fois le développeur/graphiste trouvé, un **ticket vous sera créé** et vous pourrez ainsi entamer votre projet ! 🚀')
         .setImage('attachment://serverRules.png')
-        .setColor(client.defaultColor)
+        .setColor(client.config.colors.default)
 
     const secondEmbed = new MessageEmbed()
     .setTitle(':gear: **Voici les règles à respecter**  :gear: ')    
@@ -26,7 +26,7 @@ module.exports = {
 > :white_check_mark: **4.** Merci de respecter une **orthographe correcte** lors de la description de votre requête.
 > :white_check_mark: **5.** Essayer de **décrire au mieux** votre requête **sans faire la pub** de votre projet.
         `)
-        .setColor(client.defaultColor)
+        .setColor(client.config.colors.default)
         .setImage('attachment://important.png')
 
     const thirdEmbed = new MessageEmbed()
@@ -37,7 +37,7 @@ module.exports = {
 > :computer: Seules les personnes ayant le rôle <@&922223564835414096> ou <@&952900970864599100> peuvent accepter une requête, rôle uniquement accessible en acceptant ce règlement ! :computer:
 > 
 > - *Si vous avez __lu__ et __compris le règlement__ merci de cliquer sur le bouton "Accepter les règles !"*`)   
-    .setColor(client.defaultColor)
+    .setColor(client.config.colors.default)
     .setFooter('Règles du serveur de ' + interaction.guild.name, interaction.guild.iconURL())
     .setImage('attachment://DevRules.gif')
 

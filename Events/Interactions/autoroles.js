@@ -15,7 +15,7 @@ module.exports = (client, interaction) => {
         .setDescription("Afin d'**améliorer ton expérience** sur notre serveur, veille à choisir tes **rôles** ! \n\n Ceux-ci te permettront d'être mentionné.e lors de certaines annonces ! ✨ \n \n Ils te donneront aussi accès à certains salons ainsi, si tu développe en Kotlin tu ne seras pas embêté.e par les salons comme Discord.JS ! <a:Check:845300903095566338> \n \n 💡 Pour retirer un rôle il te suffit de le resélectonner !")
         .setFooter("Système d'autorôle de " + interaction.guild.name, interaction.guild.iconURL())
         .setImage("attachment://Roles.png")
-        .setColor(client.defaultColor);
+        .setColor(client.config.colors.default);
 
     const notifsRow = new MessageActionRow()
         .addComponents([

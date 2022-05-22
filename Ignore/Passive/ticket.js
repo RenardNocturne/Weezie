@@ -11,7 +11,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setAuthor('Ouvrir un ticket:', interaction.guild.iconURL())
             .setDescription('**❓ Comment faire ?** \n Pour ouvrir un ticket, il vous suffit de **sélectionner le menu déroulant** ci-dessous. Ainsi, nous pourront répondre au mieux votre demande ! \n \n **✅ Une fois votre ticket abouti:** \n Nous vous informerons que votre demande a bien abouti. Sachez aussi qu\'**aucune donnée** concernant le ticket ne sera **sauvegardée** 🧹 !')
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setImage('attachment://Support.gif')
             .setFooter(`Système de ticket du serveur ${interaction.guild.name}`, interaction.channel.guild.iconURL());
 

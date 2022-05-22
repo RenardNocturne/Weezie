@@ -14,7 +14,7 @@ module.exports = {
         .setTitle(":wave: Bienvenue sur le serveur Discord CodingTime !")
         .setDescription(':bulb: **__Sur ce serveur, tu pourras trouver:__** \n > ◈ Des <@&922223564835414096> qui auront réponse à tes problèmes !\n > \n > ◈ Un salon <#922813260644896889> où tu pourras poster tes petites annonces et recruter un ou plusieurs <@&922223564835414096>.\n > \n > ◈ Des salons triés par langage de programmation pour ne pas t\'y perdre !\n > \n > ◈ Et bien plus encore...')
         .setImage('attachment://serverRules.png')
-        .setColor(client.defaultColor)
+        .setColor(client.config.colors.default)
 
     const secondEmbed = new MessageEmbed()
     .setTitle(':gear: **Voici les règles à respecter**  :gear: ')    
@@ -32,7 +32,7 @@ module.exports = {
 
 :white_check_mark: **10.** **Bonne humeur et entraide sont les maîtres mots.**
         `)
-        .setColor(client.defaultColor)
+        .setColor(client.config.colors.default)
         .setImage('attachment://important.png')
 
     const thirdEmbed = new MessageEmbed()
@@ -43,7 +43,7 @@ module.exports = {
 > :tada: Si vous souhaitez **inviter des gens**, copiez [ce lien tout fait](https://discord.gg/YDa9BbNEtS) :tada:
 > 
 > - *Si vous avez __lu__ et __compris le règlement__ merci de cliquer sur le bouton "Accepter les règles !"*`)   
-    .setColor(client.defaultColor)
+    .setColor(client.config.colors.default)
     .setFooter('Règles du serveur de ' + interaction.guild.name, interaction.guild.iconURL())
     .setImage('attachment://DevRules.gif')
 

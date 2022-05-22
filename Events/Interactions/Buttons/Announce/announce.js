@@ -17,7 +17,7 @@ module.exports = {
             const embed = new MessageEmbed()
                 .setAuthor(interaction.user.username, interaction.user.displayAvatarURL())
                 .setDescription(msg + "\n\n ``Annulation dans 1 minute !``")
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setFooter("Annonce de " + interaction.user.username, interaction.user.displayAvatarURL())
 
             return interaction.channel.send({embeds: [embed]})

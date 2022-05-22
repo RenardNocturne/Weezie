@@ -13,7 +13,7 @@ module.exports = {
         const askForRoleEmbed = new MessageEmbed()
             .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL())
             .setDescription(`Souhaites-tu obtenir le rôle <@&${client.config.IDs.roles.devs}> ou <@&${client.config.IDs.roles.graphists}> ?`)
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
         
         const askForRoleComponent = new MessageActionRow()

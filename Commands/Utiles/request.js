@@ -93,26 +93,26 @@ module.exports = {
             ])
         const timesUpEmbed = new MessageEmbed()
             .setTitle("⏳ Temps écoulé !")
-            .setColor(client.errorColor)
+            .setColor(client.config.colors.error)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
 
         const descriptionEmbed = new MessageEmbed()
             .setAuthor("Requêtes", interaction.user.displayAvatarURL())
             .setDescription("Quelle description souhaitez vous ajouter à votre requête ? \n \n *Annulation dans 5 minutes !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) //Oui demandée "ée" parce qu'on va dire que c'est la commande qui est demandée :3
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
 
         const priceEmbed = new MessageEmbed() 
             .setAuthor("Requêtes", interaction.user.displayAvatarURL())
             .setDescription("Quelle récompense accorderez-vous ? \n \n *Annulation dans 1 minute !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
 
         const abilitiesEmbed = new MessageEmbed()
             .setAuthor("Requêtes", interaction.user.displayAvatarURL())
             .setDescription("Que nécessite votre requête ? \n \n *Annulation dans 1 minute !*")
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
         
         let response;
         
@@ -180,7 +180,7 @@ module.exports = {
             .setAuthor(`Requête de ${interaction.user.tag}`, interaction.user.displayAvatarURL())
             .setDescription(`${infos.description} \n \n **🧬 Compétence.s requise.s:** \n > ${infos.abilities.join(', ')} \n \n **🎁 Récompense:** \n > ${infos.price}`)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
 
         const acceptedRequest = new MessageActionRow()
             .addComponents([

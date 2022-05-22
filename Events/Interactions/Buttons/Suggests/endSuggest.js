@@ -19,7 +19,7 @@ module.exports = {
                 .setTitle("📝 Répondre !")
                 .setDescription("Quelle réponse souhaitez vous apporter ?")
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
             
             await interaction.reply({embeds: [repEmbed], fetchReply: true})
             .then(async msg => {
@@ -34,7 +34,7 @@ module.exports = {
             const newEmbed = new MessageEmbed()
                 .setAuthor("Suggestion !", interaction.guild.iconURL())
                 .setDescription(`**📝 Contenu:** \n ${suggest.suggest} \n \n **📜 Réponse apportée:** \n ${response} \n \n ✅ **Approuvée à ${Math.round(suggest.opt1/suggest.total*100)}%** \n \n 🏳 **Neutre à ${Math.round(suggest.opt3/suggest.total*100)}%** \n \n ❌ **Déclinée à ${Math.round(suggest.opt2/suggest.total*100)}%** \n \n *${suggest.total} participants !*`)
-                .setColor(Object.values(suggest.hasVoted)[Object.keys(suggest.hasVoted).indexOf(interaction.user.id)] === "1" ? client.successColor : Object.values(suggest.hasVoted)[Object.keys(suggest.hasVoted).indexOf(interaction.user.id)] === "2" ? client.errorColor : "ffffff") //Oui c'est n'imp ALED !
+                .setColor(Object.values(suggest.hasVoted)[Object.keys(suggest.hasVoted).indexOf(interaction.user.id)] === "1" ? client.config.colors.success : Object.values(suggest.hasVoted)[Object.keys(suggest.hasVoted).indexOf(interaction.user.id)] === "2" ? client.config.colors.error : "ffffff") //Oui c'est n'imp ALED !
                 .setFooter(interaction.message.embeds[0].footer.text, interaction.message.embeds[0].footer.iconURL)
             interaction.message.edit({embeds: [newEmbed], components: []})
 

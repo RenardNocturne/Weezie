@@ -11,7 +11,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle("📢 Annonce !")
             .setDescription("Contenu de l'annonce !")
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter(`Annonce de ${interaction.user.username}`, interaction.user.displayAvatarURL())
             .setTimestamp();
 

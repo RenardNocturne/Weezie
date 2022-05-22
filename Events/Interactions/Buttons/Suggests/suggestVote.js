@@ -35,7 +35,7 @@ module.exports = {
         const newEmbed = new MessageEmbed()
             .setAuthor("Suggestion !", interaction.guild.iconURL())
             .setDescription(`**📝 Contenu:** \n ${suggest.suggest} \n \n ✅ **Approuvée à ${Math.round(suggest.opt1/suggest.total*100)}%** \n \n 🏳 **Neutre à ${Math.round(suggest.opt3/suggest.total*100)}%** \n \n ❌ **Déclinée à ${Math.round(suggest.opt2/suggest.total*100)}%** \n \n *${suggest.total} participants !*`)
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter(interaction.message.embeds[0].footer.text, interaction.message.embeds[0].footer.iconURL)
 
         interaction.message.edit({embeds: [newEmbed]})

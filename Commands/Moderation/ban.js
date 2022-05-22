@@ -33,28 +33,28 @@ module.exports = {
             const unbanEmbed = new MessageEmbed()
                 .setAuthor(`${target.tag} débannit !`, target.displayAvatarURL())
                 .setDescription(`*__👤 Modérateur:__* \n > <@!${interaction.user.id}> ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
             const banEmbed = new MessageEmbed()
                 .setAuthor(`${target.tag} bannit !`, target.displayAvatarURL())
                 .setDescription(`*__👤 Modérateur:__* \n > <@!${interaction.user.id}> ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
             const infoEmbed = new MessageEmbed()
                 .setAuthor(`Vous avez été bannit de ${interaction.guild.name} !`, interaction.guild.iconURL())
                 .setDescription(`*__👤 Modérateur:__* \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
             const infoUnbanEmbed = new MessageEmbed()
                 .setAuthor(`Vous avez été débannit de ${interaction.guild.name} !`, interaction.guild.iconURL())
                 .setDescription(`*__👤 Modérateur:__* \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 

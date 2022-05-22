@@ -11,7 +11,7 @@ module.exports = async (client, reaction, user) => {
             .setAuthor(message.author.username, message.author.displayAvatarURL())
             .setDescription(message.content !== '' ? `Nouveau message en provenance de <#${message.channelId}> (#${message.channel.name}) ! \n \n ${message.content} \n \n *- ${message.author.tag}*` :  `Nouveau message en provenance de <#${message.channelId}> !`)
             .setFooter(`Starboard de ${message.guild.name}`, message.guild.iconURL())
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setTimestamp();
         
         if (message.attachments) message.attachments.forEach(img => {

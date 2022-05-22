@@ -18,7 +18,7 @@ module.exports =  {
         const reasonEmbed = new MessageEmbed()
             .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
             .setDescription("Bonjour ! \n Nous allons te poser une courte série de question auxquelles tu devras répondre afin de te faire entrer en contact avec le staff: \n \n **1ère Question:** \n Pourrais-tu préciser la raison de l'ouverture de ce ticket ?")
-            .setColor(client.defaultColor)
+            .setColor(client.config.colors.default)
             .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
         
         await interaction.channel.send({embeds: [reasonEmbed]})
@@ -32,7 +32,7 @@ module.exports =  {
                 const dateEmbed = new MessageEmbed()
                     .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
                     .setDescription(`Bonjour ! \n Nous allons te poser une courte série de question auxquelles tu devras répondre afin de te faire entrer en contact avec le staff: \n \n **2ème Question:** \n Depuis quand es-tu sur le serveur (approximativement) ?`)
-                    .setColor(client.defaultColor)
+                    .setColor(client.config.colors.default)
                     .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
 
                 await msg.edit({embeds: [dateEmbed]})
@@ -45,7 +45,7 @@ module.exports =  {
                 const endedEmbed = new MessageEmbed()
                     .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
                     .setDescription(`Votre demande a bien été prise en compte !\n Merci de patienter le temps qu'un membre du staff vienne à vous ! \n \n **📜 Raison.s**: ${data.reason} \n \n **💎 Sur le serveur depuis:** ${data.date}`)
-                    .setColor(client.successColor)
+                    .setColor(client.config.colors.success)
                     .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
 
                 await msg.edit({embeds: [endedEmbed]})

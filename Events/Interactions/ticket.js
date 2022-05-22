@@ -30,7 +30,7 @@ module.exports = (client, interaction) => {
             const embed = new MessageEmbed()
                 .setAuthor(`Ticket de ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setDescription(`Ticket ouvert par <@!${interaction.user.id}>: \n \n **📝 Raison:**  \`${ticketReason}\` \n \n *Merci de renseigner votre problème en utilisant le bouton \`Démarrer la procédure !\` ci-dessous !*`)
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
                 .setFooter(`Ticket ouvert par ${interaction.user.username}`, interaction.user.avatarURL())
                 .setTimestamp();
@@ -40,7 +40,7 @@ module.exports = (client, interaction) => {
             const startEmbed = new MessageEmbed()
                 .setAuthor('Ouvrir un ticket:', interaction.guild.iconURL())
                 .setDescription('**❓ Comment faire ?** \n Pour ouvrir un ticket, il vous suffit de **sélectionner le menu déroulant** ci-dessous. Ainsi, nous pourront répondre au mieux votre demande ! \n \n **✅ Une fois votre ticket abouti:** \n Nous vous informerons que votre demande a bien abouti. Sachez aussi qu\'**aucune donnée** concernant le ticket ne sera **sauvegardée** 🧹 !')
-                .setColor(client.defaultColor)
+                .setColor(client.config.colors.default)
                 .setImage('attachment://Support.gif')
                 .setFooter(`Système de ticket du serveur ${interaction.guild.name}`, interaction.channel.guild.iconURL());
     

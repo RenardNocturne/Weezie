@@ -43,5 +43,12 @@
             "requests": "833827745174781962",
             "tickets": "932262095859380234"
         }
+    },
+    
+    "colors": {
+        "default": "E7C368",
+        "error": "DE2916",
+        "success": "27AE60",
+        "boost": "F47FFF"
     }
 }
