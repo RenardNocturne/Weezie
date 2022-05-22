@@ -20,6 +20,7 @@ const client = new Client({intents: [
 
 client.config = require("./Utils/Data/config.json");
 require('./Utils/functions')(client);
+require("./Utils/Log/logger")(client);
 
 client.commands = new Collection();
 client.buttons = new Collection();
