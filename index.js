@@ -21,6 +21,7 @@ const client = new Client({intents: [
 client.config = require("./Utils/Data/config.json");
 require('./Utils/functions')(client);
 require("./Utils/Log/logger")(client);
+require("./Utils/levels.js")(client);
 
 client.commands = new Collection();
 client.buttons = new Collection();
@@ -32,15 +33,16 @@ loadButtons(client)
 registerCommands();
 
 process.on("exit", (code) => {
-    client.error(undefined, `🔥 Process is exiting with code ${code}...`)
+    client.error(undefined, `🔥 Process is exiting with code ${code.toString()}...`)
 })
 
 process.on('uncaughtException', (err, origin) => { 
-    client.error(err, `🔥 UNCAUGHT_EXCEPTION at ${origin} !`) 
+    client.error(err, `🔥 UNCAUGHT_EXCEPTION at ${origin.toString()} !`) 
 });
 
-process.on('unhandledRejection', (reason, promise) => { 
+process.on('unhandledRejection', async (reason, promise) => {
     client.error(undefined, `🔥 UNHANDLED_REJECTION at ${promise} with the reason ${reason} !`)
+    console.log(promise);
 });
 
 client.login(process.env.TOKEN)
