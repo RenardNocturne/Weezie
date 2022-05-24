@@ -32,7 +32,7 @@ module.exports = (client) => {
             .renderEmojis(true)
             .setBackground("IMAGE", img)
             .setRequiredXP(info.levelExp)
-            .setStatus(member.presence?.status ? member.presence?.status : "idle")
+            .setStatus(member.presence?.status ? member.presence?.status : "offline")
             .setRank(0, "RANK", false)
             .setProgressBar(`#${client.config.colors.default}`, "COLOR")
             .setUsername(member.user.username)
