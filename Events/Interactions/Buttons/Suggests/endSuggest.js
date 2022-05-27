@@ -33,7 +33,7 @@ module.exports = {
 
             const newEmbed = new MessageEmbed()
                 .setAuthor("Suggestion !", interaction.guild.iconURL())
-                .setDescription(`**📝 Contenu:** \n ${suggest.suggest} \n \n **📜 Réponse apportée:** \n ${response} \n \n ✅ **Approuvée à ${Math.round(suggest.opt1/suggest.total*100)}%** \n \n 🏳 **Neutre à ${Math.round(suggest.opt3/suggest.total*100)}%** \n \n ❌ **Déclinée à ${Math.round(suggest.opt2/suggest.total*100)}%** \n \n *${suggest.total} participants !*`)
+                .setDescription(`**📝 Contenu:** \n ${suggest.suggest} \n \n **📜 Réponse apportée:** \n ${response} \n \n ✅ **Approuvée à ${Math.round(suggest.opt1/suggest.total*100)}%** \n \n 🏳 **Neutre à ${Math.round(suggest.opt3/suggest.total*100)}%** \n \n ❌ **Déclinée à ${Math.round(suggest.opt2/suggest.total*100)}%** \n \n *${suggest.total} votes !*`)
                 .setColor(Object.values(suggest.hasVoted)[Object.keys(suggest.hasVoted).indexOf(interaction.user.id)] === "1" ? client.config.colors.success : Object.values(suggest.hasVoted)[Object.keys(suggest.hasVoted).indexOf(interaction.user.id)] === "2" ? client.config.colors.error : "ffffff") //Oui c'est n'imp ALED !
                 .setFooter(interaction.message.embeds[0].footer.text, interaction.message.embeds[0].footer.iconURL)
             interaction.message.edit({embeds: [newEmbed], components: []})
@@ -48,7 +48,7 @@ module.exports = {
         suggestsMap.delete(suggestID);
         writeFile("./Utils/Data/suggests.json", client.mapToJSON(suggestsMap), err => {
             if (err) console.error(err)
-            console.log("The file was saved!");
+            
         });
     }
 }

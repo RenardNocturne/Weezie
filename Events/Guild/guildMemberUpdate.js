@@ -1,18 +1,45 @@
-const { MessageEmbed, MessageAttachment } = require('discord.js')
+const { MessageEmbed, MessageAttachment, Client, GuildMember } = require('discord.js')
+
+/**
+ * 
+ * @param {Client} client 
+ * @param {GuildMember} oldMember 
+ * @param {GuildMember} newMember 
+ */
 
 module.exports = async (client, oldMember, newMember) => {
-    if (!oldMember.roles.cache.has(client.config.IDs.roles.boost) && newMember.roles.cache.has(client.config.IDs.roles.boost)) {
-        const img = new MessageAttachment('Images/boostImage.jpg')
-        const ct = client.guilds.cache.get(client.config.IDs.guild)
 
-        const boosterEmbed = new MessageEmbed() 
-            .setAuthor(`${newMember.user.tag} vient de booster le serveur !`, newMember.user.displayAvatarURL())
-            .setDescription(`<a:boost:929426241398911068> **Merci beaucoup** à toi ${newMember.user.username}, grâce à toi le serveur est au niveau **${ct.premiumTier === "NONE" ? "0" : ct.premiumTier === "TIER_1" ? "1" : ct.premiumTier === "TIER_2" ? "2" : "3"}** avec **${ct.premiumSubscriptionCount > 1 ? ct.premiumSubscriptionCount + "** boosts" : ct.premiumSubscriptionCount + "** boost"} ! <a:tada:929426375012646973>`)
-            .setFooter(`Merci beaucoup ${newMember.user.username} !`, newMember.user.displayAvatarURL())
-            .setImage('attachment://boostImage.jpg')
-            .setColor(client.config.colors.boost)
-            .setTimestamp();
-
-        client.channels.cache.get(client.config.IDs.channels.starboard).send({embeds: [boosterEmbed], files: [img]}).catch(err => console.log("Une erreur est survenue ! \n\n" + err))
+    async function createPersonalChannel (member, reason, timeInDays, timeInSeconds) {
+        await member.guild.channels.create(`⭐・${member.user.username}`, {
+            type: 'text',
+            topic: `Salon personnel de ${member.user.username} !`,
+            position: 1,
+            reason: `Création du salon personnel de ${member.user.username} !`,
+            parent: client.config.IDs.categories.personalChannels,
+            permissionOverwrites: [
+                {
+                    id: member.id, //Celui qui a ouvert le ticket
+                    allow: ['SEND_MESSAGES'],
+                },
+            ],
+        }).then(channel => {
+            const embed = new MessageEmbed()
+                .setAuthor(`Salon personnel de ${member.user.username}`, member.user.displayAvatarURL())
+                .setDescription(`Voici ton salon <@${member.id}> ! N'oublies pas qu'ici aussi les <#${client.config.IDs.channels.rules}> s'appliquent ! \n\n 🎉 Salon acquis le <t:${Math.round(Date.now()/1000)}> \n\n 👤 Créateur: <@${member.id}> \n\n 📜 Raison: \`${reason}\` \n\n ⏳ Se termine <t:${Math.round(Date.now()/1000 + timeInSeconds)}:R> !`)
+                .setFooter(`Merci d'avoir été si actif sur ${member.guild.name}`, member.guild.iconURL())
+                .setColor(client.config.colors.default)
+            channel.send({content: `Voici ton salon <@${member.id}> !`, embeds: [embed]})
+            .then(() => {
+                client.setDaysTimeout(() => {
+                    channel.delete(`Suppression du salon personnel de ${member.user.username} !`)
+                }, timeInDays)
+            })
+        })
     }
+
+    if (!oldMember.roles.cache.has(client.config.IDs.roles.boost) && newMember.roles.cache.has(client.config.IDs.roles.boost)) return client.emit("newBoost", newMember)
+
+    if (!oldMember.roles.cache.has(client.config.IDs.roles.levels[4]) && newMember.roles.cache.has(client.config.IDs.roles.levels[4])) return newMember.roles.add(client.config.IDs.roles.partnershipTicket)
+    if (!oldMember.roles.cache.has(client.config.IDs.roles.levels[7]) && newMember.roles.cache.has(client.config.IDs.roles.levels[7])) return await createPersonalChannel(newMember, "Récompense du niveau 80 !", 7, 7*24*60*60)
+    if (!oldMember.roles.cache.has(client.config.IDs.roles.levels[9]) && newMember.roles.cache.has(client.config.IDs.roles.levels[9])) return await createPersonalChannel(newMember, "Récompense du niveau 100 !", 30, 30*24*60*60)
 }

@@ -10,6 +10,7 @@ module.exports = {
      * @returns 
      */
     async execute (client, interaction) {
+        const doubleVote = await client.checkIfMemberHasLevelAbove(interaction.member, 30)
         const suggests = JSON.parse(readFileSync('./Utils/Data/suggests.json'));
 
         const args = interaction.customId.split("/").slice(1);
@@ -22,19 +23,25 @@ module.exports = {
         if (Object.keys(suggest.hasVoted).includes(interaction.user.id)) return interaction.reply({content: "❌ Vous avez déjà voter !", ephemeral: true})
         
         suggest.hasVoted[interaction.user.id] = vote;
-        suggest.total += 1;
-        eval(`suggest.opt${vote} += 1;`);
+        
+        if (doubleVote) {
+            suggest.total += 2;
+            eval(`suggest.opt${vote} += 2;`);
+        } else {
+            suggest.total += 1;
+            eval(`suggest.opt${vote} += 1;`);
+        }
 
         writeFile("./Utils/Data/suggests.json", client.mapToJSON(suggestsMap), err => {
             if (err) console.error(err)
-            console.log("The file was saved!");
+            
         });
 
-        interaction.reply({content: "✅ Vote comptabilisé !", ephemeral: true})
+        interaction.reply({content: doubleVote ? "✅ Votre vote a bien été compté 2 fois !" : "✅ Vote comptabilisé !", ephemeral: true})
 
         const newEmbed = new MessageEmbed()
             .setAuthor("Suggestion !", interaction.guild.iconURL())
-            .setDescription(`**📝 Contenu:** \n ${suggest.suggest} \n \n ✅ **Approuvée à ${Math.round(suggest.opt1/suggest.total*100)}%** \n \n 🏳 **Neutre à ${Math.round(suggest.opt3/suggest.total*100)}%** \n \n ❌ **Déclinée à ${Math.round(suggest.opt2/suggest.total*100)}%** \n \n *${suggest.total} participants !*`)
+            .setDescription(`**📝 Contenu:** \n ${suggest.suggest} \n \n ✅ **Approuvée à ${Math.round(suggest.opt1/suggest.total*100)}%** \n \n 🏳 **Neutre à ${Math.round(suggest.opt3/suggest.total*100)}%** \n \n ❌ **Déclinée à ${Math.round(suggest.opt2/suggest.total*100)}%** \n \n *${suggest.total} votes !*`)
             .setColor(client.config.colors.default)
             .setFooter(interaction.message.embeds[0].footer.text, interaction.message.embeds[0].footer.iconURL)
 

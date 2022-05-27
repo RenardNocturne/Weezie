@@ -4,7 +4,7 @@ const { Routes } = require('discord-api-types/v9');
 
 const loadEvents = (client, dir = './Events') => {
     readdirSync(dir).forEach(dirs => {
-        const events = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js" || ".ts"));
+        const events = readdirSync(`${dir}/${dirs}`).filter(files => files.endsWith(".js"));
 
         for (const event of events) {
             const evt = require(`../${dir}/${dirs}/${event}`);

@@ -8,7 +8,7 @@ const { Client, GuildMember, TextChannel } = require("discord.js");
  */
 module.exports = (client, member, newCurrentExp, channel) => {
     client.getLevelInfo(member).then(async (info) => {
-        const oldRole = eval(`client.config.IDs.roles.allLevels[${Math.floor((info.level / 10) - 1)}]`)
+        const oldRole = eval(`client.config.IDs.roles.levels[${Math.floor((info.level / 10) - 1)}]`)
         let newRole;
 
         //Tant qu'il y a plus d'exp que ce dont le niveau a besoin
@@ -20,18 +20,18 @@ module.exports = (client, member, newCurrentExp, channel) => {
         }
 
         // niveau 10 -> 10/10 -> 1 - 1 => 0
-        newRole = eval(`client.config.IDs.roles.allLevels[${Math.floor((info.level / 10) - 1)}]`)
+        newRole = eval(`client.config.IDs.roles.levels[${Math.floor((info.level / 10) - 1)}]`)
         if (newRole) {
             if (!member.roles.cache.has(newRole)) {
                 member.roles.add(newRole)
-                client.config.IDs.roles.allLevels.forEach(roleID => {
+                client.config.IDs.roles.levels.forEach(roleID => {
                     if (roleID != newRole) member.roles.remove(roleID).catch(e => console.log(e));
                 })
             }
         }
 
-        await client.setLevelInfo(member, {exp: newCurrentExp, level: info.level, levelExp: info.levelExp}).then(() => {
-            client.sendLevelCard(member, info, newCurrentExp, channel, newRole != oldRole ? `🎁 Bravo tu as obtenu le rôle <@&${newRole}> !` : undefined)
+        await client.setLevelInfo(member, {exp: newCurrentExp, level: info.level, levelExp: info.levelExp}).then(() => {;
+            client.sendLevelCard(member, info, newCurrentExp, channel, newRole != oldRole ? `🎁 Bravo tu as obtenu le rôle <@&${newRole}> ! ${eval(`client.config.IDs.roles.levelsAdvantages[${Math.floor((info.level / 10) - 1)}]`)}` : undefined)
         })
     })
 }

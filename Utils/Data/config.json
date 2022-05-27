@@ -10,10 +10,20 @@
             "starboard": "922545697113407518",
             "welcome": "834780676166516836",
             "reglement": "922813007963254825",
-            "test": "922942569934098532",
+            "rules": "825765662923423754",
+            "logs": "979458951605272579",
+            "test": "979470076195537007",
             "errorLogs": "972462283538186310",
-            "successLogs": "972462283538186310"
+            "successLogs": "972462283538186310",
+            "verifChannel": "979458924711399544",
+            "pubChannels": [
+                "952886013229928448",
+                "833828520030633984"
+            ],
+            "giveaways": "979485955394240583",
+            "partnerships": "962361895954813049"
         },
+
         "roles": {
             "boost": "847565593615007785",
             "devs": "922223564835414096",
@@ -31,6 +41,8 @@
             "frontend": "922229734476234753",
             "graphists": "952900970864599100",
 
+            "partnershipTicket": "979753146874216488",
+
             "partenairesNotifs": "859031598590459924",
             "streamsNotifs": "975818633949360148",
             "giveawaysNotifs": "922505653837242388",
@@ -38,20 +50,7 @@
             "announcementsNotifs": "849313732785733732",
             "pollsNotifs": "922505401981861898",
 
-            "levels":  {
-                "10": "979108443971534858",
-                "20": "979108793063448676",
-                "30": "979109052338556989",
-                "40": "979109160874573875",
-                "50": "979109431285526598",
-                "60": "979109580770537502",
-                "70": "979109749800968242",
-                "80": "979110020916600923",
-                "90": "979110166047883334",
-                "100":"979110228362670160"
-            },
-
-            "allLevels": [
+            "levels": [
                 "979108443971534858",
                 "979108793063448676",
                 "979109052338556989",
@@ -62,12 +61,28 @@
                 "979110020916600923",
                 "979110166047883334",
                 "979110228362670160"
+            ],
+
+            "levelsAdvantages": [
+                "Félicitations ! Tu peux désormais envoyer des message dans le salon <#833828520030633984> et te présenter à tout le monde !",
+                "Félicitations ! Tu peux désormais envoyer des message dans le salon <#952886013229928448> et booster tes projets !",
+                "Félicitations ! Ton **vote compte double** pour les <#925757934972047360> et <#969981716456407120> ! Influes sur l'avenir du serveur !",
+                "Bien joué ! Pour te récompenser, je te donnes **accès à la commande `/embed`** pour que tu puisses encore mieux profiter du pouvoir de la parole !",
+                "🎉 Sabrez le champagne ! Pour fêter cette demi-centaine, nous t'offrons le droit d'envoyer **une pub dans <#962361895954813049>** !",
+                "Incroyable ! Il faut qu'on te remarque encore plus ! Dans ce cas tu n'as plus **besoin que de 3 ⭐ afin de rentrer dans le <#922545697113407518>** !",
+                "Nom d'une pipe en bois ! J'ai compris le message... Je vais faire en sorte que **tes suggestions mentionnent le rôle <@&922505401981861898>** !",
+                "Digne de Socrate ! Allez **un salon personnel pendant 1 semaine** ! C'est pour toi !",
+                "Sublime ! Pour la peine, **ta participation compte double pour les giveaways !** Tu as une chance en plus de gagner !",
+                "🎉 Quelle classe ! Que de panache ! Votre altesse, je ne peux que m'incliner devant tant de prestance ! Voici un **salon personnel d'une durée d'un mois** pour vous !"
             ]
         },
+
         "guild": "825760704241991752",
+        
         "categories": {
             "requests": "833827745174781962",
-            "tickets": "932262095859380234"
+            "tickets": "932262095859380234",
+            "personalChannels": "979781819367063552"
         }
     },
     

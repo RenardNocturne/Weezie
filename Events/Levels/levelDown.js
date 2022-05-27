@@ -4,7 +4,7 @@ module.exports = async  (client, member, expToRemove, channel) => {
         //on retire tout à l'exp
 
         let newRole;
-        const oldRole = eval(`client.config.IDs.roles.allLevels[${Math.floor((info.level / 10) - 1)}]`)
+        const oldRole = eval(`client.config.IDs.roles.levels[${Math.floor((info.level / 10) - 1)}]`)
 
         if (info.level <= 0) {
             info.exp = 0; //Si on est déjà au lvl 0 il peut pas lvl down alors on set l'exp à 0
@@ -24,16 +24,16 @@ module.exports = async  (client, member, expToRemove, channel) => {
         }
         
         // niveau 10 -> 10/10 -> 1 - 1 => 0
-        newRole = eval(`client.config.IDs.roles.allLevels[${Math.floor((info.level / 10) - 1)}]`)
+        newRole = eval(`client.config.IDs.roles.levels[${Math.floor((info.level / 10) - 1)}]`)
         if (newRole) {
             if (!member.roles.cache.has(newRole)) {
                 member.roles.add(newRole)
-                client.config.IDs.roles.allLevels.forEach(roleID => {
+                client.config.IDs.roles.levels.forEach(roleID => {
                     if (roleID != newRole) member.roles.remove(roleID).catch(e => console.log(e));
                 })
             }
         } else {
-            client.config.IDs.roles.allLevels.forEach(roleID => {
+            client.config.IDs.roles.levels.forEach(roleID => {
                 if (roleID != newRole) member.roles.remove(roleID).catch(e => console.log(e));
             })
         }

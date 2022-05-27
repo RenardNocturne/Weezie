@@ -32,7 +32,6 @@ module.exports = {
 
         writeFile("./Utils/Data/suggests.json", client.mapToJSON(suggestsMap), err => {
             if (err) console.error(err)
-            console.log("The file was saved!");
         });
 
         const embed = new MessageEmbed()
@@ -64,7 +63,9 @@ module.exports = {
                     .setStyle("PRIMARY")
             ])
 
-        client.channels.cache.get(client.config.IDs.channels.suggests).send({embeds: [embed], components: [row]})
+        await client.checkIfMemberHasLevelAbove(interaction.member, 70) ?  client.channels.cache.get(client.config.IDs.channels.suggests).send({ content: `Avantages de niveaux: Notification pour <@&${config.IDs.roles.pollsNotifs}> !`, embeds: [embed], components: [row]})
+        .then(msg => interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true}))
+        : client.channels.cache.get(client.config.IDs.channels.suggests).send({ embeds: [embed], components: [row]})
         .then(msg => interaction.reply({content: `✅ [Suggestion](${msg.url}) envoyé !`, ephemeral: true}))
     },
 }

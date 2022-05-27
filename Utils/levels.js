@@ -57,6 +57,13 @@ module.exports = (client) => {
             });
     }
 
+    client.checkIfMemberHasLevelAbove = async (member, level) => {
+        let info = await client.getLevelInfo(member);
+        if (!info) return false
+        
+        return info.level >= level
+    }
+
     client.setLevelInfo = async (member, info) => {
         await db.set(`levels.${member.id}`, info)
         const newInfos = await client.getLevelInfo(member)

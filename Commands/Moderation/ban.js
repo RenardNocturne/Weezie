@@ -60,11 +60,11 @@ module.exports = {
 
             
             if (!perm) {
-                setTimeout(() => {
+                client.setDaysTimeout(() => {
                     client.channels.cache.get(client.config.IDs.channels.sanctions).send({embeds: [unbanEmbed]})
                     interaction.guild.members.unban(target.id).catch(err => client.error(err))
                     target.send({embeds: [infoUnbanEmbed]}).catch(err => client.error(err))
-                }, 86400 * 1000 * duration );
+                }, duration);
             }
             
             target.send({embeds: [infoEmbed]}).catch(err => client.error(err)) 
