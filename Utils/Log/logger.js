@@ -19,7 +19,7 @@ module.exports = (client) => {
             .setDescription(msg)
             .setTimestamp()
             .setFooter(client.user.username, client.user.displayAvatarURL())
-        client.channels.cache.get(client.config.IDs.channels.errorLogs).send({embeds: [embed]})
+        client.channels.cache.get(client.config.IDs.channels.successLogs).send({embeds: [embed]})
         console.log(msg)
     }
 }
