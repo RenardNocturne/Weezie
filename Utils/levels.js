@@ -22,10 +22,10 @@ module.exports = (client) => {
 
     client.sendLevelCard = (member, info, newCurrentExp, method, message = `🚀 ${member.user.username} a atteint le niveau ${info.level} !`) => {
         const img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhca6IRoPzXyTXkhlBmK9DG3C0xD0C-KiLpwqzBpvbtYauXSMFrn3WOKAHT-v1aXRGsQ&usqp=CAU";
-
+        
         const rank = new canvacord.Rank()
-            .setOverlay("#FFFFFF", 0, false)
-            .setAvatar(member.user.displayAvatarURL({format: "png"}))
+        .setOverlay("#FFFFFF", 0, false)
+        .setAvatar(member.user.displayAvatarURL({format: "png"}))
             .setLevel(info.level)
             .setCurrentXP(newCurrentExp)
             .setFontSize("20px")
@@ -38,7 +38,7 @@ module.exports = (client) => {
             .setUsername(member.user.username)
             .setDiscriminator(member.user.discriminator);
 
-        rank.build()
+            rank.build()
             .then(data => {
                 const RankCard = new MessageAttachment(data, "RankCard.png");
 
@@ -48,7 +48,8 @@ module.exports = (client) => {
                     .setColor(client.config.colors.default)
                     .setFooter("Système de niveaux de " + member.guild.name + " !", member.guild.iconURL())
                     .setImage("attachment://RankCard.png")    
-                
+
+                    if (!method) return client.channels.cache.get(client.config.IDs.channels.general).send({embeds: [embed], files: [RankCard]})
                     try {
                         method.send({embeds: [embed], files: [RankCard]})
                     } catch (e) {
