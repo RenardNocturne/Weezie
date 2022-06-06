@@ -26,7 +26,7 @@ module.exports = (client, interaction) => {
             client.error(err, `❌ Une erreur est survenue lors de l'interaction ${command.data.name} !`);
         }) 
     } else if (interaction.isSelectMenu()) {
-        switch (interaction.customId) {
+        switch (interaction.customId.split("/")[0]) {
             case "autoroles":
                 client.emit("autoroles", interaction)
                 break;
