@@ -12,14 +12,14 @@ module.exports = async (client, message) => {
     const pubChannels = client.config.IDs.channels.pubChannels;
     if (!message.interaction && message.webhookId && pubChannels.includes(message.channel.id)) return client.emit('pubSent', message)
     if (message.author.bot && pubChannels.includes(message.channelId) && message.author.id !== client.user.id) return message.delete();
-    if (message.author.bot) return;
     
     if (message.interaction?.commandName === "bump") {
         const exp = client.randomIntFromInterval(7, 15)
         message.channel.send({content: bump[client.randomIntFromInterval(0, bump.length - 1)] + exp + " points d'expérience !"})    
-        client.addExp(message.guild.members.cache.get(message.interaction.user.id), exp, message.channel); 
+        return client.addExp(message.guild.members.cache.get(message.interaction.user.id), exp, message.channel); 
     }
 
+    if (message.author.bot) return;
     if (message.channelId === client.config.IDs.channels.partnerships) client.emit("partnership", message);
     if (pubChannels.includes(message.channel.id)) client.emit("pubSent", message);
 
