@@ -17,12 +17,11 @@ module.exports = {
     perms: [config.IDs.roles.admins, config.IDs.roles.mods],
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre")
-        const reason = "";
-        if (interaction.options.getString("raison")) reason = `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}`
+        const reason = interaction.options.getString("raison") ? `\n \n **📝 Raison:** \n > ${interaction.options.getString("raison")}` : ""
 
         const embed = new MessageEmbed()
             .setAuthor(`${target.user.tag} expulsé !`, target.user.displayAvatarURL())
-            .setDescription(`*__👤 Modérateur:__* \n > <@!${interaction.user.id}> ${reason}`)
+            .setDescription(`**👤 Modérateur:** \n > <@!${interaction.user.id}> ${reason}`)
             .setColor(client.config.colors.default)
             .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
             .setTimestamp();

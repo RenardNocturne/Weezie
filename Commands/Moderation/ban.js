@@ -27,49 +27,52 @@ module.exports = {
     async execute(client, interaction) {
         const target = interaction.options.getMember("membre").user
         const time = interaction.options.getString("durée")
-        const reason = interaction.options.getString("raison") ? `\n \n *__📝 Raison:__* \n > ${interaction.options.getString("raison")}` : ""
+        const reason = interaction.options.getString("raison") ? `\n \n **📝 Raison:** \n > ${interaction.options.getString("raison")}` : ""
 
-        async function ban (duration, txt, perm) {
+        function ban (duration, txt, perm) {
             const unbanEmbed = new MessageEmbed()
                 .setAuthor(`${target.tag} débannit !`, target.displayAvatarURL())
-                .setDescription(`*__👤 Modérateur:__* \n > <@!${interaction.user.id}> ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
+                .setDescription(`**👤 Modérateur:** \n > <@!${interaction.user.id}> ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
             const banEmbed = new MessageEmbed()
                 .setAuthor(`${target.tag} bannit !`, target.displayAvatarURL())
-                .setDescription(`*__👤 Modérateur:__* \n > <@!${interaction.user.id}> ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
+                .setDescription(`**👤 Modérateur:** \n > <@!${interaction.user.id}> ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
             const infoEmbed = new MessageEmbed()
                 .setAuthor(`Vous avez été bannit de ${interaction.guild.name} !`, interaction.guild.iconURL())
-                .setDescription(`*__👤 Modérateur:__* \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
+                .setDescription(`**👤 Modérateur:** \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
             const infoUnbanEmbed = new MessageEmbed()
                 .setAuthor(`Vous avez été débannit de ${interaction.guild.name} !`, interaction.guild.iconURL())
-                .setDescription(`*__👤 Modérateur:__* \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n *__⏳ Durée:__* \n > ${txt}`)
+                .setDescription(`**👤 Modérateur:** \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
                 .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
                 .setTimestamp();
 
-            
-            if (!perm) {
-                client.setDaysTimeout(() => {
-                    client.channels.cache.get(client.config.IDs.channels.sanctions).send({embeds: [unbanEmbed]})
-                    interaction.guild.members.unban(target.id).catch(err => client.error(err))
-                    target.send({embeds: [infoUnbanEmbed]}).catch(err => client.error(err))
-                }, duration);
-            }
-            
-            target.send({embeds: [infoEmbed]}).catch(err => client.error(err)) 
-            await interaction.guild.members.ban(target.id).catch(err => client.error(err))
-            interaction.reply({embeds: [banEmbed], components: []})
+            if (!target.bannable) return interaction.reply({content: `:x: <@!${target.id}> n'est pas bannissable !`, ephemeral: true})
+            interaction.guild.members.ban(target.id)
+            .then(() => {
+                if (!perm) {
+                    client.setDaysTimeout(() => {
+                        client.channels.cache.get(client.config.IDs.channels.sanctions).send({embeds: [unbanEmbed]})
+                        interaction.guild.members.unban(target.id).catch(err => client.error(err))
+                        target.send({embeds: [infoUnbanEmbed]}).catch(err => client.error(err))
+                    }, duration);
+                }
+                
+                target.send({embeds: [infoEmbed]}).catch(err => client.error(err)) 
+                interaction.reply({embeds: [banEmbed], components: []})
+            })
+            .catch(e => null)
         }
 
         switch (time) {
