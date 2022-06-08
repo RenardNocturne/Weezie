@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const messages = require("../../Utils/Data/messages.json")
 
 module.exports = async (client) => {
@@ -7,24 +6,34 @@ module.exports = async (client) => {
     // pour avoir les emojis customs sans nitro
     // console.log(client.guilds.cache.get(client.config.IDs.guild).emojis.cache)
 
-    const activitiesTypes = messages.status.activitiesTypes
-    activitiesTypes.push("PLAYING")
+    
+    function loopStatus () {
+        const activitiesTypes = messages.status.activitiesTypes //Définition des types d'activités
+        const activities = messages.status.statusMessages
+        activitiesTypes.push("PLAYING") //parce que j'ai pas envie de le mettre dans le json
 
-    let i = 0;
-    setInterval(() => {
-        let activities = messages.status.statusMessages
-        activities.push(`compter ${client.guilds.cache.get(client.config.IDs.guild).memberCount} membres !`)
+        async function changeActivity () {
 
-        const newActivity = activities[i];
-        const newActivityType = activitiesTypes[i];
-        client.user.setPresence({ activities: [{ name: newActivity, type: newActivityType }], status: 'online'})
-        activities.pop()
+            //Une fonction qui change l'activité du bot
+            function timeout(activity, activityType) { 
+                return new Promise(resolve => setTimeout(() => {
+                    client.user.setPresence({ activities: [{ name: activity, type: activityType }], status: 'online'})
+                    resolve()
+                }, 10000)) 
+            }
 
-        if (i < activities.length) {
-            i++;
-        } else {
-            i = 0;
+            activities[activities.length] = `compter ${client.guilds.cache.get(client.config.IDs.guild).memberCount} membres !` //On réactualise
+
+            //On boucle sur les activités
+            for (let i = 0; i < activities.length; i++) {
+                await timeout(activities[i], activitiesTypes[i]).then(() => console.log("done !")); 
+            }
+
+            changeActivity() //encore
         }
-
-    }, 10000);
+        
+        changeActivity()
+    }
+    
+    loopStatus()
 }
