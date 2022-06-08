@@ -6,7 +6,6 @@ const { MessageAttachment, MessageEmbed, MessageActionRow, MessageSelectMenu, Cl
  * @param {SelectMenuInteraction} interaction 
  */
 module.exports = (client, interaction) => {
-    console.log(interaction.values);
     const roles = {
         newRoles: [],
         removedRoles: []

@@ -1,10 +1,12 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Permissions } = require("discord.js")
+const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, Permissions, MessageSelectMenu } = require("discord.js")
+const config = require("../../Utils/Data/config.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
             .setName("devrules")
             .setDescription("Renvoies les règles du serveur !"),
+    perms: [config.IDs.roles.users],
     async  execute(client, interaction) {
     const DevRules = new MessageAttachment('Images/DevRules.gif')
     const serverRules = new MessageAttachment("Images/serverRules.png")
@@ -36,17 +38,31 @@ module.exports = {
 >  
 > :computer: Seules les personnes ayant le rôle <@&922223564835414096> ou <@&952900970864599100> peuvent accepter une requête, rôle uniquement accessible en acceptant ce règlement ! :computer:
 > 
-> - *Si vous avez __lu__ et __compris le règlement__ merci de cliquer sur le bouton "Accepter les règles !"*`)   
+> - *En vous servant du menu déroulant ci-dessous, vous confirmez avoir accepté ce règlement !*`)   
     .setColor(client.config.colors.default)
     .setFooter('Règles du serveur de ' + interaction.guild.name, interaction.guild.iconURL())
     .setImage('attachment://DevRules.gif')
 
     const row = new MessageActionRow()
         .addComponents([
-            new MessageButton()
-                .setLabel('Accepter le règlement !')
-                .setCustomId('acceptDevRules')
-                .setStyle('SUCCESS')
+            new MessageSelectMenu()
+                .setPlaceholder("🧬 Choisissez vos rôles !")
+                .setMaxValues(2)
+                .setCustomId("autoroles/3")
+                .addOptions([
+                    {
+                        label: 'Développeur',
+                        value: `${client.config.IDs.roles.devs}`,
+                        description: "Obtenez le rôle développeur !",
+                        emoji: "💻"
+                    },
+                    {
+                        label: 'Graphiste',
+                        value: `${client.config.IDs.roles.graphistes}`,
+                        description: "Obtenez le rôle graphiste !",
+                        emoji: "🎨"
+                    },
+                ])
         ])
 
     await interaction.channel.send({embeds: [embed], files: [serverRules]})

@@ -38,7 +38,7 @@ module.exports = {
                         {
                             label: 'Graphiste',
                             emoji: '🎨',
-                            value: `${client.config.IDs.roles.graphists}`,
+                            value: `${client.config.IDs.roles.graphistes}`,
                             description: 'Pour les requêtes nécessitant un graphiste !'
                         },
                         {
