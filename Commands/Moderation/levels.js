@@ -12,7 +12,7 @@ module.exports = {
             .addUserOption(option => option
                 .setName("membre")
                 .setDescription("👤 Choisissez un membre !")
-                .setRequired(true)
+                .setRequired(false)
             )
         )
         .addSubcommand(command => command
@@ -61,7 +61,7 @@ module.exports = {
      */
     execute: async (client, interaction) => {
         const command = interaction.options.getSubcommand();
-        const target = interaction.options.getMember("membre")
+        const target = interaction.options.getMember("membre") ? interaction.options.getMember("membre") : interaction.member;
         if (target.user.bot) return interaction.reply({content: "❌ Cet utilisateur est un robot !", ephemeral: true})
 
         switch (command) {

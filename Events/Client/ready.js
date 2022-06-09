@@ -50,11 +50,8 @@ module.exports = async (client) => {
             if (!state?.includes("https://discord.gg/YDa9BbNEtS") && !state?.includes("discord.gg/YDa9BbNEtS") && !state?.includes(".gg/YDa9BbNEtS")) return  
             
             const hadAlreadyChanged = await db.get(`${member.id}.hadAlreadyChangedStatus`)
-            if (hadAlreadyChanged) {
-                console.log('Added');
-                return client.addExp(member, client.random(7, 15))
-            }
-
+            if (hadAlreadyChanged) return client.addExp(member, client.random(7, 15))
+            
             const exp = 50
             const embed = new MessageEmbed()
                 .setAuthor(`Merci ${member.user.tag} !`, member.user.displayAvatarURL())
