@@ -22,7 +22,7 @@ module.exports = (client, interaction, time, msg) => {
         }
 
         while (winners.length != giveaway.winner && giveaway.hasVoted.length > 0 ) {
-            const newWinner = giveaway.hasVoted[client.randomIntFromInterval(0, giveaway.hasVoted.length - 1)];
+            const newWinner = giveaway.hasVoted[client.random(0, giveaway.hasVoted.length - 1)];
             winners.push(newWinner);
             giveaway.hasVoted = giveaway.hasVoted.filter(user => user !== newWinner);
         }

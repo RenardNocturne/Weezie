@@ -1,7 +1,7 @@
 const { GuildMember, MessageEmbed } = require("discord.js")
 
 module.exports = client => {
-    client.randomIntFromInterval = (min, max) => { 
+    client.random = (min, max) => { 
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 

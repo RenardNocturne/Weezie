@@ -15,7 +15,7 @@ module.exports = {
         if (giveaway.total < giveaway.winner) return interaction.reply({content: "❌ Il n'y a pas assez de participants !", ephemeral: true})
 
         while (winners.length != giveaway.winner && giveaway.hasVoted.length > 0 ) {
-            const newWinner = giveaway.hasVoted[client.randomIntFromInterval(0, giveaway.hasVoted.length - 1)];
+            const newWinner = giveaway.hasVoted[client.random(0, giveaway.hasVoted.length - 1)];
             winners.push(newWinner);
             giveaway.hasVoted = giveaway.hasVoted.filter(user => user !== newWinner);
         }

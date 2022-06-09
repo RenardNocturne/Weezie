@@ -18,7 +18,7 @@ module.exports = (client, interaction) => {
 
         command.execute(client, interaction)
         .then(() => {
-            client.addExp(interaction.member, client.randomIntFromInterval(0, 5), interaction.channel);
+            client.addExp(interaction.member, client.random(0, 5), interaction.channel);
             client.success(`✅ Commande ${command.data.name} réalisée avec succès !`);
         })
         .catch (err => {
@@ -45,7 +45,7 @@ module.exports = (client, interaction) => {
         
         command.execute(client, interaction)
         .then(() => {
-            client.addExp(interaction.member, client.randomIntFromInterval(3, 8));
+            client.addExp(interaction.member, client.random(3, 8));
             client.success(`✅ Commande ${command.name} réalisée avec succès !`)
         })
         .catch(err => {
