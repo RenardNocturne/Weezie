@@ -1,4 +1,4 @@
-const { Client, MessageEmbed } = require("discord.js");
+const { Client, MessageEmbed, MessageAttachment } = require("discord.js");
 const messages = require("../../Utils/Data/messages.json")
 const db = require("quick.db")
 require("dotenv").config()
@@ -13,7 +13,6 @@ module.exports = async (client) => {
     // pour avoir les emojis customs sans nitro
     // console.log(client.guilds.cache.get(client.config.IDs.guild).emojis.cache)
 
-    
     function loopStatus () {
         const activitiesTypes = messages.status.activitiesTypes //Définition des types d'activités
         const activities = messages.status.statusMessages

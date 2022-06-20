@@ -1,11 +1,13 @@
 const { Permissions, MessageEmbed, MessageActionRow, MessageSelectMenu, MessageAttachment } = require("discord.js")
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const config = require('../../Utils/Data/config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ticket')
 		.setDescription('Renvoie l\'embed des tickets !'),
-	async execute(client, interaction) {
+    perms: [config.IDs.roles.admins],
+    async execute(client, interaction) {
         const Support = new MessageAttachment("Images/Support.gif")
 
         const embed = new MessageEmbed()
@@ -50,6 +52,4 @@ module.exports = {
 
         interaction.channel.send({embeds: [embed],  components: [row], files: [Support]})
     },
-    userPerms: [Permissions.FLAGS.MANAGE_MESSAGES],
-    userPermsFR: ["Gérer les messages"]
 };

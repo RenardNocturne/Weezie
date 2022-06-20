@@ -1,11 +1,13 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, MessageAttachment, MessageActionRow, MessageButton, MessageSelectMenu, Permissions } = require("discord.js")
+const config = require('../../Utils/Data/config.json');
 
 module.exports = {
     data: new SlashCommandBuilder()
-            .setName("roles")
-            .setDescription("Renvoies les règles du serveur !"),
-    async  execute(client, interaction) {
+        .setName("roles")
+        .setDescription("Renvoies les règles du serveur !"),
+    perms: [config.IDs.roles.admins],
+    async execute(client, interaction) {
         const img = new MessageAttachment('Images/Roles.png')
         
         const embed = new MessageEmbed()
@@ -15,100 +17,104 @@ module.exports = {
             .setImage("attachment://Roles.png")
             .setColor(client.config.colors.default);
 
-        const notifsRow = new MessageActionRow()
-            .addComponents([
-                new MessageSelectMenu()
-                    .setCustomId('autoroles')
-                    .setPlaceholder('📯 Choisissez vos notifications !')
-                    .setMaxValues(5)
-                    .addOptions([
-                        {
-                            label: 'Annonces',
-                            emoji: '📯',
-                            value: '849313732785733732',
-                            description: 'Tu seras mentionné lors d\'annonces sur le serveur !'
-                        },
-                        {
-                            label: 'Serveur',
-                            emoji: '👥',
-                            value: '922505944972263474',
-                            description: 'Tu seras mentionné lors de modifications sur le serveur !'
-                        },
-                        {
-                            label: 'Giveaways',
-                            emoji: '🎁',
-                            value: '922505653837242388',
-                            description: 'Tu seras mentionné lors de giveaways !'
-                        },
-                        {
-                            label: 'Sondages',
-                            emoji: '📊',
-                            value: '922505401981861898',
-                            description: 'Tu seras mentionné lors de sondages !'
-                        },
-                        {
-                            label: 'Partenariats',
-                            emoji: '📩',
-                            value: '859031598590459924',
-                            description: 'Tu seras mentionné lors de partenariats !'
-                        },
-                    ])    
-            ])
-        
-        const rolesRow = new MessageActionRow()
+        const row = new MessageActionRow()
         .addComponents([
             new MessageSelectMenu()
-                .setCustomId('autorolesDev')
+                .setCustomId('autoroles')
+                .setPlaceholder('📯 Choisissez vos notifications !')
+                .setMaxValues(5)
+                .addOptions([
+                    {
+                        label: 'Annonces',
+                        emoji: '📯',
+                        value: `${client.config.IDs.roles.announcementsNotifs}`,
+                        description: 'Tu seras mentionné lors d\'annonces sur le serveur !'
+                    },
+                    {
+                        label: 'Giveaways',
+                        emoji: '🎁',
+                        value: `${client.config.IDs.roles.giveawaysNotifs}`,
+                        description: 'Tu seras mentionné lors de giveaways !'
+                    },
+                    {
+                        label: 'Streams',
+                        emoji: '<:twitch:988386344357199882>',
+                        value: `${client.config.IDs.roles.streamsNotifs}`,
+                        description: 'Tu seras mentionné lors de streams !'
+                    },
+                    {
+                        label: 'Sondages',
+                        emoji: '📊',
+                        value: `${client.config.IDs.roles.pollsNotifs}`,
+                        description: 'Tu seras mentionné lors de sondages !'
+                    },
+                    {
+                        label: 'Partenariats',
+                        emoji: '📩',
+                        value: `${client.config.IDs.roles.partenairesNotifs}`,
+                        description: 'Tu seras mentionné lors de partenariats !'
+                    },
+                ]),
+            ])
+
+    const devRow = new MessageActionRow()
+        .addComponents([
+            new MessageSelectMenu()
+                .setCustomId('autoroles/2')
                 .setPlaceholder('🧬 Choisissez vos rôles !')
-                .setMaxValues(7)
+                .setMaxValues(8)
                 .addOptions([
                     {
                         label: 'Web Frontend',
                         emoji: '📜',
-                        value: '922229734476234753',
+                        value: `${client.config.IDs.roles.frontend}`,
                         description: 'Pour les développeurs Web Frontend !'
                     },
                     {
                         label: 'Web Backend',
                         emoji: '⚙',
-                        value: '922230043005030421',
+                        value: `${client.config.IDs.roles.backend}`,
                         description: 'Pour les développeurs Web Backend !'
                     },
                     {
                         label: 'JavaScript',
-                        emoji: '<:JS:825850725183258624>',
-                        value: '922229136892780565',
+                        emoji: '<:javascript:988387659808403507>',
+                        value: `${client.config.IDs.roles.javascript}`,
                         description: 'Pour les développeurs JavaScript !'
                     },
                     {
                         label: 'Python',
-                        emoji: '<:Python:825853269607579648>',
-                        value: '922229302475501569',
+                        emoji: '<:python:988387662073298954>',
+                        value: `${client.config.IDs.roles.python}`,
                         description: 'Pour les développeurs Python !'
                     },
                     {
-                        label: 'C/C#/C++/...',
-                        emoji: '<:C_:922511770873135194>',
-                        value: '922229433056780348',
-                        description: 'Pour les développeurs C/C#/C++/...'
+                        label: 'Java/Kotlin',
+                        emoji: '<:java:988387658613002281>',
+                        value: `${client.config.IDs.roles.java}`,
+                        description: 'Pour les développeurs Java/Kotlin !'
                     },
                     {
-                        label: 'Java/Kotlin',
-                        emoji: '<:Java:835411957733130252>',
-                        value: '922229560131588136',
-                        description: 'Pour les développeurs Java/Kotlin !'
+                        label: 'C/C++',
+                        emoji: '<:clanguage:988386532475940874>',
+                        value: `${client.config.IDs.roles.c}`,
+                        description: 'Pour les développeurs C/C++'
+                    },
+                    {
+                        label: 'C#',
+                        emoji: '<:csharp:988387655014285364>',
+                        value: `${client.config.IDs.roles.csharp}`,
+                        description: 'Pour les développeurs C#'
                     },
                     {
                         label: 'Autres',
                         emoji: '📚',
-                        value: '922230212069064725',
+                        value: `${client.config.IDs.roles.others}`,
                         description: 'Pour les développeurs d\'un langages absent !'
                     },
-                ])    
+                ])     
         ])
 
-        interaction.channel.send({embeds: [embed], components: [notifsRow, rolesRow], files: [img]})
+        interaction.channel.send({embeds: [embed], components: [row, devRow], files: [img]})
     },
-    userPerms: [Permissions.FLAGS.ADMINISTRATOR],
-    userPermsFR: ["Administrateur"]
 }
