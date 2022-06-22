@@ -37,8 +37,6 @@ module.exports = async (client, oldMember, newMember) => {
         })
     }
 
-    if (!oldMember.roles.cache.has(client.config.IDs.roles.boost) && newMember.roles.cache.has(client.config.IDs.roles.boost)) return client.emit("newBoost", newMember)
-
     if (!oldMember.roles.cache.has(client.config.IDs.roles.levels[4]) && newMember.roles.cache.has(client.config.IDs.roles.levels[4])) return newMember.roles.add(client.config.IDs.roles.partnershipTicket)
     if (!oldMember.roles.cache.has(client.config.IDs.roles.levels[7]) && newMember.roles.cache.has(client.config.IDs.roles.levels[7])) return await createPersonalChannel(newMember, "Récompense du niveau 80 !", 7, 7*24*60*60)
     if (!oldMember.roles.cache.has(client.config.IDs.roles.levels[9]) && newMember.roles.cache.has(client.config.IDs.roles.levels[9])) return await createPersonalChannel(newMember, "Récompense du niveau 100 !", 30, 30*24*60*60)

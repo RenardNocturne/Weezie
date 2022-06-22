@@ -9,6 +9,7 @@ const { bump } = require("../../Utils/Data/messages.json");
  */
 
 module.exports = async (client, message) => {
+    if (message.system && message.type.split("_")[3] === "SUBSCRIPTION") return client.emit("boost", message, message.member)
     const pubChannels = client.config.IDs.channels.pubChannels;
     if (!message.interaction && message.webhookId && pubChannels.includes(message.channel.id)) return client.emit('pubSent', message)
     if (message.author.bot && pubChannels.includes(message.channelId) && message.author.id !== client.user.id) return message.delete();
