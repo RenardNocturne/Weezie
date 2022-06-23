@@ -1,6 +1,6 @@
 # Weezie
 
-**Weezie est le bot Support officiel du serveur Discord [CodingTime](https://discord.gg/YDa9BbNEtS)**
+**Weezie est le bot Support officiel du serveur Discord [CodingTime](https://discord.gg/WumhCgGPrD)**
 
 Ce bot est aussi le digne successeur de [CodingHelp](https://github.com/RenardNocturne/CodingHelp/) c'est donc pour cela que certaines parties du code peuvent se ressembler...
 

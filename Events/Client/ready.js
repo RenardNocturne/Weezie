@@ -46,7 +46,7 @@ module.exports = async (client) => {
     setInterval(() => {
         client.guilds.cache.get(process.env.GUILDID).members.cache.forEach(async member => {
             const state = member.presence?.activities.find(activity => activity.type === "CUSTOM")?.state
-            if (!state?.includes("https://discord.gg/YDa9BbNEtS") && !state?.includes("discord.gg/YDa9BbNEtS") && !state?.includes(".gg/YDa9BbNEtS")) return  
+            if (!state?.includes("https://discord.gg/WumhCgGPrD") && !state?.includes("discord.gg/WumhCgGPrD") && !state?.includes(".gg/WumhCgGPrD")) return  
             
             const hadAlreadyChanged = await db.get(`${member.id}.hadAlreadyChangedStatus`)
             if (hadAlreadyChanged) return client.addExp(member, client.random(7, 15))
