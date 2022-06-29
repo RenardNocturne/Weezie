@@ -7,7 +7,7 @@ module.exports =  {
         
         let data = {
             reason: undefined,
-            date: undefined,
+            date: Math.round(interaction.member.joinedTimestamp / 1000),
             screens: []
         }
 
@@ -46,22 +46,9 @@ module.exports =  {
                             m.first().delete().catch(err => client.error(err))
                         })
                     
-                const dateEmbed = new MessageEmbed()
-                    .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
-                    .setDescription(`Bonjour ! \n Nous allons te poser une courte série de question auxquelles tu devras répondre afin de te faire entrer en contact avec le staff: \n \n **3ème Question:** \n Depuis quand es-tu sur le serveur (approximativement) ?`)
-                    .setColor(client.config.colors.default)
-                    .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
-
-                await msg.edit({embeds: [dateEmbed]})
-                    .then(async editedMsg => await editedMsg.channel.awaitMessages({filter: msgFilter, max: 1}))
-                        .then(m => {
-                            data.date = m.first().content
-                            m.first().delete().catch(err => client.error(err))
-                        })
-
                 const endedEmbed = new MessageEmbed()
                     .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
-                    .setDescription(`Votre demande a bien été prise en compte !\n Merci de patienter le temps qu'un membre du staff vienne à vous ! \n \n **📜 Description**: ${data.reason} \n \n **💎 Sur le serveur depuis:** ${data.date} \n \n **📸 Screenshots:** \`Voir-ci dessous\``)
+                    .setDescription(`Votre demande a bien été prise en compte !\n Merci de patienter le temps qu'un membre du staff vienne à vous ! \n \n **📜 Description**: ${data.reason} \n \n **💎 A rejoint le serveur** <t:${data.date}:R> \n \n **📸 Screenshots:** \`Voir-ci dessous\``)
                     .setColor(client.config.colors.success)
                     .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
 

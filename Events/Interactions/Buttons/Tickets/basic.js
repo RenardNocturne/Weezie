@@ -1,13 +1,18 @@
-const { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment } = require("discord.js")
+const { MessageEmbed, MessageActionRow, MessageButton, MessageAttachment, Client, ButtonInteraction } = require("discord.js")
 
 module.exports =  {
     name: "basic",
+    /**
+     * 
+     * @param {Client} client 
+     * @param {ButtonInteraction} interaction 
+     */
     async execute (client, interaction) {
         interaction.deferUpdate()
         
         let data = {
             reason: undefined,
-            date: undefined
+            date: Math.round(interaction.member.joinedTimestamp / 1000)
         }
 
         const msgFilter = m => m.author.id === interaction.user.id && m.content.length > 0
@@ -29,22 +34,9 @@ module.exports =  {
                         m.first().delete().catch(err => client.error(err))
                     })
 
-                const dateEmbed = new MessageEmbed()
-                    .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
-                    .setDescription(`Bonjour ! \n Nous allons te poser une courte série de question auxquelles tu devras répondre afin de te faire entrer en contact avec le staff: \n \n **2ème Question:** \n Depuis quand es-tu sur le serveur (approximativement) ?`)
-                    .setColor(client.config.colors.default)
-                    .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
-
-                await msg.edit({embeds: [dateEmbed]})
-                    .then(async editedMsg => await editedMsg.channel.awaitMessages({filter: msgFilter, max: 1}))
-                        .then(m => {
-                            data.date = m.first().content
-                            m.first().delete().catch(err => client.error(err))
-                        })
-
                 const endedEmbed = new MessageEmbed()
                     .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
-                    .setDescription(`Votre demande a bien été prise en compte !\n Merci de patienter le temps qu'un membre du staff vienne à vous ! \n \n **📜 Raison.s**: ${data.reason} \n \n **💎 Sur le serveur depuis:** ${data.date}`)
+                    .setDescription(`Votre demande a bien été prise en compte !\n Merci de patienter le temps qu'un membre du staff vienne à vous ! \n \n **📜 Raison.s**: ${data.reason} \n \n **💎 A rejoint le serveur** <t:${data.date}:R>`)
                     .setColor(client.config.colors.success)
                     .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
 
