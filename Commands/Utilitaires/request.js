@@ -55,31 +55,31 @@ module.exports = {
                         },
                         {
                             label: 'JavaScript',
-                            emoji: '<:JS:825850725183258624>',
+                            emoji: '<:javascript:988387659808403507>',
                             value: `${client.config.IDs.roles.javascript}`,
                             description: 'Pour les requêtes nécessitant un développeur JavaScript !'
                         },
                         {
                             label: 'Python',
-                            emoji: '<:Python:825853269607579648>',
+                            emoji: '<:python:988387662073298954>',
                             value: `${client.config.IDs.roles.python}`,
                             description: 'Pour les requêtes nécessitant un développeur Python !'
                         },
                         {
                             label: 'Java/Kotlin',
-                            emoji: '<:Java:835411957733130252>',
+                            emoji: '<:java:988387658613002281>',
                             value: `${client.config.IDs.roles.java}`,
                             description: 'Pour les requêtes nécessitant un développeur Java/Kotlin !'
                         },
                         {
                             label: 'C/C++',
-                            emoji: '<:C_:922511770873135194>',
+                            emoji: '<:clanguage:988386532475940874>',
                             value: `${client.config.IDs.roles.c}`,
                             description: 'Pour les requêtes nécessitant un développeur C/C++'
                         },
                         {
                             label: 'C#',
-                            emoji: '<:csharp:835413910286237716>',
+                            emoji: '<:csharp:988387655014285364>',
                             value: `${client.config.IDs.roles.csharp}`,
                             description: 'Pour les requêtes nécessitant un développeur C#'
                         },
