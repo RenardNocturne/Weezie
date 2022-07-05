@@ -68,7 +68,7 @@ module.exports = {
             case "send":
                 client.channels.cache.get(client.config.IDs.channels.announcements).send({content: `Notification pour <@&${client.config.IDs.roles.announcementsNotifs}> !`, embeds: [interaction.message.embeds[0]]}).then(msg => {
                     interaction.reply(`🚀 [Annonce envoyée](${msg.url}) !`);
-                    msg.react(msg.guild.emojis.cache.get('845300903095566338')).catch(err => null);
+                    msg.react(msg.guild.emojis.cache.get('988386533310623776')).catch(err => null);
                 }) 
                 interaction.message.delete().catch(err => null);
                 break;
