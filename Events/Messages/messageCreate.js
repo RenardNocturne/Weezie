@@ -17,7 +17,7 @@ module.exports = async (client, message) => {
     if (message.interaction?.commandName === "bump") {
         const exp = client.random(7, 15)
         message.channel.send({content: bump[client.random(0, bump.length - 1)] + exp + " points d'expérience !"})    
-        return client.addExp(message.guild.members.cache.get(message.interaction.user.id), exp, message.channel); 
+        return client.addExp(message.member, exp, message.channel); 
     }
 
     if (message.author.bot) return;
