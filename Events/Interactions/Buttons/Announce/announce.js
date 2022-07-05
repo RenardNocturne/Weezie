@@ -15,10 +15,10 @@ module.exports = {
 
         function awaitMessage (msg) {
             const embed = new MessageEmbed()
-                .setAuthor(interaction.user.username, interaction.user.displayAvatarURL())
+                .setAuthor(interaction.member.displayName, interaction.member.displayAvatarURL())
                 .setDescription(msg + "\n\n ``Annulation dans 1 minute !``")
                 .setColor(client.config.colors.default)
-                .setFooter("Annonce de " + interaction.user.username, interaction.user.displayAvatarURL())
+                .setFooter("Annonce de " + interaction.member.displayName, interaction.member.displayAvatarURL())
 
             return interaction.channel.send({embeds: [embed]})
         }

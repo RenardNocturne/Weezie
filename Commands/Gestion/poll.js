@@ -66,7 +66,7 @@ module.exports = {
             .setAuthor("Sondage !", interaction.guild.iconURL())
             .setDescription(`**❓ Question:** ${question} \n \n 1️⃣ **Option 1:** ${opt1} \n \n 2️⃣ **Option 2:** ${opt2} ${opt3 ? `\n \n 3️⃣ **Option 3:** ${opt3}` : ""}`)
             .setColor(client.config.colors.default)
-            .setFooter(`Sondage de ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Sondage de ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
 
         const row = new MessageActionRow()
             .addComponents([

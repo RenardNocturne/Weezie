@@ -60,7 +60,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setAuthor(`Nouveau giveaway !`, interaction.guild.iconURL())
             .setDescription(`⏳ Fin <t:${Math.round(Date.now()/1000 + time)}:R> \n\n 👤 Nombre de gagnants: \`${winner}\` \n\n 🎁 Récompense: \`${price}\``)
-            .setFooter(`Aucun participant !`, interaction.user.displayAvatarURL()) 
+            .setFooter(`Aucun participant !`, interaction.member.displayAvatarURL()) 
             .setColor(client.config.colors.default);
 
         const row = new MessageActionRow() 

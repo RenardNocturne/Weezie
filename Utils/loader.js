@@ -51,9 +51,9 @@ const registerCommands = (dir = './Commands') => {
         }
     });
     
-    const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+    const rest = new REST({ version: '9' }).setToken(process.env.Token);
     
-    rest.put(Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID), { body: commands })
+    rest.put(Routes.applicationGuildCommands(process.env.ClientID, process.env.GuildID), { body: commands })
         .then(() => console.log('📌 Successfully registered application commands.'))
         .catch(console.error);
 }

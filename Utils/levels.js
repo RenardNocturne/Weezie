@@ -20,12 +20,12 @@ module.exports = (client) => {
         newCurrentExp < 0 ? client.emit("levelDown", member, newCurrentExp, channel) : await db.add(`levels.${member.id}.exp`, -exp)
     }
 
-    client.sendLevelCard = (member, info, newCurrentExp, method, message = `🚀 ${member.user.username} a atteint le niveau ${info.level} !`) => {
+    client.sendLevelCard = (member, info, newCurrentExp, method, message = `🚀 ${member.displayUsername} a atteint le niveau ${info.level} !`) => {
         const img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhca6IRoPzXyTXkhlBmK9DG3C0xD0C-KiLpwqzBpvbtYauXSMFrn3WOKAHT-v1aXRGsQ&usqp=CAU";
         
         const rank = new canvacord.Rank()
         .setOverlay("#FFFFFF", 0, false)
-        .setAvatar(member.user.displayAvatarURL({format: "png"}))
+        .setAvatar(member.displayAvatarURL({format: "png"}))
             .setLevel(info.level)
             .setCurrentXP(newCurrentExp)
             .setFontSize("20px")
@@ -35,7 +35,7 @@ module.exports = (client) => {
             .setStatus(member.presence?.status ? member.presence?.status : "offline")
             .setRank(0, "RANK", false)
             .setProgressBar(`#${client.config.colors.default}`, "COLOR")
-            .setUsername(member.user.username)
+            .setUsername(member.displayName)
             .setDiscriminator(member.user.discriminator);
 
             rank.build()
@@ -43,7 +43,7 @@ module.exports = (client) => {
                 const RankCard = new MessageAttachment(data, "RankCard.png");
 
                 const embed = new MessageEmbed()
-                    .setAuthor(`${member.user.username}`, member.user.displayAvatarURL())
+                    .setAuthor(`${member.displayName}`, member.displayAvatarURL())
                     .setDescription(message)
                     .setColor(client.config.colors.default)
                     .setFooter("Système de niveaux de " + member.guild.name + " !", member.guild.iconURL())

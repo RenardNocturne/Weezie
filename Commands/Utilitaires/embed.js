@@ -50,11 +50,11 @@ module.exports = {
             .setTitle(title)
             .setDescription(description)
             .setColor(color)
-            .setFooter(`Embed de ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Embed de ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
             .setTimestamp();
 
-        channel.createWebhook(interaction.user.username, {
-            avatar: interaction.user.displayAvatarURL(),
+        channel.createWebhook(interaction.member.displayName, {
+            avatar: interaction.member.displayAvatarURL(),
         })
         .then(async hook => {
             await hook.send({embeds: [embed]})

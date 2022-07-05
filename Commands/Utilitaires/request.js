@@ -94,24 +94,24 @@ module.exports = {
         const timesUpEmbed = new MessageEmbed()
             .setTitle("⏳ Temps écoulé !")
             .setColor(client.config.colors.error)
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
 
         const descriptionEmbed = new MessageEmbed()
-            .setAuthor("Requêtes", interaction.user.displayAvatarURL())
+            .setAuthor("Requêtes", interaction.member.displayAvatarURL())
             .setDescription("Quelle description souhaitez vous ajouter à votre requête ? \n \n *Annulation dans 5 minutes !*")
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) //Oui demandée "ée" parce qu'on va dire que c'est la commande qui est demandée :3
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL()) //Oui demandée "ée" parce qu'on va dire que c'est la commande qui est demandée :3
             .setColor(client.config.colors.default)
 
         const priceEmbed = new MessageEmbed() 
-            .setAuthor("Requêtes", interaction.user.displayAvatarURL())
+            .setAuthor("Requêtes", interaction.member.displayAvatarURL())
             .setDescription("Quelle récompense accorderez-vous ? \n \n *Annulation dans 1 minute !*")
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL()) 
             .setColor(client.config.colors.default)
 
         const abilitiesEmbed = new MessageEmbed()
-            .setAuthor("Requêtes", interaction.user.displayAvatarURL())
+            .setAuthor("Requêtes", interaction.member.displayAvatarURL())
             .setDescription("Que nécessite votre requête ? \n \n *Annulation dans 1 minute !*")
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL()) 
             .setColor(client.config.colors.default)
         
         let response;
@@ -177,9 +177,9 @@ module.exports = {
         })
 
         const endEmbed = new MessageEmbed()
-            .setAuthor(`Requête de ${interaction.user.tag}`, interaction.user.displayAvatarURL())
+            .setAuthor(`Requête de ${interaction.user.tag}`, interaction.member.displayAvatarURL())
             .setDescription(`${infos.description} \n \n **🧬 Compétence.s requise.s:** \n > ${infos.abilities.join(', ')} \n \n **🎁 Récompense:** \n > ${infos.price}`)
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL()) 
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL()) 
             .setColor(client.config.colors.default)
 
         const acceptedRequest = new MessageActionRow()

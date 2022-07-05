@@ -2,9 +2,9 @@ const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton, Messag
 
 module.exports = (client, interaction) => {
     async function createTicket (ticketReason, event) {
-        await interaction.guild.channels.create(`ticket-de-${interaction.user.username}`, {
+        await interaction.guild.channels.create(`ticket-de-${interaction.member.displayName}`, {
             type: 'text',
-            topic: `**${interaction.user.username}** a ouvert ce ticket pour la raison **"${ticketReason}"** !`,
+            topic: `**${interaction.member.displayName}** a ouvert ce ticket pour la raison **"${ticketReason}"** !`,
             position: 1,
             reason: ticketReason,
             parent: client.config.IDs.categories.tickets,
@@ -28,11 +28,11 @@ module.exports = (client, interaction) => {
             ],
         }).then(newChannel => {
             const embed = new MessageEmbed()
-                .setAuthor(`Ticket de ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                .setAuthor(`Ticket de ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 .setDescription(`Ticket ouvert par <@!${interaction.user.id}>: \n \n **📝 Raison:**  \`${ticketReason}\` \n \n *Merci de renseigner votre problème en utilisant le bouton \`Démarrer la procédure !\` ci-dessous !*`)
                 .setColor(client.config.colors.default)
                 .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
-                .setFooter(`Ticket ouvert par ${interaction.user.username}`, interaction.user.avatarURL())
+                .setFooter(`Ticket ouvert par ${interaction.member.displayName}`, interaction.user.avatarURL())
                 .setTimestamp();
             
             const Support = new MessageAttachment("Images/Support.gif")

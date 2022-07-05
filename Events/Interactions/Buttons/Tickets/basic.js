@@ -21,7 +21,7 @@ module.exports =  {
         interaction.message.edit({components: [startedRow]})
         
         const reasonEmbed = new MessageEmbed()
-            .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
+            .setAuthor("Liaison en cours !", interaction.member.displayAvatarURL())
             .setDescription("Bonjour ! \n Nous allons te poser une courte série de question auxquelles tu devras répondre afin de te faire entrer en contact avec le staff: \n \n **1ère Question:** \n Pourrais-tu préciser la raison de l'ouverture de ce ticket ?")
             .setColor(client.config.colors.default)
             .setFooter( `Liaison en cours...`, interaction.guild.iconURL())
@@ -35,7 +35,7 @@ module.exports =  {
                     })
 
                 const endedEmbed = new MessageEmbed()
-                    .setAuthor("Liaison en cours !", interaction.user.displayAvatarURL())
+                    .setAuthor("Liaison en cours !", interaction.member.displayAvatarURL())
                     .setDescription(`Votre demande a bien été prise en compte !\n Merci de patienter le temps qu'un membre du staff vienne à vous ! \n \n **📜 Raison.s**: ${data.reason} \n \n **💎 A rejoint le serveur** <t:${data.date}:R>`)
                     .setColor(client.config.colors.success)
                     .setFooter( `Liaison en cours...`, interaction.guild.iconURL())

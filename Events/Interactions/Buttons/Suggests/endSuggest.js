@@ -18,7 +18,7 @@ module.exports = {
             const repEmbed = new MessageEmbed()
                 .setTitle("📝 Répondre !")
                 .setDescription("Quelle réponse souhaitez vous apporter ?")
-                .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 .setColor(client.config.colors.default)
             
             await interaction.reply({embeds: [repEmbed], fetchReply: true})

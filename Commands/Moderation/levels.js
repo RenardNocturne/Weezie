@@ -81,7 +81,7 @@ module.exports = {
                     .setAuthor(`${target.user.tag}`, target.user.displayAvatarURL())
                     .setDescription(`${target.user.username} s'est vu ajouté de l'expérience ! \n\n**👤 Membre:** <@!${target.id}> / \`${target.user.tag}\` \n \n **🏷 Quantité ajoutée:** ${expToAdd} \n \n **🔨 Modérateur:** <@!${interaction.member.id}> / \`${interaction.member.user.tag}\` ${reasonAdd ? `\n \n 📝 Raison: ${reasonAdd}` : ""}`)
                     .setColor(client.config.colors.success)
-                    .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                    .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 client.addExp(target, expToAdd, interaction.channel).then(() => interaction.reply({embeds: [addEmbed]}))
 
                 break;
@@ -95,7 +95,7 @@ module.exports = {
                     .setAuthor(`${target.user.tag}`, target.user.displayAvatarURL())
                     .setDescription(`${target.user.username} s'est vu retiré de l'expérience ! \n\n**👤 Membre:** <@!${target.id}> / \`${target.user.tag}\` \n \n **🔥 Quantité retirée:** ${expToRemove} \n \n **🔨 Modérateur:** <@!${interaction.member.id}> / \`${interaction.member.user.tag}\` ${reasonRemove ? `\n \n 📝 Raison: ${reasonRemove}` : ""}`)
                     .setColor(client.config.colors.error)
-                    .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                    .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
 
                 client.removeExp(target, expToRemove, interaction.channel).then(() => interaction.reply({embeds: [removeEmbed]}))
                 break;

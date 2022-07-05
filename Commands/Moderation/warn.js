@@ -58,7 +58,7 @@ module.exports = {
                     .setAuthor(`${mentionned.user.tag} a été avertit !`, mentionned.user.displayAvatarURL())
                     .setDescription(`<@!${mentionned.id}> possède **désormais ${await db.get(`${mentionned.id}.warns`)} avertissements !** \n \n **Modérateur:** \n > <@!${interaction.user.id}> \n ${reason}`)
                     .setColor(client.config.colors.error)
-                    .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                    .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                     .setTimestamp();
                 
                 interaction.reply({embeds: [embed]})
@@ -74,7 +74,7 @@ module.exports = {
                         .setAuthor(`${mentionned.user.tag} a perdu ${number ? number + "avertissement.s" : '1 avertissement'} !`, mentionned.user.displayAvatarURL())
                         .setDescription(`<@!${mentionned.id}> possède **désormais ${db.get(`${mentionned.id}.warns`) - (number ? number : 1)} avertissement.s !** \n \n **Modérateur:** \n > <@!${interaction.user.id}>`)
                         .setColor(client.config.colors.default)
-                        .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                        .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                         .setTimestamp();
                     
                     interaction.reply({embeds: [embed]})
@@ -90,7 +90,7 @@ module.exports = {
                     .setAuthor(`Avertissements de ${mentionned.user.tag} !`, mentionned.user.displayAvatarURL())
                     .setDescription(`<@!${mentionned.id}> possède **${warns} avertissement.s !**`)
                     .setColor(client.config.colors.default)
-                    .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                    .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                     .setTimestamp();
 
                 interaction.reply({embeds: [embed2]})

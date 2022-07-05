@@ -39,7 +39,7 @@ module.exports = async  (client, member, expToRemove, channel) => {
         }
 
         await client.setLevelInfo(member, {exp: info.exp, level: info.level, levelExp: info.levelExp}).then(() => {
-            client.sendLevelCard(member, info, info.exp, channel, newRole != oldRole ? `🧨 ${member.user.username} est tombé au niveau ${info.level} et a perdu le niveau <@&${oldRole}> !` : `🔥 ${member.user.username} est tombé au niveau ${info.level} !`);
+            client.sendLevelCard(member, info, info.exp, channel, newRole != oldRole ? `🧨 ${member.displayName} est tombé au niveau ${info.level} et a perdu le niveau <@&${oldRole}> !` : `🔥 ${member.displayName} est tombé au niveau ${info.level} !`);
         })
     })
 }

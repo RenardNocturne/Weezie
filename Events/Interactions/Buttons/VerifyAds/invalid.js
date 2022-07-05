@@ -76,17 +76,17 @@ module.exports = {
                     message.delete().catch(err => console.log(err));
 
                     const invalidEmbed = new MessageEmbed()
-                      .setAuthor(`Publicité refusée par ${interaction.user.username} !`, interaction.user.displayAvatarURL())
-                      .setDescription(`${interaction.message.embeds[0].description} \n \n **__🚀 Vérification :__** \n **❌ Message refusé** par \`\`${interaction.user.username}\`\` / <@!${interaction.user.id}> qui réalise sa ${db.get(`${interaction.user.id}.verifs`) === 1 ? db.get(`${interaction.user.id}.verifs`) + "ère" : db.get(`${interaction.user.id}.verifs`) + "ème"} vérification ! \n\n Le membre \`\`${message.author.username}\`\` / <@!${message.author.id}> a bien été avertit car ${r} et possède désormais ${db.get(`${message.author.id}.warns`) === 1 ? db.get(`${message.author.id}.warns`) + " avertissement" : db.get(`${message.author.id}.warns`) + " avertissements"}.`)
-                      .setFooter(`Merci à ${interaction.user.username} pour la vérification !`, interaction.user.displayAvatarURL())
+                      .setAuthor(`Publicité refusée par ${interaction.member.displayName} !`, interaction.member.displayAvatarURL())
+                      .setDescription(`${interaction.message.embeds[0].description} \n \n **__🚀 Vérification :__** \n **❌ Message refusé** par \`\`${interaction.member.displayName}\`\` / <@!${interaction.user.id}> qui réalise sa ${db.get(`${interaction.user.id}.verifs`) === 1 ? db.get(`${interaction.user.id}.verifs`) + "ère" : db.get(`${interaction.user.id}.verifs`) + "ème"} vérification ! \n\n Le membre \`\`${message.author.username}\`\` / <@!${message.author.id}> a bien été avertit car ${r} et possède désormais ${db.get(`${message.author.id}.warns`) === 1 ? db.get(`${message.author.id}.warns`) + " avertissement" : db.get(`${message.author.id}.warns`) + " avertissements"}.`)
+                      .setFooter(`Merci à ${interaction.member.displayName} pour la vérification !`, interaction.member.displayAvatarURL())
                       .setTimestamp()
                       .setThumbnail('https://cdn.discordapp.com/attachments/871123050114998322/873311588768170074/image1.png')
                       .setColor(client.config.colors.error);
 
                     const sanctionEmbed = new MessageEmbed()
-                      .setAuthor(`Message refusé par ${interaction.user.username} !`,interaction.user.displayAvatarURL())
+                      .setAuthor(`Message refusé par ${interaction.member.displayName} !`,interaction.member.displayAvatarURL())
                       .setDescription(`👤 Auteur ・ ${message.author.tag} \n 🕵️‍♂️ Modérateur・${interaction.user.tag}\n 📌 Salon・<#${message.channel.id}> \n ❓ Raison・${r} !\n 🔢 Nombre d'avertissements・${db.get(`${message.author.id}.warns`)}`)
-                      .setFooter( `Merci à ${interaction.user.username} pour la vérification !`, interaction.user.displayAvatarURL())
+                      .setFooter( `Merci à ${interaction.member.displayName} pour la vérification !`, interaction.member.displayAvatarURL())
                       .setTimestamp()
                       .setThumbnail('https://cdn.discordapp.com/attachments/871123050114998322/873311588768170074/image1.png')
                       .setColor(client.config.colors.error);

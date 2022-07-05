@@ -11,10 +11,10 @@ module.exports = {
     async execute (client, interaction) {
         // if (interaction.member.roles.cache.has("922223564835414096")) return interaction.reply({content: `<@!${interaction.user.id}>, tu as déjà accepté les règles ! `, ephemeral: true})
         const askForRoleEmbed = new MessageEmbed()
-            .setAuthor(interaction.user.tag, interaction.user.displayAvatarURL())
+            .setAuthor(interaction.user.tag, interaction.member.displayAvatarURL())
             .setDescription(`Souhaites-tu obtenir le rôle <@&${client.config.IDs.roles.devs}> ou <@&${client.config.IDs.roles.graphistes}> ?`)
             .setColor(client.config.colors.default)
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
         
         const askForRoleComponent = new MessageActionRow()
             .addComponents([

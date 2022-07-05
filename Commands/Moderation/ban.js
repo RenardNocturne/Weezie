@@ -34,28 +34,28 @@ module.exports = {
                 .setAuthor(`${target.tag} débannit !`, target.displayAvatarURL())
                 .setDescription(`**👤 Modérateur:** \n > <@!${interaction.user.id}> ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
-                .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 .setTimestamp();
 
             const banEmbed = new MessageEmbed()
                 .setAuthor(`${target.tag} bannit !`, target.displayAvatarURL())
                 .setDescription(`**👤 Modérateur:** \n > <@!${interaction.user.id}> ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
-                .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 .setTimestamp();
 
             const infoEmbed = new MessageEmbed()
                 .setAuthor(`Vous avez été bannit de ${interaction.guild.name} !`, interaction.guild.iconURL())
                 .setDescription(`**👤 Modérateur:** \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
-                .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 .setTimestamp();
 
             const infoUnbanEmbed = new MessageEmbed()
                 .setAuthor(`Vous avez été débannit de ${interaction.guild.name} !`, interaction.guild.iconURL())
                 .setDescription(`**👤 Modérateur:** \n > \`\`${interaction.user.tag}\`\` ${reason} \n \n **⏳ Durée:** \n > ${txt}`)
                 .setColor(client.config.colors.default)
-                .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+                .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
                 .setTimestamp();
 
             if (!target.bannable) return interaction.reply({content: `:x: <@!${target.id}> n'est pas bannissable !`, ephemeral: true})

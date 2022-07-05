@@ -12,7 +12,7 @@ module.exports = {
             .setTitle("📢 Annonce !")
             .setDescription("Contenu de l'annonce !")
             .setColor(client.config.colors.default)
-            .setFooter(`Annonce de ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Annonce de ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
             .setTimestamp();
 
         const row = new MessageActionRow()

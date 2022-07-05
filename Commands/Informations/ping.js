@@ -21,7 +21,7 @@ module.exports = {
                 }
             ])
             .setColor(client.config.colors.default)
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
             .setTimestamp();
         interaction.reply({embeds: [embed], ephemeral: true});
     },

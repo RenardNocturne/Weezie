@@ -23,7 +23,7 @@ module.exports = {
             .setAuthor(`${target.user.tag} expulsé !`, target.user.displayAvatarURL())
             .setDescription(`**👤 Modérateur:** \n > <@!${interaction.user.id}> ${reason}`)
             .setColor(client.config.colors.default)
-            .setFooter(`Demandée par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Demandée par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
             .setTimestamp();
 
         if (!target.kickable) return interaction.reply({content: ":x: Il m'est impossible d'expulser ce membre !", ephemeral: true})

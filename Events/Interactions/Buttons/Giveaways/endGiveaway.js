@@ -25,7 +25,7 @@ module.exports = {
             .setDescription(`⏳ Fini ! \n\n 👤 Gagnants: <@${winners.join(">, <@")}> \n\n 🎁 Récompense: \`${giveaway.price}\` \n\n *${giveaway.total} participants !*`)
             .setColor(client.config.colors.success)
             .setTimestamp()
-            .setFooter(`Giveaway achevé par ${interaction.user.username}`, interaction.user.displayAvatarURL())
+            .setFooter(`Giveaway achevé par ${interaction.member.displayName}`, interaction.member.displayAvatarURL())
 
         interaction.update({embeds: [newEmbed], components: []})
 

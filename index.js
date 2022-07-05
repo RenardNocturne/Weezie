@@ -45,4 +45,4 @@ process.on('unhandledRejection', async (reason, promise) => {
     console.log(promise);
 });
 
-client.login(process.env.TOKEN)
+client.login(process.env.Token)

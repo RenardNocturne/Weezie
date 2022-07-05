@@ -12,7 +12,7 @@ module.exports = {
 
         await interaction.guild.channels.create(`requête-de-${target.user.username}`, {
             type: 'text',
-            topic: `**${interaction.user.username}** a accepté la mission de **${target.user.username}** !`,
+            topic: `**${interaction.member.displayName}** a accepté la mission de **${target.user.username}** !`,
             position: 0,
             reason: "Requête acceptée !",
             parent: client.config.IDs.categories.requests,
@@ -40,7 +40,7 @@ module.exports = {
                 .setDescription(`[Requête de **${target.user.tag}**](${interaction.message.url}) acceptée par **${interaction.user.tag}** ! \n \n *Une fois la requête accomplie, <@!${interaction.user.id}> cliquez sur le bouton "Terminer !"*`)
                 .setColor(client.config.colors.success)
                 .setThumbnail('https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/169842009/original/46a0b436c0aee26427e93e58dcc839a5d5002f9f/give-a-python-ticket-system-for-discord-bot.png')
-                .setFooter(`Requête acceptée par ${interaction.user.username}`, interaction.user.avatarURL())
+                .setFooter(`Requête acceptée par ${interaction.member.displayName}`, interaction.user.avatarURL())
                 .setTimestamp();
             
             const row = new MessageActionRow()
@@ -56,7 +56,7 @@ module.exports = {
 
             interaction.reply({content: `✅ Requête acceptée ! Allez voir le ticket <#${newChannel.id}> !`, ephemeral: true})
 
-            const acceptedEmbed = interaction.message.embeds[0].setFooter(`Requête acceptée par ${interaction.user.tag}`, interaction.user.displayAvatarURL()).setColor(client.config.colors.success)
+            const acceptedEmbed = interaction.message.embeds[0].setFooter(`Requête acceptée par ${interaction.user.tag}`, interaction.member.displayAvatarURL()).setColor(client.config.colors.success)
             const acceptedRow = new MessageActionRow()
                 .addComponents([
                     new MessageButton()

@@ -44,7 +44,7 @@ module.exports = async (client) => {
 
     // Système de récupération des statuts custom
     setInterval(() => {
-        client.guilds.cache.get(process.env.GUILDID).members.cache.forEach(async member => {
+        client.guilds.cache.get(process.env.GuildID).members.cache.forEach(async member => {
             const state = member.presence?.activities.find(activity => activity.type === "CUSTOM")?.state
             if (!state?.includes("https://discord.gg/WumhCgGPrD") && !state?.includes("discord.gg/WumhCgGPrD") && !state?.includes(".gg/WumhCgGPrD")) return  
             
@@ -53,9 +53,9 @@ module.exports = async (client) => {
             
             const exp = 50
             const embed = new MessageEmbed()
-                .setAuthor(`Merci ${member.user.tag} !`, member.user.displayAvatarURL())
+                .setAuthor(`Merci ${member.user.tag} !`, member.displayAvatarURL())
                 .setDescription(`✨ <@!${member.id}> vient de modifier son statut pour \`${state}\` pour la première fois ! \n Merci beaucoup ♥ \n 🎁 Tu gagnes **${exp} points d'expérience** ainsi qu'**entre 14 et 30 points d'expérience par jour** si tu gardes ce lien dans ton statut !`)
-                .setFooter(`Starboard de ${client.guilds.cache.get(process.env.GUILDID).name}`, client.guilds.cache.get(process.env.GUILDID).iconURL())
+                .setFooter(`Starboard de ${client.guilds.cache.get(process.env.GuildID).name}`, client.guilds.cache.get(process.env.GuildID).iconURL())
                 .setColor(client.config.colors.default)
                 .setTimestamp();
         

@@ -10,11 +10,11 @@ const { MessageEmbed, MessageAttachment, Client, GuildMember } = require('discor
 module.exports = async (client, oldMember, newMember) => {
 
     async function createPersonalChannel (member, reason, timeInDays, timeInSeconds) {
-        await member.guild.channels.create(`⭐・${member.user.username}`, {
+        await member.guild.channels.create(`⭐・${member.displayName}`, {
             type: 'text',
-            topic: `Salon personnel de ${member.user.username} !`,
+            topic: `Salon personnel de ${member.displayName} !`,
             position: 1,
-            reason: `Création du salon personnel de ${member.user.username} !`,
+            reason: `Création du salon personnel de ${member.displayName} !`,
             parent: client.config.IDs.categories.personalChannels,
             permissionOverwrites: [
                 {
@@ -24,14 +24,14 @@ module.exports = async (client, oldMember, newMember) => {
             ],
         }).then(channel => {
             const embed = new MessageEmbed()
-                .setAuthor(`Salon personnel de ${member.user.username}`, member.user.displayAvatarURL())
+                .setAuthor(`Salon personnel de ${member.displayName}`, member.displayAvatarURL())
                 .setDescription(`Voici ton salon <@${member.id}> ! N'oublies pas qu'ici aussi les <#${client.config.IDs.channels.rules}> s'appliquent ! \n\n 🎉 Salon acquis le <t:${Math.round(Date.now()/1000)}> \n\n 👤 Créateur: <@${member.id}> \n\n 📜 Raison: \`${reason}\` \n\n ⏳ Se termine <t:${Math.round(Date.now()/1000 + timeInSeconds)}:R> !`)
                 .setFooter(`Merci d'avoir été si actif sur ${member.guild.name}`, member.guild.iconURL())
                 .setColor(client.config.colors.default)
             channel.send({content: `Voici ton salon <@${member.id}> !`, embeds: [embed]})
             .then(() => {
                 client.setDaysTimeout(() => {
-                    channel.delete(`Suppression du salon personnel de ${member.user.username} !`)
+                    channel.delete(`Suppression du salon personnel de ${member.displayName} !`)
                 }, timeInDays)
             })
         })
