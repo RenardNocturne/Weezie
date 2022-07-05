@@ -20,7 +20,7 @@ module.exports = (client) => {
         newCurrentExp < 0 ? client.emit("levelDown", member, newCurrentExp, channel) : await db.add(`levels.${member.id}.exp`, -exp)
     }
 
-    client.sendLevelCard = (member, info, newCurrentExp, method, message = `🚀 ${member.displayUsername} a atteint le niveau ${info.level} !`) => {
+    client.sendLevelCard = (member, info, newCurrentExp, method, message = `🚀 ${member.displayName} a atteint le niveau ${info.level} !`) => {
         const img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhca6IRoPzXyTXkhlBmK9DG3C0xD0C-KiLpwqzBpvbtYauXSMFrn3WOKAHT-v1aXRGsQ&usqp=CAU";
         
         const rank = new canvacord.Rank()
