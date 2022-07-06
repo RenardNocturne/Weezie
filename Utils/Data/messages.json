@@ -18,5 +18,14 @@
         "♥ Trop gentil ! Allez je te donne ",
         "🏮 Quel ange ! C'est gratuit ! ",
         "Mince ! On dirait que tu as oublié ça 👑 derrière toi ! Prends là avec tes "
+    ],
+
+    "welcome": [
+        "👋 Bienvenue $username !",
+        "Salut $username !",
+        "C'est un plaisir de te compter parmi nous $username ! ✨",
+        "Salut $username ! J'espère que tu te plairas ici !",
+        "Hello $username ! N'oublies de choisir tes rôles ! 🧬",
+        "Bienvenue $username ! Ça va ?"
     ]
 }

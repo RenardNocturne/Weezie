@@ -23,7 +23,7 @@ module.exports = {
             .addComponents([
                 new MessageButton()
                     .setStyle('SUCCESS')
-                    .setCustomId(`sayHelloTo`)
+                    .setCustomId(`sayHelloTo/${interaction.member.id}`)
                     .setLabel("👋 Bienvenue !")
             ])
         client.channels.cache.get(client.config.IDs.channels.welcome).send({content: `:tada: Bienvenue <@!${interaction.member.id}> !`, embeds: [welcomeEmbed], components: [row]})
