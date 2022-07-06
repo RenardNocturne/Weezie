@@ -18,7 +18,7 @@ module.exports = {
 
         const hook = new WebhookClient({url: process.env.WelcomeWebhook})    
         hook.edit({name: interaction.member.displayName, avatar: interaction.member.displayAvatarURL()}).then(() => {
-            hook.send({content: messages.welcome[client.random(0, messages.welcome.length)].replace("$username", targetMember.displayName)})
+            hook.send({content: messages.welcome[client.random(0, messages.welcome.length - 1)].replace("$username", targetMember.displayName)})
         })
     }   
 }
