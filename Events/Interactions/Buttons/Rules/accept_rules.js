@@ -26,6 +26,8 @@ module.exports = {
                     .setCustomId(`sayHelloTo/${interaction.member.id}`)
                     .setLabel("👋 Bienvenue !")
             ])
-        client.channels.cache.get(client.config.IDs.channels.welcome).send({content: `:tada: Bienvenue <@!${interaction.member.id}> !`, embeds: [welcomeEmbed], components: [row]})
+        client.channels.cache.get(client.config.IDs.channels.welcome).send({content: `:tada: Bienvenue <@!${interaction.member.id}> !`, embeds: [welcomeEmbed]/*, components: [row]*/}).then(msg => {
+            msg.react("996098313201909930")
+        })
     }
 }
